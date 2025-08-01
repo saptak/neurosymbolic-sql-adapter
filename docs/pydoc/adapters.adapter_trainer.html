@@ -1,0 +1,68 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module adaptertrainer</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>AdapterTrainer</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial">&nbsp;</font></td></tr></table>
+    <p><tt>Parameter-efficient fine-tuning system for neurosymbolic SQL adapters</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="#AdapterTrainer">AdapterTrainer</a>
+</font></dt><dd>
+<tt>AdapterTrainer(self, config: adapters.adapter_trainer.TrainingConfig, model: Optional[adapters.neurosymbolic_adapter.NeurosymbolicAdapter] = None)</tt><br>
+<br>
+Comprehensive trainer for neurosymbolic SQL adapters
+
+Handles parameter-efficient fine-tuning with symbolic reasoning integration.<br>&nbsp;</dd></dl>
+
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="#TrainingConfig">TrainingConfig</a>
+</font></dt><dd>
+<tt>TrainingConfig(self, num_epochs: int = 3, batch_size: int = 4, learning_rate: float = 0.0002, weight_decay: float = 0.01, gradient_clip_norm: float = 1.0, warmup_steps: int = 100, lora_r: int = 16, lora_alpha: int = 32, lora_dropout: float = 0.1, bridge_dim: int = 256, symbolic_dim: int = 512, confidence_weight: float = 0.1, fact_consistency_weight: float = 0.05, use_gradient_checkpointing: bool = False, use_mixed_precision: bool = False, optimizer_type: str = 'adamw', scheduler_type: str = 'cosine', eval_steps: int = 100, save_steps: int = 500, logging_steps: int = 50, early_stopping_patience: int = 3, early_stopping_threshold: float = 0.01, output_dir: str = './output', save_total_limit: int = 3, enable_symbolic_loss: bool = True, enable_confidence_calibration: bool = True, enable_fact_verification: bool = True) -> None</tt><br>
+<br>
+Configuration for adapter training<br>&nbsp;</dd></dl>
+
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="#SQLDataset">SQLDataset</a>
+</font></dt><dd>
+<tt>SQLDataset(self, examples: List[Dict[str, Any]], tokenizer=None, max_length: int = 512)</tt><br>
+<br>
+Dataset for SQL training examples<br>&nbsp;</dd></dl>
+
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="#NeurosymbolicLoss">NeurosymbolicLoss</a>
+</font></dt><dd>
+<tt>NeurosymbolicLoss(self, config: adapters.adapter_trainer.TrainingConfig)</tt><br>
+<br>
+Custom loss function for neurosymbolic training<br>&nbsp;</dd></dl>
+
+</td></tr></table>
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-create_trainer"><strong>create_trainer</strong></a>(config: adapters.adapter_trainer.TrainingConfig, model: Optional[adapters.neurosymbolic_adapter.NeurosymbolicAdapter] = None) -> adapters.adapter_trainer.AdapterTrainer</dt><dd>Create adapter trainer with configuration</dd></dl>
+
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-create_mock_dataset"><strong>create_mock_dataset</strong></a>(num_examples: int = 100) -> adapters.adapter_trainer.SQLDataset</dt><dd>Create mock dataset for testing</dd></dl>
+
+</td></tr></table>
+</body></html>

@@ -1,0 +1,16 @@
+{
+  "model_type": "llama-8b",
+  "model_name": "unsloth/llama-3.1-8b-instruct-bnb-4bit",
+  "device": "cpu",
+  "parameter_count": {
+    "total": 56064477,
+    "trainable": 56064477
+  },
+  "component_status": {
+    "lora_adapter": true,
+    "bridge_layer": true,
+    "confidence_estimator": true,
+    "fact_extractor": true
+  },
+  "load_time": 0.20569396018981934
+}

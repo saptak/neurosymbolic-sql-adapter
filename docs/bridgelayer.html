@@ -1,0 +1,3730 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BridgeLayer - API Documentation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; border-bottom: 1px solid #ecf0f1; padding-bottom: 5px; margin-top: 30px; }
+        h3 { color: #2980b9; margin-top: 25px; }
+        .module-doc { background: #e3f2fd; padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+        .class-container { background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 20px; margin: 20px 0; }
+        .method-container { background: white; border: 1px solid #e9ecef; border-radius: 5px; padding: 15px; margin: 10px 0; }
+        .function-container { background: #fff3e0; border: 1px solid #ffcc02; border-radius: 5px; padding: 15px; margin: 10px 0; }
+        .signature { background: #2c3e50; color: white; padding: 10px; border-radius: 5px; font-family: 'Courier New', monospace; margin: 10px 0; overflow-x: auto; }
+        .docstring { color: #555; margin: 15px 0; white-space: pre-wrap; }
+        .toc { background: #f1f3f4; padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+        .toc ul { list-style-type: none; padding-left: 20px; }
+        .toc a { color: #1976d2; text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+        .badge { display: inline-block; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; }
+        .badge.class { background: #e1f5fe; color: #01579b; }
+        .badge.function { background: #fff3e0; color: #e65100; }
+        .badge.method { background: #f3e5f5; color: #4a148c; }
+        code { background: #f5f5f5; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📖 BridgeLayer - API Documentation</h1>
+        
+        <div class="module-doc">
+            <h2>Module Description</h2>
+            <div class="docstring">Bridge Layer
+
+Neural-symbolic translation layer that converts neural representations
+to symbolic reasoning contexts and vice versa.</div>
+        </div>
+
+        <div class="toc">
+            <h2>📋 Table of Contents</h2>
+            <ul>
+<li><strong>Classes:</strong><ul><li><a href="#class-Any"><span class="badge class">Class</span> Any</a></li><li><a href="#class-BridgeLayer"><span class="badge class">Class</span> BridgeLayer</a></li><li><a href="#class-MultiHeadSymbolicAttention"><span class="badge class">Class</span> MultiHeadSymbolicAttention</a></li><li><a href="#class-SymbolicContext"><span class="badge class">Class</span> SymbolicContext</a></li><li><a href="#class-SymbolicTransformerBlock"><span class="badge class">Class</span> SymbolicTransformerBlock</a></li></ul></li><li><strong>Functions:</strong><ul><li><a href="#func-create_bridge_layer"><span class="badge function">Function</span> create_bridge_layer</a></li><li><a href="#func-create_llama_bridge"><span class="badge function">Function</span> create_llama_bridge</a></li><li><a href="#func-dataclass"><span class="badge function">Function</span> dataclass</a></li></ul></li>
+            </ul>
+        </div>
+<h2>🏗️ Classes</h2>
+        <div class="class-container" id="class-Any">
+            <h3><span class="badge class">Class</span> Any</h3>
+            <div class="signature">class Any(self, /, *args, **kwargs)</div>
+            <div class="docstring">Special type indicating an unconstrained type.
+
+- Any is compatible with every type.
+- Any assumed to have all methods.
+- All values assumed to be instances of Any.
+
+Note that all the above statements are true from the point of view of
+static type checkers. At runtime, Any should not be used with instance
+checks.</div>
+</div>
+        <div class="class-container" id="class-BridgeLayer">
+            <h3><span class="badge class">Class</span> BridgeLayer</h3>
+            <div class="signature">class BridgeLayer(self, neural_dim: int = 4096, symbolic_dim: int = 512, bridge_dim: int = 256, num_layers: int = 2, num_heads: int = 8, dropout: float = 0.1, max_facts: int = 50)</div>
+            <div class="docstring">Bridge Layer for Neural-Symbolic Translation
+
+Converts neural language model representations to symbolic reasoning
+contexts that can be processed by the PyReason engine.</div>
+<h4>Methods:</h4>
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> __call__</h5>
+                    <div class="signature">__call__(self, *args, **kwargs)</div>
+                    <div class="docstring">No method documentation available.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> __init__</h5>
+                    <div class="signature">__init__(self, neural_dim: int = 4096, symbolic_dim: int = 512, bridge_dim: int = 256, num_layers: int = 2, num_heads: int = 8, dropout: float = 0.1, max_facts: int = 50)</div>
+                    <div class="docstring">Initialize bridge layer
+
+Args:
+    neural_dim: Dimension of neural representations (e.g., 4096 for Llama)
+    symbolic_dim: Dimension of symbolic space
+    bridge_dim: Intermediate bridge dimension
+    num_layers: Number of transformer layers
+    num_heads: Number of attention heads
+    dropout: Dropout rate
+    max_facts: Maximum number of facts to extract</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> add_module</h5>
+                    <div class="signature">add_module(self, name: str, module: Optional[ForwardRef('Module')]) -> None</div>
+                    <div class="docstring">Add a child module to the current module.
+
+The module can be accessed as an attribute using the given name.
+
+Args:
+    name (str): name of the child module. The child module can be
+        accessed from this module using the given name
+    module (Module): child module to be added to the module.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> apply</h5>
+                    <div class="signature">apply(self: ~T, fn: Callable[[ForwardRef('Module')], NoneType]) -> ~T</div>
+                    <div class="docstring">Apply ``fn`` recursively to every submodule (as returned by ``.children()``) as well as self.
+
+Typical use includes initializing the parameters of a model
+(see also :ref:`nn-init-doc`).
+
+Args:
+    fn (:class:`Module` -> None): function to be applied to each submodule
+
+Returns:
+    Module: self
+
+Example::
+
+    >>> @torch.no_grad()
+    >>> def init_weights(m):
+    >>>     print(m)
+    >>>     if type(m) == nn.Linear:
+    >>>         m.weight.fill_(1.0)
+    >>>         print(m.weight)
+    >>> net = nn.Sequential(nn.Linear(2, 2), nn.Linear(2, 2))
+    >>> net.apply(init_weights)
+    Linear(in_features=2, out_features=2, bias=True)
+    Parameter containing:
+    tensor([[1., 1.],
+            [1., 1.]], requires_grad=True)
+    Linear(in_features=2, out_features=2, bias=True)
+    Parameter containing:
+    tensor([[1., 1.],
+            [1., 1.]], requires_grad=True)
+    Sequential(
+      (0): Linear(in_features=2, out_features=2, bias=True)
+      (1): Linear(in_features=2, out_features=2, bias=True)
+    )</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> bfloat16</h5>
+                    <div class="signature">bfloat16(self: ~T) -> ~T</div>
+                    <div class="docstring">Casts all floating point parameters and buffers to ``bfloat16`` datatype.
+
+.. note::
+    This method modifies the module in-place.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> buffers</h5>
+                    <div class="signature">buffers(self, recurse: bool = True) -> collections.abc.Iterator[torch.Tensor]</div>
+                    <div class="docstring">Return an iterator over module buffers.
+
+Args:
+    recurse (bool): if True, then yields buffers of this module
+        and all submodules. Otherwise, yields only buffers that
+        are direct members of this module.
+
+Yields:
+    torch.Tensor: module buffer
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> for buf in model.buffers():
+    >>>     print(type(buf), buf.size())
+    <class 'torch.Tensor'> (20L,)
+    <class 'torch.Tensor'> (20L, 1L, 5L, 5L)</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> children</h5>
+                    <div class="signature">children(self) -> collections.abc.Iterator['Module']</div>
+                    <div class="docstring">Return an iterator over immediate children modules.
+
+Yields:
+    Module: a child module</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> compile</h5>
+                    <div class="signature">compile(self, *args, **kwargs)</div>
+                    <div class="docstring">Compile this Module's forward using :func:`torch.compile`.
+
+This Module's `__call__` method is compiled and all arguments are passed as-is
+to :func:`torch.compile`.
+
+See :func:`torch.compile` for details on the arguments for this function.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> cpu</h5>
+                    <div class="signature">cpu(self: ~T) -> ~T</div>
+                    <div class="docstring">Move all model parameters and buffers to the CPU.
+
+.. note::
+    This method modifies the module in-place.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> cuda</h5>
+                    <div class="signature">cuda(self: ~T, device: Union[int, torch.device, NoneType] = None) -> ~T</div>
+                    <div class="docstring">Move all model parameters and buffers to the GPU.
+
+This also makes associated parameters and buffers different objects. So
+it should be called before constructing the optimizer if the module will
+live on GPU while being optimized.
+
+.. note::
+    This method modifies the module in-place.
+
+Args:
+    device (int, optional): if specified, all parameters will be
+        copied to that device
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> double</h5>
+                    <div class="signature">double(self: ~T) -> ~T</div>
+                    <div class="docstring">Casts all floating point parameters and buffers to ``double`` datatype.
+
+.. note::
+    This method modifies the module in-place.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> eval</h5>
+                    <div class="signature">eval(self: ~T) -> ~T</div>
+                    <div class="docstring">Set the module in evaluation mode.
+
+This has an effect only on certain modules. See the documentation of
+particular modules for details of their behaviors in training/evaluation
+mode, i.e. whether they are affected, e.g. :class:`Dropout`, :class:`BatchNorm`,
+etc.
+
+This is equivalent with :meth:`self.train(False) <torch.nn.Module.train>`.
+
+See :ref:`locally-disable-grad-doc` for a comparison between
+`.eval()` and several similar mechanisms that may be confused with it.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> explain_symbolic_transformation</h5>
+                    <div class="signature">explain_symbolic_transformation(self, neural_input: torch.Tensor) -> Dict[str, Any]</div>
+                    <div class="docstring">Provide detailed explanation of neural-symbolic transformation</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> extra_repr</h5>
+                    <div class="signature">extra_repr(self) -> str</div>
+                    <div class="docstring">Return the extra representation of the module.
+
+To print customized extra information, you should re-implement
+this method in your own modules. Both single-line and multi-line
+strings are acceptable.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> float</h5>
+                    <div class="signature">float(self: ~T) -> ~T</div>
+                    <div class="docstring">Casts all floating point parameters and buffers to ``float`` datatype.
+
+.. note::
+    This method modifies the module in-place.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> forward</h5>
+                    <div class="signature">forward(self, neural_representations: torch.Tensor, attention_mask: Optional[torch.Tensor] = None) -> BridgeLayer.SymbolicContext</div>
+                    <div class="docstring">Forward pass: Neural -> Symbolic translation
+
+Args:
+    neural_representations: Neural embeddings [batch_size, seq_len, neural_dim]
+    attention_mask: Attention mask [batch_size, seq_len]
+    
+Returns:
+    SymbolicContext with symbolic representations and extracted facts</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> get_buffer</h5>
+                    <div class="signature">get_buffer(self, target: str) -> 'Tensor'</div>
+                    <div class="docstring">Return the buffer given by ``target`` if it exists, otherwise throw an error.
+
+See the docstring for ``get_submodule`` for a more detailed
+explanation of this method's functionality as well as how to
+correctly specify ``target``.
+
+Args:
+    target: The fully-qualified string name of the buffer
+        to look for. (See ``get_submodule`` for how to specify a
+        fully-qualified string.)
+
+Returns:
+    torch.Tensor: The buffer referenced by ``target``
+
+Raises:
+    AttributeError: If the target string references an invalid
+        path or resolves to something that is not a
+        buffer</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> get_concept_similarities</h5>
+                    <div class="signature">get_concept_similarities(self, query_embedding: torch.Tensor) -> Dict[str, float]</div>
+                    <div class="docstring">Get similarities between query and SQL concepts</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> get_extra_state</h5>
+                    <div class="signature">get_extra_state(self) -> Any</div>
+                    <div class="docstring">Return any extra state to include in the module's state_dict.
+
+Implement this and a corresponding :func:`set_extra_state` for your module
+if you need to store extra state. This function is called when building the
+module's `state_dict()`.
+
+Note that extra state should be picklable to ensure working serialization
+of the state_dict. We only provide backwards compatibility guarantees
+for serializing Tensors; other objects may break backwards compatibility if
+their serialized pickled form changes.
+
+Returns:
+    object: Any extra state to store in the module's state_dict</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> get_parameter</h5>
+                    <div class="signature">get_parameter(self, target: str) -> 'Parameter'</div>
+                    <div class="docstring">Return the parameter given by ``target`` if it exists, otherwise throw an error.
+
+See the docstring for ``get_submodule`` for a more detailed
+explanation of this method's functionality as well as how to
+correctly specify ``target``.
+
+Args:
+    target: The fully-qualified string name of the Parameter
+        to look for. (See ``get_submodule`` for how to specify a
+        fully-qualified string.)
+
+Returns:
+    torch.nn.Parameter: The Parameter referenced by ``target``
+
+Raises:
+    AttributeError: If the target string references an invalid
+        path or resolves to something that is not an
+        ``nn.Parameter``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> get_parameters_count</h5>
+                    <div class="signature">get_parameters_count(self) -> Dict[str, int]</div>
+                    <div class="docstring">Get parameter count breakdown</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> get_submodule</h5>
+                    <div class="signature">get_submodule(self, target: str) -> 'Module'</div>
+                    <div class="docstring">Return the submodule given by ``target`` if it exists, otherwise throw an error.
+
+For example, let's say you have an ``nn.Module`` ``A`` that
+looks like this:
+
+.. code-block:: text
+
+    A(
+        (net_b): Module(
+            (net_c): Module(
+                (conv): Conv2d(16, 33, kernel_size=(3, 3), stride=(2, 2))
+            )
+            (linear): Linear(in_features=100, out_features=200, bias=True)
+        )
+    )
+
+(The diagram shows an ``nn.Module`` ``A``. ``A`` which has a nested
+submodule ``net_b``, which itself has two submodules ``net_c``
+and ``linear``. ``net_c`` then has a submodule ``conv``.)
+
+To check whether or not we have the ``linear`` submodule, we
+would call ``get_submodule("net_b.linear")``. To check whether
+we have the ``conv`` submodule, we would call
+``get_submodule("net_b.net_c.conv")``.
+
+The runtime of ``get_submodule`` is bounded by the degree
+of module nesting in ``target``. A query against
+``named_modules`` achieves the same result, but it is O(N) in
+the number of transitive modules. So, for a simple check to see
+if some submodule exists, ``get_submodule`` should always be
+used.
+
+Args:
+    target: The fully-qualified string name of the submodule
+        to look for. (See above example for how to specify a
+        fully-qualified string.)
+
+Returns:
+    torch.nn.Module: The submodule referenced by ``target``
+
+Raises:
+    AttributeError: If at any point along the path resulting from
+        the target string the (sub)path resolves to a non-existent
+        attribute name or an object that is not an instance of ``nn.Module``.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> half</h5>
+                    <div class="signature">half(self: ~T) -> ~T</div>
+                    <div class="docstring">Casts all floating point parameters and buffers to ``half`` datatype.
+
+.. note::
+    This method modifies the module in-place.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> ipu</h5>
+                    <div class="signature">ipu(self: ~T, device: Union[int, torch.device, NoneType] = None) -> ~T</div>
+                    <div class="docstring">Move all model parameters and buffers to the IPU.
+
+This also makes associated parameters and buffers different objects. So
+it should be called before constructing the optimizer if the module will
+live on IPU while being optimized.
+
+.. note::
+    This method modifies the module in-place.
+
+Arguments:
+    device (int, optional): if specified, all parameters will be
+        copied to that device
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> load_state_dict</h5>
+                    <div class="signature">load_state_dict(self, state_dict: collections.abc.Mapping[str, typing.Any], strict: bool = True, assign: bool = False)</div>
+                    <div class="docstring">Copy parameters and buffers from :attr:`state_dict` into this module and its descendants.
+
+If :attr:`strict` is ``True``, then
+the keys of :attr:`state_dict` must exactly match the keys returned
+by this module's :meth:`~torch.nn.Module.state_dict` function.
+
+.. warning::
+    If :attr:`assign` is ``True`` the optimizer must be created after
+    the call to :attr:`load_state_dict` unless
+    :func:`~torch.__future__.get_swap_module_params_on_conversion` is ``True``.
+
+Args:
+    state_dict (dict): a dict containing parameters and
+        persistent buffers.
+    strict (bool, optional): whether to strictly enforce that the keys
+        in :attr:`state_dict` match the keys returned by this module's
+        :meth:`~torch.nn.Module.state_dict` function. Default: ``True``
+    assign (bool, optional): When set to ``False``, the properties of the tensors
+        in the current module are preserved whereas setting it to ``True`` preserves
+        properties of the Tensors in the state dict. The only
+        exception is the ``requires_grad`` field of :class:`~torch.nn.Parameter`s
+        for which the value from the module is preserved.
+        Default: ``False``
+
+Returns:
+    ``NamedTuple`` with ``missing_keys`` and ``unexpected_keys`` fields:
+        * **missing_keys** is a list of str containing any keys that are expected
+            by this module but missing from the provided ``state_dict``.
+        * **unexpected_keys** is a list of str containing the keys that are not
+            expected by this module but present in the provided ``state_dict``.
+
+Note:
+    If a parameter or buffer is registered as ``None`` and its corresponding key
+    exists in :attr:`state_dict`, :meth:`load_state_dict` will raise a
+    ``RuntimeError``.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> modules</h5>
+                    <div class="signature">modules(self) -> collections.abc.Iterator['Module']</div>
+                    <div class="docstring">Return an iterator over all modules in the network.
+
+Yields:
+    Module: a module in the network
+
+Note:
+    Duplicate modules are returned only once. In the following
+    example, ``l`` will be returned only once.
+
+Example::
+
+    >>> l = nn.Linear(2, 2)
+    >>> net = nn.Sequential(l, l)
+    >>> for idx, m in enumerate(net.modules()):
+    ...     print(idx, '->', m)
+
+    0 -> Sequential(
+      (0): Linear(in_features=2, out_features=2, bias=True)
+      (1): Linear(in_features=2, out_features=2, bias=True)
+    )
+    1 -> Linear(in_features=2, out_features=2, bias=True)</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> mtia</h5>
+                    <div class="signature">mtia(self: ~T, device: Union[int, torch.device, NoneType] = None) -> ~T</div>
+                    <div class="docstring">Move all model parameters and buffers to the MTIA.
+
+This also makes associated parameters and buffers different objects. So
+it should be called before constructing the optimizer if the module will
+live on MTIA while being optimized.
+
+.. note::
+    This method modifies the module in-place.
+
+Arguments:
+    device (int, optional): if specified, all parameters will be
+        copied to that device
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> named_buffers</h5>
+                    <div class="signature">named_buffers(self, prefix: str = '', recurse: bool = True, remove_duplicate: bool = True) -> collections.abc.Iterator[tuple[str, torch.Tensor]]</div>
+                    <div class="docstring">Return an iterator over module buffers, yielding both the name of the buffer as well as the buffer itself.
+
+Args:
+    prefix (str): prefix to prepend to all buffer names.
+    recurse (bool, optional): if True, then yields buffers of this module
+        and all submodules. Otherwise, yields only buffers that
+        are direct members of this module. Defaults to True.
+    remove_duplicate (bool, optional): whether to remove the duplicated buffers in the result. Defaults to True.
+
+Yields:
+    (str, torch.Tensor): Tuple containing the name and buffer
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> for name, buf in self.named_buffers():
+    >>>     if name in ['running_var']:
+    >>>         print(buf.size())</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> named_children</h5>
+                    <div class="signature">named_children(self) -> collections.abc.Iterator[tuple[str, 'Module']]</div>
+                    <div class="docstring">Return an iterator over immediate children modules, yielding both the name of the module as well as the module itself.
+
+Yields:
+    (str, Module): Tuple containing a name and child module
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> for name, module in model.named_children():
+    >>>     if name in ['conv4', 'conv5']:
+    >>>         print(module)</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> named_modules</h5>
+                    <div class="signature">named_modules(self, memo: Optional[set['Module']] = None, prefix: str = '', remove_duplicate: bool = True)</div>
+                    <div class="docstring">Return an iterator over all modules in the network, yielding both the name of the module as well as the module itself.
+
+Args:
+    memo: a memo to store the set of modules already added to the result
+    prefix: a prefix that will be added to the name of the module
+    remove_duplicate: whether to remove the duplicated module instances in the result
+        or not
+
+Yields:
+    (str, Module): Tuple of name and module
+
+Note:
+    Duplicate modules are returned only once. In the following
+    example, ``l`` will be returned only once.
+
+Example::
+
+    >>> l = nn.Linear(2, 2)
+    >>> net = nn.Sequential(l, l)
+    >>> for idx, m in enumerate(net.named_modules()):
+    ...     print(idx, '->', m)
+
+    0 -> ('', Sequential(
+      (0): Linear(in_features=2, out_features=2, bias=True)
+      (1): Linear(in_features=2, out_features=2, bias=True)
+    ))
+    1 -> ('0', Linear(in_features=2, out_features=2, bias=True))</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> named_parameters</h5>
+                    <div class="signature">named_parameters(self, prefix: str = '', recurse: bool = True, remove_duplicate: bool = True) -> collections.abc.Iterator[tuple[str, torch.nn.parameter.Parameter]]</div>
+                    <div class="docstring">Return an iterator over module parameters, yielding both the name of the parameter as well as the parameter itself.
+
+Args:
+    prefix (str): prefix to prepend to all parameter names.
+    recurse (bool): if True, then yields parameters of this module
+        and all submodules. Otherwise, yields only parameters that
+        are direct members of this module.
+    remove_duplicate (bool, optional): whether to remove the duplicated
+        parameters in the result. Defaults to True.
+
+Yields:
+    (str, Parameter): Tuple containing the name and parameter
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> for name, param in self.named_parameters():
+    >>>     if name in ['bias']:
+    >>>         print(param.size())</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> parameters</h5>
+                    <div class="signature">parameters(self, recurse: bool = True) -> collections.abc.Iterator[torch.nn.parameter.Parameter]</div>
+                    <div class="docstring">Return an iterator over module parameters.
+
+This is typically passed to an optimizer.
+
+Args:
+    recurse (bool): if True, then yields parameters of this module
+        and all submodules. Otherwise, yields only parameters that
+        are direct members of this module.
+
+Yields:
+    Parameter: module parameter
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> for param in model.parameters():
+    >>>     print(type(param), param.size())
+    <class 'torch.Tensor'> (20L,)
+    <class 'torch.Tensor'> (20L, 1L, 5L, 5L)</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_backward_hook</h5>
+                    <div class="signature">register_backward_hook(self, hook: Callable[[ForwardRef('Module'), Union[tuple[torch.Tensor, ...], torch.Tensor], Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]]) -> torch.utils.hooks.RemovableHandle</div>
+                    <div class="docstring">Register a backward hook on the module.
+
+This function is deprecated in favor of :meth:`~torch.nn.Module.register_full_backward_hook` and
+the behavior of this function will change in future versions.
+
+Returns:
+    :class:`torch.utils.hooks.RemovableHandle`:
+        a handle that can be used to remove the added hook by calling
+        ``handle.remove()``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_buffer</h5>
+                    <div class="signature">register_buffer(self, name: str, tensor: Optional[torch.Tensor], persistent: bool = True) -> None</div>
+                    <div class="docstring">Add a buffer to the module.
+
+This is typically used to register a buffer that should not to be
+considered a model parameter. For example, BatchNorm's ``running_mean``
+is not a parameter, but is part of the module's state. Buffers, by
+default, are persistent and will be saved alongside parameters. This
+behavior can be changed by setting :attr:`persistent` to ``False``. The
+only difference between a persistent buffer and a non-persistent buffer
+is that the latter will not be a part of this module's
+:attr:`state_dict`.
+
+Buffers can be accessed as attributes using given names.
+
+Args:
+    name (str): name of the buffer. The buffer can be accessed
+        from this module using the given name
+    tensor (Tensor or None): buffer to be registered. If ``None``, then operations
+        that run on buffers, such as :attr:`cuda`, are ignored. If ``None``,
+        the buffer is **not** included in the module's :attr:`state_dict`.
+    persistent (bool): whether the buffer is part of this module's
+        :attr:`state_dict`.
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> self.register_buffer('running_mean', torch.zeros(num_features))</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_forward_hook</h5>
+                    <div class="signature">register_forward_hook(self, hook: Union[Callable[[~T, tuple[Any, ...], Any], Optional[Any]], Callable[[~T, tuple[Any, ...], dict[str, Any], Any], Optional[Any]]], *, prepend: bool = False, with_kwargs: bool = False, always_call: bool = False) -> torch.utils.hooks.RemovableHandle</div>
+                    <div class="docstring">Register a forward hook on the module.
+
+The hook will be called every time after :func:`forward` has computed an output.
+
+If ``with_kwargs`` is ``False`` or not specified, the input contains only
+the positional arguments given to the module. Keyword arguments won't be
+passed to the hooks and only to the ``forward``. The hook can modify the
+output. It can modify the input inplace but it will not have effect on
+forward since this is called after :func:`forward` is called. The hook
+should have the following signature::
+
+    hook(module, args, output) -> None or modified output
+
+If ``with_kwargs`` is ``True``, the forward hook will be passed the
+``kwargs`` given to the forward function and be expected to return the
+output possibly modified. The hook should have the following signature::
+
+    hook(module, args, kwargs, output) -> None or modified output
+
+Args:
+    hook (Callable): The user defined hook to be registered.
+    prepend (bool): If ``True``, the provided ``hook`` will be fired
+        before all existing ``forward`` hooks on this
+        :class:`torch.nn.Module`. Otherwise, the provided
+        ``hook`` will be fired after all existing ``forward`` hooks on
+        this :class:`torch.nn.Module`. Note that global
+        ``forward`` hooks registered with
+        :func:`register_module_forward_hook` will fire before all hooks
+        registered by this method.
+        Default: ``False``
+    with_kwargs (bool): If ``True``, the ``hook`` will be passed the
+        kwargs given to the forward function.
+        Default: ``False``
+    always_call (bool): If ``True`` the ``hook`` will be run regardless of
+        whether an exception is raised while calling the Module.
+        Default: ``False``
+
+Returns:
+    :class:`torch.utils.hooks.RemovableHandle`:
+        a handle that can be used to remove the added hook by calling
+        ``handle.remove()``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_forward_pre_hook</h5>
+                    <div class="signature">register_forward_pre_hook(self, hook: Union[Callable[[~T, tuple[Any, ...]], Optional[Any]], Callable[[~T, tuple[Any, ...], dict[str, Any]], Optional[tuple[Any, dict[str, Any]]]]], *, prepend: bool = False, with_kwargs: bool = False) -> torch.utils.hooks.RemovableHandle</div>
+                    <div class="docstring">Register a forward pre-hook on the module.
+
+The hook will be called every time before :func:`forward` is invoked.
+
+
+If ``with_kwargs`` is false or not specified, the input contains only
+the positional arguments given to the module. Keyword arguments won't be
+passed to the hooks and only to the ``forward``. The hook can modify the
+input. User can either return a tuple or a single modified value in the
+hook. We will wrap the value into a tuple if a single value is returned
+(unless that value is already a tuple). The hook should have the
+following signature::
+
+    hook(module, args) -> None or modified input
+
+If ``with_kwargs`` is true, the forward pre-hook will be passed the
+kwargs given to the forward function. And if the hook modifies the
+input, both the args and kwargs should be returned. The hook should have
+the following signature::
+
+    hook(module, args, kwargs) -> None or a tuple of modified input and kwargs
+
+Args:
+    hook (Callable): The user defined hook to be registered.
+    prepend (bool): If true, the provided ``hook`` will be fired before
+        all existing ``forward_pre`` hooks on this
+        :class:`torch.nn.Module`. Otherwise, the provided
+        ``hook`` will be fired after all existing ``forward_pre`` hooks
+        on this :class:`torch.nn.Module`. Note that global
+        ``forward_pre`` hooks registered with
+        :func:`register_module_forward_pre_hook` will fire before all
+        hooks registered by this method.
+        Default: ``False``
+    with_kwargs (bool): If true, the ``hook`` will be passed the kwargs
+        given to the forward function.
+        Default: ``False``
+
+Returns:
+    :class:`torch.utils.hooks.RemovableHandle`:
+        a handle that can be used to remove the added hook by calling
+        ``handle.remove()``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_full_backward_hook</h5>
+                    <div class="signature">register_full_backward_hook(self, hook: Callable[[ForwardRef('Module'), Union[tuple[torch.Tensor, ...], torch.Tensor], Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]], prepend: bool = False) -> torch.utils.hooks.RemovableHandle</div>
+                    <div class="docstring">Register a backward hook on the module.
+
+The hook will be called every time the gradients with respect to a module
+are computed, i.e. the hook will execute if and only if the gradients with
+respect to module outputs are computed. The hook should have the following
+signature::
+
+    hook(module, grad_input, grad_output) -> tuple(Tensor) or None
+
+The :attr:`grad_input` and :attr:`grad_output` are tuples that contain the gradients
+with respect to the inputs and outputs respectively. The hook should
+not modify its arguments, but it can optionally return a new gradient with
+respect to the input that will be used in place of :attr:`grad_input` in
+subsequent computations. :attr:`grad_input` will only correspond to the inputs given
+as positional arguments and all kwarg arguments are ignored. Entries
+in :attr:`grad_input` and :attr:`grad_output` will be ``None`` for all non-Tensor
+arguments.
+
+For technical reasons, when this hook is applied to a Module, its forward function will
+receive a view of each Tensor passed to the Module. Similarly the caller will receive a view
+of each Tensor returned by the Module's forward function.
+
+.. warning ::
+    Modifying inputs or outputs inplace is not allowed when using backward hooks and
+    will raise an error.
+
+Args:
+    hook (Callable): The user-defined hook to be registered.
+    prepend (bool): If true, the provided ``hook`` will be fired before
+        all existing ``backward`` hooks on this
+        :class:`torch.nn.Module`. Otherwise, the provided
+        ``hook`` will be fired after all existing ``backward`` hooks on
+        this :class:`torch.nn.Module`. Note that global
+        ``backward`` hooks registered with
+        :func:`register_module_full_backward_hook` will fire before
+        all hooks registered by this method.
+
+Returns:
+    :class:`torch.utils.hooks.RemovableHandle`:
+        a handle that can be used to remove the added hook by calling
+        ``handle.remove()``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_full_backward_pre_hook</h5>
+                    <div class="signature">register_full_backward_pre_hook(self, hook: Callable[[ForwardRef('Module'), Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]], prepend: bool = False) -> torch.utils.hooks.RemovableHandle</div>
+                    <div class="docstring">Register a backward pre-hook on the module.
+
+The hook will be called every time the gradients for the module are computed.
+The hook should have the following signature::
+
+    hook(module, grad_output) -> tuple[Tensor] or None
+
+The :attr:`grad_output` is a tuple. The hook should
+not modify its arguments, but it can optionally return a new gradient with
+respect to the output that will be used in place of :attr:`grad_output` in
+subsequent computations. Entries in :attr:`grad_output` will be ``None`` for
+all non-Tensor arguments.
+
+For technical reasons, when this hook is applied to a Module, its forward function will
+receive a view of each Tensor passed to the Module. Similarly the caller will receive a view
+of each Tensor returned by the Module's forward function.
+
+.. warning ::
+    Modifying inputs inplace is not allowed when using backward hooks and
+    will raise an error.
+
+Args:
+    hook (Callable): The user-defined hook to be registered.
+    prepend (bool): If true, the provided ``hook`` will be fired before
+        all existing ``backward_pre`` hooks on this
+        :class:`torch.nn.Module`. Otherwise, the provided
+        ``hook`` will be fired after all existing ``backward_pre`` hooks
+        on this :class:`torch.nn.Module`. Note that global
+        ``backward_pre`` hooks registered with
+        :func:`register_module_full_backward_pre_hook` will fire before
+        all hooks registered by this method.
+
+Returns:
+    :class:`torch.utils.hooks.RemovableHandle`:
+        a handle that can be used to remove the added hook by calling
+        ``handle.remove()``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_load_state_dict_post_hook</h5>
+                    <div class="signature">register_load_state_dict_post_hook(self, hook)</div>
+                    <div class="docstring">Register a post-hook to be run after module's :meth:`~nn.Module.load_state_dict` is called.
+
+It should have the following signature::
+    hook(module, incompatible_keys) -> None
+
+The ``module`` argument is the current module that this hook is registered
+on, and the ``incompatible_keys`` argument is a ``NamedTuple`` consisting
+of attributes ``missing_keys`` and ``unexpected_keys``. ``missing_keys``
+is a ``list`` of ``str`` containing the missing keys and
+``unexpected_keys`` is a ``list`` of ``str`` containing the unexpected keys.
+
+The given incompatible_keys can be modified inplace if needed.
+
+Note that the checks performed when calling :func:`load_state_dict` with
+``strict=True`` are affected by modifications the hook makes to
+``missing_keys`` or ``unexpected_keys``, as expected. Additions to either
+set of keys will result in an error being thrown when ``strict=True``, and
+clearing out both missing and unexpected keys will avoid an error.
+
+Returns:
+    :class:`torch.utils.hooks.RemovableHandle`:
+        a handle that can be used to remove the added hook by calling
+        ``handle.remove()``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_load_state_dict_pre_hook</h5>
+                    <div class="signature">register_load_state_dict_pre_hook(self, hook)</div>
+                    <div class="docstring">Register a pre-hook to be run before module's :meth:`~nn.Module.load_state_dict` is called.
+
+It should have the following signature::
+    hook(module, state_dict, prefix, local_metadata, strict, missing_keys, unexpected_keys, error_msgs) -> None  # noqa: B950
+
+Arguments:
+    hook (Callable): Callable hook that will be invoked before
+        loading the state dict.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_module</h5>
+                    <div class="signature">register_module(self, name: str, module: Optional[ForwardRef('Module')]) -> None</div>
+                    <div class="docstring">Alias for :func:`add_module`.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_parameter</h5>
+                    <div class="signature">register_parameter(self, name: str, param: Optional[torch.nn.parameter.Parameter]) -> None</div>
+                    <div class="docstring">Add a parameter to the module.
+
+The parameter can be accessed as an attribute using given name.
+
+Args:
+    name (str): name of the parameter. The parameter can be accessed
+        from this module using the given name
+    param (Parameter or None): parameter to be added to the module. If
+        ``None``, then operations that run on parameters, such as :attr:`cuda`,
+        are ignored. If ``None``, the parameter is **not** included in the
+        module's :attr:`state_dict`.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_state_dict_post_hook</h5>
+                    <div class="signature">register_state_dict_post_hook(self, hook)</div>
+                    <div class="docstring">Register a post-hook for the :meth:`~torch.nn.Module.state_dict` method.
+
+It should have the following signature::
+    hook(module, state_dict, prefix, local_metadata) -> None
+
+The registered hooks can modify the ``state_dict`` inplace.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_state_dict_pre_hook</h5>
+                    <div class="signature">register_state_dict_pre_hook(self, hook)</div>
+                    <div class="docstring">Register a pre-hook for the :meth:`~torch.nn.Module.state_dict` method.
+
+It should have the following signature::
+    hook(module, prefix, keep_vars) -> None
+
+The registered hooks can be used to perform pre-processing before the ``state_dict``
+call is made.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> requires_grad_</h5>
+                    <div class="signature">requires_grad_(self: ~T, requires_grad: bool = True) -> ~T</div>
+                    <div class="docstring">Change if autograd should record operations on parameters in this module.
+
+This method sets the parameters' :attr:`requires_grad` attributes
+in-place.
+
+This method is helpful for freezing part of the module for finetuning
+or training parts of a model individually (e.g., GAN training).
+
+See :ref:`locally-disable-grad-doc` for a comparison between
+`.requires_grad_()` and several similar mechanisms that may be confused with it.
+
+Args:
+    requires_grad (bool): whether autograd should record operations on
+                          parameters in this module. Default: ``True``.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> set_extra_state</h5>
+                    <div class="signature">set_extra_state(self, state: Any) -> None</div>
+                    <div class="docstring">Set extra state contained in the loaded `state_dict`.
+
+This function is called from :func:`load_state_dict` to handle any extra state
+found within the `state_dict`. Implement this function and a corresponding
+:func:`get_extra_state` for your module if you need to store extra state within its
+`state_dict`.
+
+Args:
+    state (dict): Extra state from the `state_dict`</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> set_submodule</h5>
+                    <div class="signature">set_submodule(self, target: str, module: 'Module', strict: bool = False) -> None</div>
+                    <div class="docstring">Set the submodule given by ``target`` if it exists, otherwise throw an error.
+
+.. note::
+    If ``strict`` is set to ``False`` (default), the method will replace an existing submodule
+    or create a new submodule if the parent module exists. If ``strict`` is set to ``True``,
+    the method will only attempt to replace an existing submodule and throw an error if
+    the submodule does not exist.
+
+For example, let's say you have an ``nn.Module`` ``A`` that
+looks like this:
+
+.. code-block:: text
+
+    A(
+        (net_b): Module(
+            (net_c): Module(
+                (conv): Conv2d(3, 3, 3)
+            )
+            (linear): Linear(3, 3)
+        )
+    )
+
+(The diagram shows an ``nn.Module`` ``A``. ``A`` has a nested
+submodule ``net_b``, which itself has two submodules ``net_c``
+and ``linear``. ``net_c`` then has a submodule ``conv``.)
+
+To override the ``Conv2d`` with a new submodule ``Linear``, you
+could call ``set_submodule("net_b.net_c.conv", nn.Linear(1, 1))``
+where ``strict`` could be ``True`` or ``False``
+
+To add a new submodule ``Conv2d`` to the existing ``net_b`` module,
+you would call ``set_submodule("net_b.conv", nn.Conv2d(1, 1, 1))``.
+
+In the above if you set ``strict=True`` and call
+``set_submodule("net_b.conv", nn.Conv2d(1, 1, 1), strict=True)``, an AttributeError
+will be raised because ``net_b`` does not have a submodule named ``conv``.
+
+Args:
+    target: The fully-qualified string name of the submodule
+        to look for. (See above example for how to specify a
+        fully-qualified string.)
+    module: The module to set the submodule to.
+    strict: If ``False``, the method will replace an existing submodule
+        or create a new submodule if the parent module exists. If ``True``,
+        the method will only attempt to replace an existing submodule and throw an error
+        if the submodule doesn't already exist.
+
+Raises:
+    ValueError: If the ``target`` string is empty or if ``module`` is not an instance of ``nn.Module``.
+    AttributeError: If at any point along the path resulting from
+        the ``target`` string the (sub)path resolves to a non-existent
+        attribute name or an object that is not an instance of ``nn.Module``.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> share_memory</h5>
+                    <div class="signature">share_memory(self: ~T) -> ~T</div>
+                    <div class="docstring">See :meth:`torch.Tensor.share_memory_`.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> state_dict</h5>
+                    <div class="signature">state_dict(self, *args, destination=None, prefix='', keep_vars=False)</div>
+                    <div class="docstring">Return a dictionary containing references to the whole state of the module.
+
+Both parameters and persistent buffers (e.g. running averages) are
+included. Keys are corresponding parameter and buffer names.
+Parameters and buffers set to ``None`` are not included.
+
+.. note::
+    The returned object is a shallow copy. It contains references
+    to the module's parameters and buffers.
+
+.. warning::
+    Currently ``state_dict()`` also accepts positional arguments for
+    ``destination``, ``prefix`` and ``keep_vars`` in order. However,
+    this is being deprecated and keyword arguments will be enforced in
+    future releases.
+
+.. warning::
+    Please avoid the use of argument ``destination`` as it is not
+    designed for end-users.
+
+Args:
+    destination (dict, optional): If provided, the state of module will
+        be updated into the dict and the same object is returned.
+        Otherwise, an ``OrderedDict`` will be created and returned.
+        Default: ``None``.
+    prefix (str, optional): a prefix added to parameter and buffer
+        names to compose the keys in state_dict. Default: ``''``.
+    keep_vars (bool, optional): by default the :class:`~torch.Tensor` s
+        returned in the state dict are detached from autograd. If it's
+        set to ``True``, detaching will not be performed.
+        Default: ``False``.
+
+Returns:
+    dict:
+        a dictionary containing a whole state of the module
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> module.state_dict().keys()
+    ['bias', 'weight']</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> symbolic_to_neural</h5>
+                    <div class="signature">symbolic_to_neural(self, symbolic_context: BridgeLayer.SymbolicContext) -> torch.Tensor</div>
+                    <div class="docstring">Reverse translation: Symbolic -> Neural
+
+Args:
+    symbolic_context: Symbolic reasoning context
+    
+Returns:
+    Neural representations</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> to</h5>
+                    <div class="signature">to(self, *args, **kwargs)</div>
+                    <div class="docstring">Move and/or cast the parameters and buffers.
+
+This can be called as
+
+.. function:: to(device=None, dtype=None, non_blocking=False)
+   :noindex:
+
+.. function:: to(dtype, non_blocking=False)
+   :noindex:
+
+.. function:: to(tensor, non_blocking=False)
+   :noindex:
+
+.. function:: to(memory_format=torch.channels_last)
+   :noindex:
+
+Its signature is similar to :meth:`torch.Tensor.to`, but only accepts
+floating point or complex :attr:`dtype`\ s. In addition, this method will
+only cast the floating point or complex parameters and buffers to :attr:`dtype`
+(if given). The integral parameters and buffers will be moved
+:attr:`device`, if that is given, but with dtypes unchanged. When
+:attr:`non_blocking` is set, it tries to convert/move asynchronously
+with respect to the host if possible, e.g., moving CPU Tensors with
+pinned memory to CUDA devices.
+
+See below for examples.
+
+.. note::
+    This method modifies the module in-place.
+
+Args:
+    device (:class:`torch.device`): the desired device of the parameters
+        and buffers in this module
+    dtype (:class:`torch.dtype`): the desired floating point or complex dtype of
+        the parameters and buffers in this module
+    tensor (torch.Tensor): Tensor whose dtype and device are the desired
+        dtype and device for all parameters and buffers in this module
+    memory_format (:class:`torch.memory_format`): the desired memory
+        format for 4D parameters and buffers in this module (keyword
+        only argument)
+
+Returns:
+    Module: self
+
+Examples::
+
+    >>> # xdoctest: +IGNORE_WANT("non-deterministic")
+    >>> linear = nn.Linear(2, 2)
+    >>> linear.weight
+    Parameter containing:
+    tensor([[ 0.1913, -0.3420],
+            [-0.5113, -0.2325]])
+    >>> linear.to(torch.double)
+    Linear(in_features=2, out_features=2, bias=True)
+    >>> linear.weight
+    Parameter containing:
+    tensor([[ 0.1913, -0.3420],
+            [-0.5113, -0.2325]], dtype=torch.float64)
+    >>> # xdoctest: +REQUIRES(env:TORCH_DOCTEST_CUDA1)
+    >>> gpu1 = torch.device("cuda:1")
+    >>> linear.to(gpu1, dtype=torch.half, non_blocking=True)
+    Linear(in_features=2, out_features=2, bias=True)
+    >>> linear.weight
+    Parameter containing:
+    tensor([[ 0.1914, -0.3420],
+            [-0.5112, -0.2324]], dtype=torch.float16, device='cuda:1')
+    >>> cpu = torch.device("cpu")
+    >>> linear.to(cpu)
+    Linear(in_features=2, out_features=2, bias=True)
+    >>> linear.weight
+    Parameter containing:
+    tensor([[ 0.1914, -0.3420],
+            [-0.5112, -0.2324]], dtype=torch.float16)
+
+    >>> linear = nn.Linear(2, 2, bias=None).to(torch.cdouble)
+    >>> linear.weight
+    Parameter containing:
+    tensor([[ 0.3741+0.j,  0.2382+0.j],
+            [ 0.5593+0.j, -0.4443+0.j]], dtype=torch.complex128)
+    >>> linear(torch.ones(3, 2, dtype=torch.cdouble))
+    tensor([[0.6122+0.j, 0.1150+0.j],
+            [0.6122+0.j, 0.1150+0.j],
+            [0.6122+0.j, 0.1150+0.j]], dtype=torch.complex128)</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> to_empty</h5>
+                    <div class="signature">to_empty(self: ~T, *, device: Union[int, str, torch.device, NoneType], recurse: bool = True) -> ~T</div>
+                    <div class="docstring">Move the parameters and buffers to the specified device without copying storage.
+
+Args:
+    device (:class:`torch.device`): The desired device of the parameters
+        and buffers in this module.
+    recurse (bool): Whether parameters and buffers of submodules should
+        be recursively moved to the specified device.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> train</h5>
+                    <div class="signature">train(self: ~T, mode: bool = True) -> ~T</div>
+                    <div class="docstring">Set the module in training mode.
+
+This has an effect only on certain modules. See the documentation of
+particular modules for details of their behaviors in training/evaluation
+mode, i.e., whether they are affected, e.g. :class:`Dropout`, :class:`BatchNorm`,
+etc.
+
+Args:
+    mode (bool): whether to set training mode (``True``) or evaluation
+                 mode (``False``). Default: ``True``.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> type</h5>
+                    <div class="signature">type(self: ~T, dst_type: Union[torch.dtype, str]) -> ~T</div>
+                    <div class="docstring">Casts all parameters and buffers to :attr:`dst_type`.
+
+.. note::
+    This method modifies the module in-place.
+
+Args:
+    dst_type (type or string): the desired type
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> xpu</h5>
+                    <div class="signature">xpu(self: ~T, device: Union[int, torch.device, NoneType] = None) -> ~T</div>
+                    <div class="docstring">Move all model parameters and buffers to the XPU.
+
+This also makes associated parameters and buffers different objects. So
+it should be called before constructing optimizer if the module will
+live on XPU while being optimized.
+
+.. note::
+    This method modifies the module in-place.
+
+Arguments:
+    device (int, optional): if specified, all parameters will be
+        copied to that device
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> zero_grad</h5>
+                    <div class="signature">zero_grad(self, set_to_none: bool = True) -> None</div>
+                    <div class="docstring">Reset gradients of all model parameters.
+
+See similar function under :class:`torch.optim.Optimizer` for more context.
+
+Args:
+    set_to_none (bool): instead of setting to zero, set the grads to None.
+        See :meth:`torch.optim.Optimizer.zero_grad` for details.</div>
+                </div>
+</div>
+        <div class="class-container" id="class-MultiHeadSymbolicAttention">
+            <h3><span class="badge class">Class</span> MultiHeadSymbolicAttention</h3>
+            <div class="signature">class MultiHeadSymbolicAttention(self, embed_dim: int, num_heads: int = 8, dropout: float = 0.1)</div>
+            <div class="docstring">Multi-head attention specialized for symbolic reasoning</div>
+<h4>Methods:</h4>
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> __call__</h5>
+                    <div class="signature">__call__(self, *args, **kwargs)</div>
+                    <div class="docstring">No method documentation available.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> __init__</h5>
+                    <div class="signature">__init__(self, embed_dim: int, num_heads: int = 8, dropout: float = 0.1)</div>
+                    <div class="docstring">No method documentation available.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> add_module</h5>
+                    <div class="signature">add_module(self, name: str, module: Optional[ForwardRef('Module')]) -> None</div>
+                    <div class="docstring">Add a child module to the current module.
+
+The module can be accessed as an attribute using the given name.
+
+Args:
+    name (str): name of the child module. The child module can be
+        accessed from this module using the given name
+    module (Module): child module to be added to the module.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> apply</h5>
+                    <div class="signature">apply(self: ~T, fn: Callable[[ForwardRef('Module')], NoneType]) -> ~T</div>
+                    <div class="docstring">Apply ``fn`` recursively to every submodule (as returned by ``.children()``) as well as self.
+
+Typical use includes initializing the parameters of a model
+(see also :ref:`nn-init-doc`).
+
+Args:
+    fn (:class:`Module` -> None): function to be applied to each submodule
+
+Returns:
+    Module: self
+
+Example::
+
+    >>> @torch.no_grad()
+    >>> def init_weights(m):
+    >>>     print(m)
+    >>>     if type(m) == nn.Linear:
+    >>>         m.weight.fill_(1.0)
+    >>>         print(m.weight)
+    >>> net = nn.Sequential(nn.Linear(2, 2), nn.Linear(2, 2))
+    >>> net.apply(init_weights)
+    Linear(in_features=2, out_features=2, bias=True)
+    Parameter containing:
+    tensor([[1., 1.],
+            [1., 1.]], requires_grad=True)
+    Linear(in_features=2, out_features=2, bias=True)
+    Parameter containing:
+    tensor([[1., 1.],
+            [1., 1.]], requires_grad=True)
+    Sequential(
+      (0): Linear(in_features=2, out_features=2, bias=True)
+      (1): Linear(in_features=2, out_features=2, bias=True)
+    )</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> bfloat16</h5>
+                    <div class="signature">bfloat16(self: ~T) -> ~T</div>
+                    <div class="docstring">Casts all floating point parameters and buffers to ``bfloat16`` datatype.
+
+.. note::
+    This method modifies the module in-place.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> buffers</h5>
+                    <div class="signature">buffers(self, recurse: bool = True) -> collections.abc.Iterator[torch.Tensor]</div>
+                    <div class="docstring">Return an iterator over module buffers.
+
+Args:
+    recurse (bool): if True, then yields buffers of this module
+        and all submodules. Otherwise, yields only buffers that
+        are direct members of this module.
+
+Yields:
+    torch.Tensor: module buffer
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> for buf in model.buffers():
+    >>>     print(type(buf), buf.size())
+    <class 'torch.Tensor'> (20L,)
+    <class 'torch.Tensor'> (20L, 1L, 5L, 5L)</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> children</h5>
+                    <div class="signature">children(self) -> collections.abc.Iterator['Module']</div>
+                    <div class="docstring">Return an iterator over immediate children modules.
+
+Yields:
+    Module: a child module</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> compile</h5>
+                    <div class="signature">compile(self, *args, **kwargs)</div>
+                    <div class="docstring">Compile this Module's forward using :func:`torch.compile`.
+
+This Module's `__call__` method is compiled and all arguments are passed as-is
+to :func:`torch.compile`.
+
+See :func:`torch.compile` for details on the arguments for this function.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> cpu</h5>
+                    <div class="signature">cpu(self: ~T) -> ~T</div>
+                    <div class="docstring">Move all model parameters and buffers to the CPU.
+
+.. note::
+    This method modifies the module in-place.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> cuda</h5>
+                    <div class="signature">cuda(self: ~T, device: Union[int, torch.device, NoneType] = None) -> ~T</div>
+                    <div class="docstring">Move all model parameters and buffers to the GPU.
+
+This also makes associated parameters and buffers different objects. So
+it should be called before constructing the optimizer if the module will
+live on GPU while being optimized.
+
+.. note::
+    This method modifies the module in-place.
+
+Args:
+    device (int, optional): if specified, all parameters will be
+        copied to that device
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> double</h5>
+                    <div class="signature">double(self: ~T) -> ~T</div>
+                    <div class="docstring">Casts all floating point parameters and buffers to ``double`` datatype.
+
+.. note::
+    This method modifies the module in-place.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> eval</h5>
+                    <div class="signature">eval(self: ~T) -> ~T</div>
+                    <div class="docstring">Set the module in evaluation mode.
+
+This has an effect only on certain modules. See the documentation of
+particular modules for details of their behaviors in training/evaluation
+mode, i.e. whether they are affected, e.g. :class:`Dropout`, :class:`BatchNorm`,
+etc.
+
+This is equivalent with :meth:`self.train(False) <torch.nn.Module.train>`.
+
+See :ref:`locally-disable-grad-doc` for a comparison between
+`.eval()` and several similar mechanisms that may be confused with it.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> extra_repr</h5>
+                    <div class="signature">extra_repr(self) -> str</div>
+                    <div class="docstring">Return the extra representation of the module.
+
+To print customized extra information, you should re-implement
+this method in your own modules. Both single-line and multi-line
+strings are acceptable.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> float</h5>
+                    <div class="signature">float(self: ~T) -> ~T</div>
+                    <div class="docstring">Casts all floating point parameters and buffers to ``float`` datatype.
+
+.. note::
+    This method modifies the module in-place.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> forward</h5>
+                    <div class="signature">forward(self, query: torch.Tensor, key: torch.Tensor, value: torch.Tensor, attn_mask: Optional[torch.Tensor] = None) -> Tuple[torch.Tensor, torch.Tensor]</div>
+                    <div class="docstring">No method documentation available.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> get_buffer</h5>
+                    <div class="signature">get_buffer(self, target: str) -> 'Tensor'</div>
+                    <div class="docstring">Return the buffer given by ``target`` if it exists, otherwise throw an error.
+
+See the docstring for ``get_submodule`` for a more detailed
+explanation of this method's functionality as well as how to
+correctly specify ``target``.
+
+Args:
+    target: The fully-qualified string name of the buffer
+        to look for. (See ``get_submodule`` for how to specify a
+        fully-qualified string.)
+
+Returns:
+    torch.Tensor: The buffer referenced by ``target``
+
+Raises:
+    AttributeError: If the target string references an invalid
+        path or resolves to something that is not a
+        buffer</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> get_extra_state</h5>
+                    <div class="signature">get_extra_state(self) -> Any</div>
+                    <div class="docstring">Return any extra state to include in the module's state_dict.
+
+Implement this and a corresponding :func:`set_extra_state` for your module
+if you need to store extra state. This function is called when building the
+module's `state_dict()`.
+
+Note that extra state should be picklable to ensure working serialization
+of the state_dict. We only provide backwards compatibility guarantees
+for serializing Tensors; other objects may break backwards compatibility if
+their serialized pickled form changes.
+
+Returns:
+    object: Any extra state to store in the module's state_dict</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> get_parameter</h5>
+                    <div class="signature">get_parameter(self, target: str) -> 'Parameter'</div>
+                    <div class="docstring">Return the parameter given by ``target`` if it exists, otherwise throw an error.
+
+See the docstring for ``get_submodule`` for a more detailed
+explanation of this method's functionality as well as how to
+correctly specify ``target``.
+
+Args:
+    target: The fully-qualified string name of the Parameter
+        to look for. (See ``get_submodule`` for how to specify a
+        fully-qualified string.)
+
+Returns:
+    torch.nn.Parameter: The Parameter referenced by ``target``
+
+Raises:
+    AttributeError: If the target string references an invalid
+        path or resolves to something that is not an
+        ``nn.Parameter``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> get_submodule</h5>
+                    <div class="signature">get_submodule(self, target: str) -> 'Module'</div>
+                    <div class="docstring">Return the submodule given by ``target`` if it exists, otherwise throw an error.
+
+For example, let's say you have an ``nn.Module`` ``A`` that
+looks like this:
+
+.. code-block:: text
+
+    A(
+        (net_b): Module(
+            (net_c): Module(
+                (conv): Conv2d(16, 33, kernel_size=(3, 3), stride=(2, 2))
+            )
+            (linear): Linear(in_features=100, out_features=200, bias=True)
+        )
+    )
+
+(The diagram shows an ``nn.Module`` ``A``. ``A`` which has a nested
+submodule ``net_b``, which itself has two submodules ``net_c``
+and ``linear``. ``net_c`` then has a submodule ``conv``.)
+
+To check whether or not we have the ``linear`` submodule, we
+would call ``get_submodule("net_b.linear")``. To check whether
+we have the ``conv`` submodule, we would call
+``get_submodule("net_b.net_c.conv")``.
+
+The runtime of ``get_submodule`` is bounded by the degree
+of module nesting in ``target``. A query against
+``named_modules`` achieves the same result, but it is O(N) in
+the number of transitive modules. So, for a simple check to see
+if some submodule exists, ``get_submodule`` should always be
+used.
+
+Args:
+    target: The fully-qualified string name of the submodule
+        to look for. (See above example for how to specify a
+        fully-qualified string.)
+
+Returns:
+    torch.nn.Module: The submodule referenced by ``target``
+
+Raises:
+    AttributeError: If at any point along the path resulting from
+        the target string the (sub)path resolves to a non-existent
+        attribute name or an object that is not an instance of ``nn.Module``.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> half</h5>
+                    <div class="signature">half(self: ~T) -> ~T</div>
+                    <div class="docstring">Casts all floating point parameters and buffers to ``half`` datatype.
+
+.. note::
+    This method modifies the module in-place.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> ipu</h5>
+                    <div class="signature">ipu(self: ~T, device: Union[int, torch.device, NoneType] = None) -> ~T</div>
+                    <div class="docstring">Move all model parameters and buffers to the IPU.
+
+This also makes associated parameters and buffers different objects. So
+it should be called before constructing the optimizer if the module will
+live on IPU while being optimized.
+
+.. note::
+    This method modifies the module in-place.
+
+Arguments:
+    device (int, optional): if specified, all parameters will be
+        copied to that device
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> load_state_dict</h5>
+                    <div class="signature">load_state_dict(self, state_dict: collections.abc.Mapping[str, typing.Any], strict: bool = True, assign: bool = False)</div>
+                    <div class="docstring">Copy parameters and buffers from :attr:`state_dict` into this module and its descendants.
+
+If :attr:`strict` is ``True``, then
+the keys of :attr:`state_dict` must exactly match the keys returned
+by this module's :meth:`~torch.nn.Module.state_dict` function.
+
+.. warning::
+    If :attr:`assign` is ``True`` the optimizer must be created after
+    the call to :attr:`load_state_dict` unless
+    :func:`~torch.__future__.get_swap_module_params_on_conversion` is ``True``.
+
+Args:
+    state_dict (dict): a dict containing parameters and
+        persistent buffers.
+    strict (bool, optional): whether to strictly enforce that the keys
+        in :attr:`state_dict` match the keys returned by this module's
+        :meth:`~torch.nn.Module.state_dict` function. Default: ``True``
+    assign (bool, optional): When set to ``False``, the properties of the tensors
+        in the current module are preserved whereas setting it to ``True`` preserves
+        properties of the Tensors in the state dict. The only
+        exception is the ``requires_grad`` field of :class:`~torch.nn.Parameter`s
+        for which the value from the module is preserved.
+        Default: ``False``
+
+Returns:
+    ``NamedTuple`` with ``missing_keys`` and ``unexpected_keys`` fields:
+        * **missing_keys** is a list of str containing any keys that are expected
+            by this module but missing from the provided ``state_dict``.
+        * **unexpected_keys** is a list of str containing the keys that are not
+            expected by this module but present in the provided ``state_dict``.
+
+Note:
+    If a parameter or buffer is registered as ``None`` and its corresponding key
+    exists in :attr:`state_dict`, :meth:`load_state_dict` will raise a
+    ``RuntimeError``.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> modules</h5>
+                    <div class="signature">modules(self) -> collections.abc.Iterator['Module']</div>
+                    <div class="docstring">Return an iterator over all modules in the network.
+
+Yields:
+    Module: a module in the network
+
+Note:
+    Duplicate modules are returned only once. In the following
+    example, ``l`` will be returned only once.
+
+Example::
+
+    >>> l = nn.Linear(2, 2)
+    >>> net = nn.Sequential(l, l)
+    >>> for idx, m in enumerate(net.modules()):
+    ...     print(idx, '->', m)
+
+    0 -> Sequential(
+      (0): Linear(in_features=2, out_features=2, bias=True)
+      (1): Linear(in_features=2, out_features=2, bias=True)
+    )
+    1 -> Linear(in_features=2, out_features=2, bias=True)</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> mtia</h5>
+                    <div class="signature">mtia(self: ~T, device: Union[int, torch.device, NoneType] = None) -> ~T</div>
+                    <div class="docstring">Move all model parameters and buffers to the MTIA.
+
+This also makes associated parameters and buffers different objects. So
+it should be called before constructing the optimizer if the module will
+live on MTIA while being optimized.
+
+.. note::
+    This method modifies the module in-place.
+
+Arguments:
+    device (int, optional): if specified, all parameters will be
+        copied to that device
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> named_buffers</h5>
+                    <div class="signature">named_buffers(self, prefix: str = '', recurse: bool = True, remove_duplicate: bool = True) -> collections.abc.Iterator[tuple[str, torch.Tensor]]</div>
+                    <div class="docstring">Return an iterator over module buffers, yielding both the name of the buffer as well as the buffer itself.
+
+Args:
+    prefix (str): prefix to prepend to all buffer names.
+    recurse (bool, optional): if True, then yields buffers of this module
+        and all submodules. Otherwise, yields only buffers that
+        are direct members of this module. Defaults to True.
+    remove_duplicate (bool, optional): whether to remove the duplicated buffers in the result. Defaults to True.
+
+Yields:
+    (str, torch.Tensor): Tuple containing the name and buffer
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> for name, buf in self.named_buffers():
+    >>>     if name in ['running_var']:
+    >>>         print(buf.size())</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> named_children</h5>
+                    <div class="signature">named_children(self) -> collections.abc.Iterator[tuple[str, 'Module']]</div>
+                    <div class="docstring">Return an iterator over immediate children modules, yielding both the name of the module as well as the module itself.
+
+Yields:
+    (str, Module): Tuple containing a name and child module
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> for name, module in model.named_children():
+    >>>     if name in ['conv4', 'conv5']:
+    >>>         print(module)</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> named_modules</h5>
+                    <div class="signature">named_modules(self, memo: Optional[set['Module']] = None, prefix: str = '', remove_duplicate: bool = True)</div>
+                    <div class="docstring">Return an iterator over all modules in the network, yielding both the name of the module as well as the module itself.
+
+Args:
+    memo: a memo to store the set of modules already added to the result
+    prefix: a prefix that will be added to the name of the module
+    remove_duplicate: whether to remove the duplicated module instances in the result
+        or not
+
+Yields:
+    (str, Module): Tuple of name and module
+
+Note:
+    Duplicate modules are returned only once. In the following
+    example, ``l`` will be returned only once.
+
+Example::
+
+    >>> l = nn.Linear(2, 2)
+    >>> net = nn.Sequential(l, l)
+    >>> for idx, m in enumerate(net.named_modules()):
+    ...     print(idx, '->', m)
+
+    0 -> ('', Sequential(
+      (0): Linear(in_features=2, out_features=2, bias=True)
+      (1): Linear(in_features=2, out_features=2, bias=True)
+    ))
+    1 -> ('0', Linear(in_features=2, out_features=2, bias=True))</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> named_parameters</h5>
+                    <div class="signature">named_parameters(self, prefix: str = '', recurse: bool = True, remove_duplicate: bool = True) -> collections.abc.Iterator[tuple[str, torch.nn.parameter.Parameter]]</div>
+                    <div class="docstring">Return an iterator over module parameters, yielding both the name of the parameter as well as the parameter itself.
+
+Args:
+    prefix (str): prefix to prepend to all parameter names.
+    recurse (bool): if True, then yields parameters of this module
+        and all submodules. Otherwise, yields only parameters that
+        are direct members of this module.
+    remove_duplicate (bool, optional): whether to remove the duplicated
+        parameters in the result. Defaults to True.
+
+Yields:
+    (str, Parameter): Tuple containing the name and parameter
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> for name, param in self.named_parameters():
+    >>>     if name in ['bias']:
+    >>>         print(param.size())</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> parameters</h5>
+                    <div class="signature">parameters(self, recurse: bool = True) -> collections.abc.Iterator[torch.nn.parameter.Parameter]</div>
+                    <div class="docstring">Return an iterator over module parameters.
+
+This is typically passed to an optimizer.
+
+Args:
+    recurse (bool): if True, then yields parameters of this module
+        and all submodules. Otherwise, yields only parameters that
+        are direct members of this module.
+
+Yields:
+    Parameter: module parameter
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> for param in model.parameters():
+    >>>     print(type(param), param.size())
+    <class 'torch.Tensor'> (20L,)
+    <class 'torch.Tensor'> (20L, 1L, 5L, 5L)</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_backward_hook</h5>
+                    <div class="signature">register_backward_hook(self, hook: Callable[[ForwardRef('Module'), Union[tuple[torch.Tensor, ...], torch.Tensor], Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]]) -> torch.utils.hooks.RemovableHandle</div>
+                    <div class="docstring">Register a backward hook on the module.
+
+This function is deprecated in favor of :meth:`~torch.nn.Module.register_full_backward_hook` and
+the behavior of this function will change in future versions.
+
+Returns:
+    :class:`torch.utils.hooks.RemovableHandle`:
+        a handle that can be used to remove the added hook by calling
+        ``handle.remove()``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_buffer</h5>
+                    <div class="signature">register_buffer(self, name: str, tensor: Optional[torch.Tensor], persistent: bool = True) -> None</div>
+                    <div class="docstring">Add a buffer to the module.
+
+This is typically used to register a buffer that should not to be
+considered a model parameter. For example, BatchNorm's ``running_mean``
+is not a parameter, but is part of the module's state. Buffers, by
+default, are persistent and will be saved alongside parameters. This
+behavior can be changed by setting :attr:`persistent` to ``False``. The
+only difference between a persistent buffer and a non-persistent buffer
+is that the latter will not be a part of this module's
+:attr:`state_dict`.
+
+Buffers can be accessed as attributes using given names.
+
+Args:
+    name (str): name of the buffer. The buffer can be accessed
+        from this module using the given name
+    tensor (Tensor or None): buffer to be registered. If ``None``, then operations
+        that run on buffers, such as :attr:`cuda`, are ignored. If ``None``,
+        the buffer is **not** included in the module's :attr:`state_dict`.
+    persistent (bool): whether the buffer is part of this module's
+        :attr:`state_dict`.
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> self.register_buffer('running_mean', torch.zeros(num_features))</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_forward_hook</h5>
+                    <div class="signature">register_forward_hook(self, hook: Union[Callable[[~T, tuple[Any, ...], Any], Optional[Any]], Callable[[~T, tuple[Any, ...], dict[str, Any], Any], Optional[Any]]], *, prepend: bool = False, with_kwargs: bool = False, always_call: bool = False) -> torch.utils.hooks.RemovableHandle</div>
+                    <div class="docstring">Register a forward hook on the module.
+
+The hook will be called every time after :func:`forward` has computed an output.
+
+If ``with_kwargs`` is ``False`` or not specified, the input contains only
+the positional arguments given to the module. Keyword arguments won't be
+passed to the hooks and only to the ``forward``. The hook can modify the
+output. It can modify the input inplace but it will not have effect on
+forward since this is called after :func:`forward` is called. The hook
+should have the following signature::
+
+    hook(module, args, output) -> None or modified output
+
+If ``with_kwargs`` is ``True``, the forward hook will be passed the
+``kwargs`` given to the forward function and be expected to return the
+output possibly modified. The hook should have the following signature::
+
+    hook(module, args, kwargs, output) -> None or modified output
+
+Args:
+    hook (Callable): The user defined hook to be registered.
+    prepend (bool): If ``True``, the provided ``hook`` will be fired
+        before all existing ``forward`` hooks on this
+        :class:`torch.nn.Module`. Otherwise, the provided
+        ``hook`` will be fired after all existing ``forward`` hooks on
+        this :class:`torch.nn.Module`. Note that global
+        ``forward`` hooks registered with
+        :func:`register_module_forward_hook` will fire before all hooks
+        registered by this method.
+        Default: ``False``
+    with_kwargs (bool): If ``True``, the ``hook`` will be passed the
+        kwargs given to the forward function.
+        Default: ``False``
+    always_call (bool): If ``True`` the ``hook`` will be run regardless of
+        whether an exception is raised while calling the Module.
+        Default: ``False``
+
+Returns:
+    :class:`torch.utils.hooks.RemovableHandle`:
+        a handle that can be used to remove the added hook by calling
+        ``handle.remove()``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_forward_pre_hook</h5>
+                    <div class="signature">register_forward_pre_hook(self, hook: Union[Callable[[~T, tuple[Any, ...]], Optional[Any]], Callable[[~T, tuple[Any, ...], dict[str, Any]], Optional[tuple[Any, dict[str, Any]]]]], *, prepend: bool = False, with_kwargs: bool = False) -> torch.utils.hooks.RemovableHandle</div>
+                    <div class="docstring">Register a forward pre-hook on the module.
+
+The hook will be called every time before :func:`forward` is invoked.
+
+
+If ``with_kwargs`` is false or not specified, the input contains only
+the positional arguments given to the module. Keyword arguments won't be
+passed to the hooks and only to the ``forward``. The hook can modify the
+input. User can either return a tuple or a single modified value in the
+hook. We will wrap the value into a tuple if a single value is returned
+(unless that value is already a tuple). The hook should have the
+following signature::
+
+    hook(module, args) -> None or modified input
+
+If ``with_kwargs`` is true, the forward pre-hook will be passed the
+kwargs given to the forward function. And if the hook modifies the
+input, both the args and kwargs should be returned. The hook should have
+the following signature::
+
+    hook(module, args, kwargs) -> None or a tuple of modified input and kwargs
+
+Args:
+    hook (Callable): The user defined hook to be registered.
+    prepend (bool): If true, the provided ``hook`` will be fired before
+        all existing ``forward_pre`` hooks on this
+        :class:`torch.nn.Module`. Otherwise, the provided
+        ``hook`` will be fired after all existing ``forward_pre`` hooks
+        on this :class:`torch.nn.Module`. Note that global
+        ``forward_pre`` hooks registered with
+        :func:`register_module_forward_pre_hook` will fire before all
+        hooks registered by this method.
+        Default: ``False``
+    with_kwargs (bool): If true, the ``hook`` will be passed the kwargs
+        given to the forward function.
+        Default: ``False``
+
+Returns:
+    :class:`torch.utils.hooks.RemovableHandle`:
+        a handle that can be used to remove the added hook by calling
+        ``handle.remove()``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_full_backward_hook</h5>
+                    <div class="signature">register_full_backward_hook(self, hook: Callable[[ForwardRef('Module'), Union[tuple[torch.Tensor, ...], torch.Tensor], Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]], prepend: bool = False) -> torch.utils.hooks.RemovableHandle</div>
+                    <div class="docstring">Register a backward hook on the module.
+
+The hook will be called every time the gradients with respect to a module
+are computed, i.e. the hook will execute if and only if the gradients with
+respect to module outputs are computed. The hook should have the following
+signature::
+
+    hook(module, grad_input, grad_output) -> tuple(Tensor) or None
+
+The :attr:`grad_input` and :attr:`grad_output` are tuples that contain the gradients
+with respect to the inputs and outputs respectively. The hook should
+not modify its arguments, but it can optionally return a new gradient with
+respect to the input that will be used in place of :attr:`grad_input` in
+subsequent computations. :attr:`grad_input` will only correspond to the inputs given
+as positional arguments and all kwarg arguments are ignored. Entries
+in :attr:`grad_input` and :attr:`grad_output` will be ``None`` for all non-Tensor
+arguments.
+
+For technical reasons, when this hook is applied to a Module, its forward function will
+receive a view of each Tensor passed to the Module. Similarly the caller will receive a view
+of each Tensor returned by the Module's forward function.
+
+.. warning ::
+    Modifying inputs or outputs inplace is not allowed when using backward hooks and
+    will raise an error.
+
+Args:
+    hook (Callable): The user-defined hook to be registered.
+    prepend (bool): If true, the provided ``hook`` will be fired before
+        all existing ``backward`` hooks on this
+        :class:`torch.nn.Module`. Otherwise, the provided
+        ``hook`` will be fired after all existing ``backward`` hooks on
+        this :class:`torch.nn.Module`. Note that global
+        ``backward`` hooks registered with
+        :func:`register_module_full_backward_hook` will fire before
+        all hooks registered by this method.
+
+Returns:
+    :class:`torch.utils.hooks.RemovableHandle`:
+        a handle that can be used to remove the added hook by calling
+        ``handle.remove()``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_full_backward_pre_hook</h5>
+                    <div class="signature">register_full_backward_pre_hook(self, hook: Callable[[ForwardRef('Module'), Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]], prepend: bool = False) -> torch.utils.hooks.RemovableHandle</div>
+                    <div class="docstring">Register a backward pre-hook on the module.
+
+The hook will be called every time the gradients for the module are computed.
+The hook should have the following signature::
+
+    hook(module, grad_output) -> tuple[Tensor] or None
+
+The :attr:`grad_output` is a tuple. The hook should
+not modify its arguments, but it can optionally return a new gradient with
+respect to the output that will be used in place of :attr:`grad_output` in
+subsequent computations. Entries in :attr:`grad_output` will be ``None`` for
+all non-Tensor arguments.
+
+For technical reasons, when this hook is applied to a Module, its forward function will
+receive a view of each Tensor passed to the Module. Similarly the caller will receive a view
+of each Tensor returned by the Module's forward function.
+
+.. warning ::
+    Modifying inputs inplace is not allowed when using backward hooks and
+    will raise an error.
+
+Args:
+    hook (Callable): The user-defined hook to be registered.
+    prepend (bool): If true, the provided ``hook`` will be fired before
+        all existing ``backward_pre`` hooks on this
+        :class:`torch.nn.Module`. Otherwise, the provided
+        ``hook`` will be fired after all existing ``backward_pre`` hooks
+        on this :class:`torch.nn.Module`. Note that global
+        ``backward_pre`` hooks registered with
+        :func:`register_module_full_backward_pre_hook` will fire before
+        all hooks registered by this method.
+
+Returns:
+    :class:`torch.utils.hooks.RemovableHandle`:
+        a handle that can be used to remove the added hook by calling
+        ``handle.remove()``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_load_state_dict_post_hook</h5>
+                    <div class="signature">register_load_state_dict_post_hook(self, hook)</div>
+                    <div class="docstring">Register a post-hook to be run after module's :meth:`~nn.Module.load_state_dict` is called.
+
+It should have the following signature::
+    hook(module, incompatible_keys) -> None
+
+The ``module`` argument is the current module that this hook is registered
+on, and the ``incompatible_keys`` argument is a ``NamedTuple`` consisting
+of attributes ``missing_keys`` and ``unexpected_keys``. ``missing_keys``
+is a ``list`` of ``str`` containing the missing keys and
+``unexpected_keys`` is a ``list`` of ``str`` containing the unexpected keys.
+
+The given incompatible_keys can be modified inplace if needed.
+
+Note that the checks performed when calling :func:`load_state_dict` with
+``strict=True`` are affected by modifications the hook makes to
+``missing_keys`` or ``unexpected_keys``, as expected. Additions to either
+set of keys will result in an error being thrown when ``strict=True``, and
+clearing out both missing and unexpected keys will avoid an error.
+
+Returns:
+    :class:`torch.utils.hooks.RemovableHandle`:
+        a handle that can be used to remove the added hook by calling
+        ``handle.remove()``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_load_state_dict_pre_hook</h5>
+                    <div class="signature">register_load_state_dict_pre_hook(self, hook)</div>
+                    <div class="docstring">Register a pre-hook to be run before module's :meth:`~nn.Module.load_state_dict` is called.
+
+It should have the following signature::
+    hook(module, state_dict, prefix, local_metadata, strict, missing_keys, unexpected_keys, error_msgs) -> None  # noqa: B950
+
+Arguments:
+    hook (Callable): Callable hook that will be invoked before
+        loading the state dict.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_module</h5>
+                    <div class="signature">register_module(self, name: str, module: Optional[ForwardRef('Module')]) -> None</div>
+                    <div class="docstring">Alias for :func:`add_module`.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_parameter</h5>
+                    <div class="signature">register_parameter(self, name: str, param: Optional[torch.nn.parameter.Parameter]) -> None</div>
+                    <div class="docstring">Add a parameter to the module.
+
+The parameter can be accessed as an attribute using given name.
+
+Args:
+    name (str): name of the parameter. The parameter can be accessed
+        from this module using the given name
+    param (Parameter or None): parameter to be added to the module. If
+        ``None``, then operations that run on parameters, such as :attr:`cuda`,
+        are ignored. If ``None``, the parameter is **not** included in the
+        module's :attr:`state_dict`.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_state_dict_post_hook</h5>
+                    <div class="signature">register_state_dict_post_hook(self, hook)</div>
+                    <div class="docstring">Register a post-hook for the :meth:`~torch.nn.Module.state_dict` method.
+
+It should have the following signature::
+    hook(module, state_dict, prefix, local_metadata) -> None
+
+The registered hooks can modify the ``state_dict`` inplace.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_state_dict_pre_hook</h5>
+                    <div class="signature">register_state_dict_pre_hook(self, hook)</div>
+                    <div class="docstring">Register a pre-hook for the :meth:`~torch.nn.Module.state_dict` method.
+
+It should have the following signature::
+    hook(module, prefix, keep_vars) -> None
+
+The registered hooks can be used to perform pre-processing before the ``state_dict``
+call is made.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> requires_grad_</h5>
+                    <div class="signature">requires_grad_(self: ~T, requires_grad: bool = True) -> ~T</div>
+                    <div class="docstring">Change if autograd should record operations on parameters in this module.
+
+This method sets the parameters' :attr:`requires_grad` attributes
+in-place.
+
+This method is helpful for freezing part of the module for finetuning
+or training parts of a model individually (e.g., GAN training).
+
+See :ref:`locally-disable-grad-doc` for a comparison between
+`.requires_grad_()` and several similar mechanisms that may be confused with it.
+
+Args:
+    requires_grad (bool): whether autograd should record operations on
+                          parameters in this module. Default: ``True``.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> set_extra_state</h5>
+                    <div class="signature">set_extra_state(self, state: Any) -> None</div>
+                    <div class="docstring">Set extra state contained in the loaded `state_dict`.
+
+This function is called from :func:`load_state_dict` to handle any extra state
+found within the `state_dict`. Implement this function and a corresponding
+:func:`get_extra_state` for your module if you need to store extra state within its
+`state_dict`.
+
+Args:
+    state (dict): Extra state from the `state_dict`</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> set_submodule</h5>
+                    <div class="signature">set_submodule(self, target: str, module: 'Module', strict: bool = False) -> None</div>
+                    <div class="docstring">Set the submodule given by ``target`` if it exists, otherwise throw an error.
+
+.. note::
+    If ``strict`` is set to ``False`` (default), the method will replace an existing submodule
+    or create a new submodule if the parent module exists. If ``strict`` is set to ``True``,
+    the method will only attempt to replace an existing submodule and throw an error if
+    the submodule does not exist.
+
+For example, let's say you have an ``nn.Module`` ``A`` that
+looks like this:
+
+.. code-block:: text
+
+    A(
+        (net_b): Module(
+            (net_c): Module(
+                (conv): Conv2d(3, 3, 3)
+            )
+            (linear): Linear(3, 3)
+        )
+    )
+
+(The diagram shows an ``nn.Module`` ``A``. ``A`` has a nested
+submodule ``net_b``, which itself has two submodules ``net_c``
+and ``linear``. ``net_c`` then has a submodule ``conv``.)
+
+To override the ``Conv2d`` with a new submodule ``Linear``, you
+could call ``set_submodule("net_b.net_c.conv", nn.Linear(1, 1))``
+where ``strict`` could be ``True`` or ``False``
+
+To add a new submodule ``Conv2d`` to the existing ``net_b`` module,
+you would call ``set_submodule("net_b.conv", nn.Conv2d(1, 1, 1))``.
+
+In the above if you set ``strict=True`` and call
+``set_submodule("net_b.conv", nn.Conv2d(1, 1, 1), strict=True)``, an AttributeError
+will be raised because ``net_b`` does not have a submodule named ``conv``.
+
+Args:
+    target: The fully-qualified string name of the submodule
+        to look for. (See above example for how to specify a
+        fully-qualified string.)
+    module: The module to set the submodule to.
+    strict: If ``False``, the method will replace an existing submodule
+        or create a new submodule if the parent module exists. If ``True``,
+        the method will only attempt to replace an existing submodule and throw an error
+        if the submodule doesn't already exist.
+
+Raises:
+    ValueError: If the ``target`` string is empty or if ``module`` is not an instance of ``nn.Module``.
+    AttributeError: If at any point along the path resulting from
+        the ``target`` string the (sub)path resolves to a non-existent
+        attribute name or an object that is not an instance of ``nn.Module``.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> share_memory</h5>
+                    <div class="signature">share_memory(self: ~T) -> ~T</div>
+                    <div class="docstring">See :meth:`torch.Tensor.share_memory_`.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> state_dict</h5>
+                    <div class="signature">state_dict(self, *args, destination=None, prefix='', keep_vars=False)</div>
+                    <div class="docstring">Return a dictionary containing references to the whole state of the module.
+
+Both parameters and persistent buffers (e.g. running averages) are
+included. Keys are corresponding parameter and buffer names.
+Parameters and buffers set to ``None`` are not included.
+
+.. note::
+    The returned object is a shallow copy. It contains references
+    to the module's parameters and buffers.
+
+.. warning::
+    Currently ``state_dict()`` also accepts positional arguments for
+    ``destination``, ``prefix`` and ``keep_vars`` in order. However,
+    this is being deprecated and keyword arguments will be enforced in
+    future releases.
+
+.. warning::
+    Please avoid the use of argument ``destination`` as it is not
+    designed for end-users.
+
+Args:
+    destination (dict, optional): If provided, the state of module will
+        be updated into the dict and the same object is returned.
+        Otherwise, an ``OrderedDict`` will be created and returned.
+        Default: ``None``.
+    prefix (str, optional): a prefix added to parameter and buffer
+        names to compose the keys in state_dict. Default: ``''``.
+    keep_vars (bool, optional): by default the :class:`~torch.Tensor` s
+        returned in the state dict are detached from autograd. If it's
+        set to ``True``, detaching will not be performed.
+        Default: ``False``.
+
+Returns:
+    dict:
+        a dictionary containing a whole state of the module
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> module.state_dict().keys()
+    ['bias', 'weight']</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> to</h5>
+                    <div class="signature">to(self, *args, **kwargs)</div>
+                    <div class="docstring">Move and/or cast the parameters and buffers.
+
+This can be called as
+
+.. function:: to(device=None, dtype=None, non_blocking=False)
+   :noindex:
+
+.. function:: to(dtype, non_blocking=False)
+   :noindex:
+
+.. function:: to(tensor, non_blocking=False)
+   :noindex:
+
+.. function:: to(memory_format=torch.channels_last)
+   :noindex:
+
+Its signature is similar to :meth:`torch.Tensor.to`, but only accepts
+floating point or complex :attr:`dtype`\ s. In addition, this method will
+only cast the floating point or complex parameters and buffers to :attr:`dtype`
+(if given). The integral parameters and buffers will be moved
+:attr:`device`, if that is given, but with dtypes unchanged. When
+:attr:`non_blocking` is set, it tries to convert/move asynchronously
+with respect to the host if possible, e.g., moving CPU Tensors with
+pinned memory to CUDA devices.
+
+See below for examples.
+
+.. note::
+    This method modifies the module in-place.
+
+Args:
+    device (:class:`torch.device`): the desired device of the parameters
+        and buffers in this module
+    dtype (:class:`torch.dtype`): the desired floating point or complex dtype of
+        the parameters and buffers in this module
+    tensor (torch.Tensor): Tensor whose dtype and device are the desired
+        dtype and device for all parameters and buffers in this module
+    memory_format (:class:`torch.memory_format`): the desired memory
+        format for 4D parameters and buffers in this module (keyword
+        only argument)
+
+Returns:
+    Module: self
+
+Examples::
+
+    >>> # xdoctest: +IGNORE_WANT("non-deterministic")
+    >>> linear = nn.Linear(2, 2)
+    >>> linear.weight
+    Parameter containing:
+    tensor([[ 0.1913, -0.3420],
+            [-0.5113, -0.2325]])
+    >>> linear.to(torch.double)
+    Linear(in_features=2, out_features=2, bias=True)
+    >>> linear.weight
+    Parameter containing:
+    tensor([[ 0.1913, -0.3420],
+            [-0.5113, -0.2325]], dtype=torch.float64)
+    >>> # xdoctest: +REQUIRES(env:TORCH_DOCTEST_CUDA1)
+    >>> gpu1 = torch.device("cuda:1")
+    >>> linear.to(gpu1, dtype=torch.half, non_blocking=True)
+    Linear(in_features=2, out_features=2, bias=True)
+    >>> linear.weight
+    Parameter containing:
+    tensor([[ 0.1914, -0.3420],
+            [-0.5112, -0.2324]], dtype=torch.float16, device='cuda:1')
+    >>> cpu = torch.device("cpu")
+    >>> linear.to(cpu)
+    Linear(in_features=2, out_features=2, bias=True)
+    >>> linear.weight
+    Parameter containing:
+    tensor([[ 0.1914, -0.3420],
+            [-0.5112, -0.2324]], dtype=torch.float16)
+
+    >>> linear = nn.Linear(2, 2, bias=None).to(torch.cdouble)
+    >>> linear.weight
+    Parameter containing:
+    tensor([[ 0.3741+0.j,  0.2382+0.j],
+            [ 0.5593+0.j, -0.4443+0.j]], dtype=torch.complex128)
+    >>> linear(torch.ones(3, 2, dtype=torch.cdouble))
+    tensor([[0.6122+0.j, 0.1150+0.j],
+            [0.6122+0.j, 0.1150+0.j],
+            [0.6122+0.j, 0.1150+0.j]], dtype=torch.complex128)</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> to_empty</h5>
+                    <div class="signature">to_empty(self: ~T, *, device: Union[int, str, torch.device, NoneType], recurse: bool = True) -> ~T</div>
+                    <div class="docstring">Move the parameters and buffers to the specified device without copying storage.
+
+Args:
+    device (:class:`torch.device`): The desired device of the parameters
+        and buffers in this module.
+    recurse (bool): Whether parameters and buffers of submodules should
+        be recursively moved to the specified device.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> train</h5>
+                    <div class="signature">train(self: ~T, mode: bool = True) -> ~T</div>
+                    <div class="docstring">Set the module in training mode.
+
+This has an effect only on certain modules. See the documentation of
+particular modules for details of their behaviors in training/evaluation
+mode, i.e., whether they are affected, e.g. :class:`Dropout`, :class:`BatchNorm`,
+etc.
+
+Args:
+    mode (bool): whether to set training mode (``True``) or evaluation
+                 mode (``False``). Default: ``True``.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> type</h5>
+                    <div class="signature">type(self: ~T, dst_type: Union[torch.dtype, str]) -> ~T</div>
+                    <div class="docstring">Casts all parameters and buffers to :attr:`dst_type`.
+
+.. note::
+    This method modifies the module in-place.
+
+Args:
+    dst_type (type or string): the desired type
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> xpu</h5>
+                    <div class="signature">xpu(self: ~T, device: Union[int, torch.device, NoneType] = None) -> ~T</div>
+                    <div class="docstring">Move all model parameters and buffers to the XPU.
+
+This also makes associated parameters and buffers different objects. So
+it should be called before constructing optimizer if the module will
+live on XPU while being optimized.
+
+.. note::
+    This method modifies the module in-place.
+
+Arguments:
+    device (int, optional): if specified, all parameters will be
+        copied to that device
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> zero_grad</h5>
+                    <div class="signature">zero_grad(self, set_to_none: bool = True) -> None</div>
+                    <div class="docstring">Reset gradients of all model parameters.
+
+See similar function under :class:`torch.optim.Optimizer` for more context.
+
+Args:
+    set_to_none (bool): instead of setting to zero, set the grads to None.
+        See :meth:`torch.optim.Optimizer.zero_grad` for details.</div>
+                </div>
+</div>
+        <div class="class-container" id="class-SymbolicContext">
+            <h3><span class="badge class">Class</span> SymbolicContext</h3>
+            <div class="signature">class SymbolicContext(self, embeddings: torch.Tensor, facts: Optional[List[str]] = None, attention_weights: Optional[torch.Tensor] = None, reasoning_trace: Optional[List[str]] = None, confidence_mask: Optional[torch.Tensor] = None) -> None</div>
+            <div class="docstring">Container for symbolic reasoning context</div>
+<h4>Methods:</h4>
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> __init__</h5>
+                    <div class="signature">__init__(self, embeddings: torch.Tensor, facts: Optional[List[str]] = None, attention_weights: Optional[torch.Tensor] = None, reasoning_trace: Optional[List[str]] = None, confidence_mask: Optional[torch.Tensor] = None) -> None</div>
+                    <div class="docstring">No method documentation available.</div>
+                </div>
+</div>
+        <div class="class-container" id="class-SymbolicTransformerBlock">
+            <h3><span class="badge class">Class</span> SymbolicTransformerBlock</h3>
+            <div class="signature">class SymbolicTransformerBlock(self, embed_dim: int, num_heads: int = 8, ff_dim: Optional[int] = None, dropout: float = 0.1, activation: str = 'gelu')</div>
+            <div class="docstring">Transformer block specialized for symbolic reasoning</div>
+<h4>Methods:</h4>
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> __call__</h5>
+                    <div class="signature">__call__(self, *args, **kwargs)</div>
+                    <div class="docstring">No method documentation available.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> __init__</h5>
+                    <div class="signature">__init__(self, embed_dim: int, num_heads: int = 8, ff_dim: Optional[int] = None, dropout: float = 0.1, activation: str = 'gelu')</div>
+                    <div class="docstring">No method documentation available.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> add_module</h5>
+                    <div class="signature">add_module(self, name: str, module: Optional[ForwardRef('Module')]) -> None</div>
+                    <div class="docstring">Add a child module to the current module.
+
+The module can be accessed as an attribute using the given name.
+
+Args:
+    name (str): name of the child module. The child module can be
+        accessed from this module using the given name
+    module (Module): child module to be added to the module.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> apply</h5>
+                    <div class="signature">apply(self: ~T, fn: Callable[[ForwardRef('Module')], NoneType]) -> ~T</div>
+                    <div class="docstring">Apply ``fn`` recursively to every submodule (as returned by ``.children()``) as well as self.
+
+Typical use includes initializing the parameters of a model
+(see also :ref:`nn-init-doc`).
+
+Args:
+    fn (:class:`Module` -> None): function to be applied to each submodule
+
+Returns:
+    Module: self
+
+Example::
+
+    >>> @torch.no_grad()
+    >>> def init_weights(m):
+    >>>     print(m)
+    >>>     if type(m) == nn.Linear:
+    >>>         m.weight.fill_(1.0)
+    >>>         print(m.weight)
+    >>> net = nn.Sequential(nn.Linear(2, 2), nn.Linear(2, 2))
+    >>> net.apply(init_weights)
+    Linear(in_features=2, out_features=2, bias=True)
+    Parameter containing:
+    tensor([[1., 1.],
+            [1., 1.]], requires_grad=True)
+    Linear(in_features=2, out_features=2, bias=True)
+    Parameter containing:
+    tensor([[1., 1.],
+            [1., 1.]], requires_grad=True)
+    Sequential(
+      (0): Linear(in_features=2, out_features=2, bias=True)
+      (1): Linear(in_features=2, out_features=2, bias=True)
+    )</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> bfloat16</h5>
+                    <div class="signature">bfloat16(self: ~T) -> ~T</div>
+                    <div class="docstring">Casts all floating point parameters and buffers to ``bfloat16`` datatype.
+
+.. note::
+    This method modifies the module in-place.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> buffers</h5>
+                    <div class="signature">buffers(self, recurse: bool = True) -> collections.abc.Iterator[torch.Tensor]</div>
+                    <div class="docstring">Return an iterator over module buffers.
+
+Args:
+    recurse (bool): if True, then yields buffers of this module
+        and all submodules. Otherwise, yields only buffers that
+        are direct members of this module.
+
+Yields:
+    torch.Tensor: module buffer
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> for buf in model.buffers():
+    >>>     print(type(buf), buf.size())
+    <class 'torch.Tensor'> (20L,)
+    <class 'torch.Tensor'> (20L, 1L, 5L, 5L)</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> children</h5>
+                    <div class="signature">children(self) -> collections.abc.Iterator['Module']</div>
+                    <div class="docstring">Return an iterator over immediate children modules.
+
+Yields:
+    Module: a child module</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> compile</h5>
+                    <div class="signature">compile(self, *args, **kwargs)</div>
+                    <div class="docstring">Compile this Module's forward using :func:`torch.compile`.
+
+This Module's `__call__` method is compiled and all arguments are passed as-is
+to :func:`torch.compile`.
+
+See :func:`torch.compile` for details on the arguments for this function.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> cpu</h5>
+                    <div class="signature">cpu(self: ~T) -> ~T</div>
+                    <div class="docstring">Move all model parameters and buffers to the CPU.
+
+.. note::
+    This method modifies the module in-place.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> cuda</h5>
+                    <div class="signature">cuda(self: ~T, device: Union[int, torch.device, NoneType] = None) -> ~T</div>
+                    <div class="docstring">Move all model parameters and buffers to the GPU.
+
+This also makes associated parameters and buffers different objects. So
+it should be called before constructing the optimizer if the module will
+live on GPU while being optimized.
+
+.. note::
+    This method modifies the module in-place.
+
+Args:
+    device (int, optional): if specified, all parameters will be
+        copied to that device
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> double</h5>
+                    <div class="signature">double(self: ~T) -> ~T</div>
+                    <div class="docstring">Casts all floating point parameters and buffers to ``double`` datatype.
+
+.. note::
+    This method modifies the module in-place.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> eval</h5>
+                    <div class="signature">eval(self: ~T) -> ~T</div>
+                    <div class="docstring">Set the module in evaluation mode.
+
+This has an effect only on certain modules. See the documentation of
+particular modules for details of their behaviors in training/evaluation
+mode, i.e. whether they are affected, e.g. :class:`Dropout`, :class:`BatchNorm`,
+etc.
+
+This is equivalent with :meth:`self.train(False) <torch.nn.Module.train>`.
+
+See :ref:`locally-disable-grad-doc` for a comparison between
+`.eval()` and several similar mechanisms that may be confused with it.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> extra_repr</h5>
+                    <div class="signature">extra_repr(self) -> str</div>
+                    <div class="docstring">Return the extra representation of the module.
+
+To print customized extra information, you should re-implement
+this method in your own modules. Both single-line and multi-line
+strings are acceptable.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> float</h5>
+                    <div class="signature">float(self: ~T) -> ~T</div>
+                    <div class="docstring">Casts all floating point parameters and buffers to ``float`` datatype.
+
+.. note::
+    This method modifies the module in-place.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> forward</h5>
+                    <div class="signature">forward(self, x: torch.Tensor, attn_mask: Optional[torch.Tensor] = None) -> Tuple[torch.Tensor, torch.Tensor]</div>
+                    <div class="docstring">No method documentation available.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> get_buffer</h5>
+                    <div class="signature">get_buffer(self, target: str) -> 'Tensor'</div>
+                    <div class="docstring">Return the buffer given by ``target`` if it exists, otherwise throw an error.
+
+See the docstring for ``get_submodule`` for a more detailed
+explanation of this method's functionality as well as how to
+correctly specify ``target``.
+
+Args:
+    target: The fully-qualified string name of the buffer
+        to look for. (See ``get_submodule`` for how to specify a
+        fully-qualified string.)
+
+Returns:
+    torch.Tensor: The buffer referenced by ``target``
+
+Raises:
+    AttributeError: If the target string references an invalid
+        path or resolves to something that is not a
+        buffer</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> get_extra_state</h5>
+                    <div class="signature">get_extra_state(self) -> Any</div>
+                    <div class="docstring">Return any extra state to include in the module's state_dict.
+
+Implement this and a corresponding :func:`set_extra_state` for your module
+if you need to store extra state. This function is called when building the
+module's `state_dict()`.
+
+Note that extra state should be picklable to ensure working serialization
+of the state_dict. We only provide backwards compatibility guarantees
+for serializing Tensors; other objects may break backwards compatibility if
+their serialized pickled form changes.
+
+Returns:
+    object: Any extra state to store in the module's state_dict</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> get_parameter</h5>
+                    <div class="signature">get_parameter(self, target: str) -> 'Parameter'</div>
+                    <div class="docstring">Return the parameter given by ``target`` if it exists, otherwise throw an error.
+
+See the docstring for ``get_submodule`` for a more detailed
+explanation of this method's functionality as well as how to
+correctly specify ``target``.
+
+Args:
+    target: The fully-qualified string name of the Parameter
+        to look for. (See ``get_submodule`` for how to specify a
+        fully-qualified string.)
+
+Returns:
+    torch.nn.Parameter: The Parameter referenced by ``target``
+
+Raises:
+    AttributeError: If the target string references an invalid
+        path or resolves to something that is not an
+        ``nn.Parameter``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> get_submodule</h5>
+                    <div class="signature">get_submodule(self, target: str) -> 'Module'</div>
+                    <div class="docstring">Return the submodule given by ``target`` if it exists, otherwise throw an error.
+
+For example, let's say you have an ``nn.Module`` ``A`` that
+looks like this:
+
+.. code-block:: text
+
+    A(
+        (net_b): Module(
+            (net_c): Module(
+                (conv): Conv2d(16, 33, kernel_size=(3, 3), stride=(2, 2))
+            )
+            (linear): Linear(in_features=100, out_features=200, bias=True)
+        )
+    )
+
+(The diagram shows an ``nn.Module`` ``A``. ``A`` which has a nested
+submodule ``net_b``, which itself has two submodules ``net_c``
+and ``linear``. ``net_c`` then has a submodule ``conv``.)
+
+To check whether or not we have the ``linear`` submodule, we
+would call ``get_submodule("net_b.linear")``. To check whether
+we have the ``conv`` submodule, we would call
+``get_submodule("net_b.net_c.conv")``.
+
+The runtime of ``get_submodule`` is bounded by the degree
+of module nesting in ``target``. A query against
+``named_modules`` achieves the same result, but it is O(N) in
+the number of transitive modules. So, for a simple check to see
+if some submodule exists, ``get_submodule`` should always be
+used.
+
+Args:
+    target: The fully-qualified string name of the submodule
+        to look for. (See above example for how to specify a
+        fully-qualified string.)
+
+Returns:
+    torch.nn.Module: The submodule referenced by ``target``
+
+Raises:
+    AttributeError: If at any point along the path resulting from
+        the target string the (sub)path resolves to a non-existent
+        attribute name or an object that is not an instance of ``nn.Module``.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> half</h5>
+                    <div class="signature">half(self: ~T) -> ~T</div>
+                    <div class="docstring">Casts all floating point parameters and buffers to ``half`` datatype.
+
+.. note::
+    This method modifies the module in-place.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> ipu</h5>
+                    <div class="signature">ipu(self: ~T, device: Union[int, torch.device, NoneType] = None) -> ~T</div>
+                    <div class="docstring">Move all model parameters and buffers to the IPU.
+
+This also makes associated parameters and buffers different objects. So
+it should be called before constructing the optimizer if the module will
+live on IPU while being optimized.
+
+.. note::
+    This method modifies the module in-place.
+
+Arguments:
+    device (int, optional): if specified, all parameters will be
+        copied to that device
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> load_state_dict</h5>
+                    <div class="signature">load_state_dict(self, state_dict: collections.abc.Mapping[str, typing.Any], strict: bool = True, assign: bool = False)</div>
+                    <div class="docstring">Copy parameters and buffers from :attr:`state_dict` into this module and its descendants.
+
+If :attr:`strict` is ``True``, then
+the keys of :attr:`state_dict` must exactly match the keys returned
+by this module's :meth:`~torch.nn.Module.state_dict` function.
+
+.. warning::
+    If :attr:`assign` is ``True`` the optimizer must be created after
+    the call to :attr:`load_state_dict` unless
+    :func:`~torch.__future__.get_swap_module_params_on_conversion` is ``True``.
+
+Args:
+    state_dict (dict): a dict containing parameters and
+        persistent buffers.
+    strict (bool, optional): whether to strictly enforce that the keys
+        in :attr:`state_dict` match the keys returned by this module's
+        :meth:`~torch.nn.Module.state_dict` function. Default: ``True``
+    assign (bool, optional): When set to ``False``, the properties of the tensors
+        in the current module are preserved whereas setting it to ``True`` preserves
+        properties of the Tensors in the state dict. The only
+        exception is the ``requires_grad`` field of :class:`~torch.nn.Parameter`s
+        for which the value from the module is preserved.
+        Default: ``False``
+
+Returns:
+    ``NamedTuple`` with ``missing_keys`` and ``unexpected_keys`` fields:
+        * **missing_keys** is a list of str containing any keys that are expected
+            by this module but missing from the provided ``state_dict``.
+        * **unexpected_keys** is a list of str containing the keys that are not
+            expected by this module but present in the provided ``state_dict``.
+
+Note:
+    If a parameter or buffer is registered as ``None`` and its corresponding key
+    exists in :attr:`state_dict`, :meth:`load_state_dict` will raise a
+    ``RuntimeError``.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> modules</h5>
+                    <div class="signature">modules(self) -> collections.abc.Iterator['Module']</div>
+                    <div class="docstring">Return an iterator over all modules in the network.
+
+Yields:
+    Module: a module in the network
+
+Note:
+    Duplicate modules are returned only once. In the following
+    example, ``l`` will be returned only once.
+
+Example::
+
+    >>> l = nn.Linear(2, 2)
+    >>> net = nn.Sequential(l, l)
+    >>> for idx, m in enumerate(net.modules()):
+    ...     print(idx, '->', m)
+
+    0 -> Sequential(
+      (0): Linear(in_features=2, out_features=2, bias=True)
+      (1): Linear(in_features=2, out_features=2, bias=True)
+    )
+    1 -> Linear(in_features=2, out_features=2, bias=True)</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> mtia</h5>
+                    <div class="signature">mtia(self: ~T, device: Union[int, torch.device, NoneType] = None) -> ~T</div>
+                    <div class="docstring">Move all model parameters and buffers to the MTIA.
+
+This also makes associated parameters and buffers different objects. So
+it should be called before constructing the optimizer if the module will
+live on MTIA while being optimized.
+
+.. note::
+    This method modifies the module in-place.
+
+Arguments:
+    device (int, optional): if specified, all parameters will be
+        copied to that device
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> named_buffers</h5>
+                    <div class="signature">named_buffers(self, prefix: str = '', recurse: bool = True, remove_duplicate: bool = True) -> collections.abc.Iterator[tuple[str, torch.Tensor]]</div>
+                    <div class="docstring">Return an iterator over module buffers, yielding both the name of the buffer as well as the buffer itself.
+
+Args:
+    prefix (str): prefix to prepend to all buffer names.
+    recurse (bool, optional): if True, then yields buffers of this module
+        and all submodules. Otherwise, yields only buffers that
+        are direct members of this module. Defaults to True.
+    remove_duplicate (bool, optional): whether to remove the duplicated buffers in the result. Defaults to True.
+
+Yields:
+    (str, torch.Tensor): Tuple containing the name and buffer
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> for name, buf in self.named_buffers():
+    >>>     if name in ['running_var']:
+    >>>         print(buf.size())</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> named_children</h5>
+                    <div class="signature">named_children(self) -> collections.abc.Iterator[tuple[str, 'Module']]</div>
+                    <div class="docstring">Return an iterator over immediate children modules, yielding both the name of the module as well as the module itself.
+
+Yields:
+    (str, Module): Tuple containing a name and child module
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> for name, module in model.named_children():
+    >>>     if name in ['conv4', 'conv5']:
+    >>>         print(module)</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> named_modules</h5>
+                    <div class="signature">named_modules(self, memo: Optional[set['Module']] = None, prefix: str = '', remove_duplicate: bool = True)</div>
+                    <div class="docstring">Return an iterator over all modules in the network, yielding both the name of the module as well as the module itself.
+
+Args:
+    memo: a memo to store the set of modules already added to the result
+    prefix: a prefix that will be added to the name of the module
+    remove_duplicate: whether to remove the duplicated module instances in the result
+        or not
+
+Yields:
+    (str, Module): Tuple of name and module
+
+Note:
+    Duplicate modules are returned only once. In the following
+    example, ``l`` will be returned only once.
+
+Example::
+
+    >>> l = nn.Linear(2, 2)
+    >>> net = nn.Sequential(l, l)
+    >>> for idx, m in enumerate(net.named_modules()):
+    ...     print(idx, '->', m)
+
+    0 -> ('', Sequential(
+      (0): Linear(in_features=2, out_features=2, bias=True)
+      (1): Linear(in_features=2, out_features=2, bias=True)
+    ))
+    1 -> ('0', Linear(in_features=2, out_features=2, bias=True))</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> named_parameters</h5>
+                    <div class="signature">named_parameters(self, prefix: str = '', recurse: bool = True, remove_duplicate: bool = True) -> collections.abc.Iterator[tuple[str, torch.nn.parameter.Parameter]]</div>
+                    <div class="docstring">Return an iterator over module parameters, yielding both the name of the parameter as well as the parameter itself.
+
+Args:
+    prefix (str): prefix to prepend to all parameter names.
+    recurse (bool): if True, then yields parameters of this module
+        and all submodules. Otherwise, yields only parameters that
+        are direct members of this module.
+    remove_duplicate (bool, optional): whether to remove the duplicated
+        parameters in the result. Defaults to True.
+
+Yields:
+    (str, Parameter): Tuple containing the name and parameter
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> for name, param in self.named_parameters():
+    >>>     if name in ['bias']:
+    >>>         print(param.size())</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> parameters</h5>
+                    <div class="signature">parameters(self, recurse: bool = True) -> collections.abc.Iterator[torch.nn.parameter.Parameter]</div>
+                    <div class="docstring">Return an iterator over module parameters.
+
+This is typically passed to an optimizer.
+
+Args:
+    recurse (bool): if True, then yields parameters of this module
+        and all submodules. Otherwise, yields only parameters that
+        are direct members of this module.
+
+Yields:
+    Parameter: module parameter
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> for param in model.parameters():
+    >>>     print(type(param), param.size())
+    <class 'torch.Tensor'> (20L,)
+    <class 'torch.Tensor'> (20L, 1L, 5L, 5L)</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_backward_hook</h5>
+                    <div class="signature">register_backward_hook(self, hook: Callable[[ForwardRef('Module'), Union[tuple[torch.Tensor, ...], torch.Tensor], Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]]) -> torch.utils.hooks.RemovableHandle</div>
+                    <div class="docstring">Register a backward hook on the module.
+
+This function is deprecated in favor of :meth:`~torch.nn.Module.register_full_backward_hook` and
+the behavior of this function will change in future versions.
+
+Returns:
+    :class:`torch.utils.hooks.RemovableHandle`:
+        a handle that can be used to remove the added hook by calling
+        ``handle.remove()``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_buffer</h5>
+                    <div class="signature">register_buffer(self, name: str, tensor: Optional[torch.Tensor], persistent: bool = True) -> None</div>
+                    <div class="docstring">Add a buffer to the module.
+
+This is typically used to register a buffer that should not to be
+considered a model parameter. For example, BatchNorm's ``running_mean``
+is not a parameter, but is part of the module's state. Buffers, by
+default, are persistent and will be saved alongside parameters. This
+behavior can be changed by setting :attr:`persistent` to ``False``. The
+only difference between a persistent buffer and a non-persistent buffer
+is that the latter will not be a part of this module's
+:attr:`state_dict`.
+
+Buffers can be accessed as attributes using given names.
+
+Args:
+    name (str): name of the buffer. The buffer can be accessed
+        from this module using the given name
+    tensor (Tensor or None): buffer to be registered. If ``None``, then operations
+        that run on buffers, such as :attr:`cuda`, are ignored. If ``None``,
+        the buffer is **not** included in the module's :attr:`state_dict`.
+    persistent (bool): whether the buffer is part of this module's
+        :attr:`state_dict`.
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> self.register_buffer('running_mean', torch.zeros(num_features))</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_forward_hook</h5>
+                    <div class="signature">register_forward_hook(self, hook: Union[Callable[[~T, tuple[Any, ...], Any], Optional[Any]], Callable[[~T, tuple[Any, ...], dict[str, Any], Any], Optional[Any]]], *, prepend: bool = False, with_kwargs: bool = False, always_call: bool = False) -> torch.utils.hooks.RemovableHandle</div>
+                    <div class="docstring">Register a forward hook on the module.
+
+The hook will be called every time after :func:`forward` has computed an output.
+
+If ``with_kwargs`` is ``False`` or not specified, the input contains only
+the positional arguments given to the module. Keyword arguments won't be
+passed to the hooks and only to the ``forward``. The hook can modify the
+output. It can modify the input inplace but it will not have effect on
+forward since this is called after :func:`forward` is called. The hook
+should have the following signature::
+
+    hook(module, args, output) -> None or modified output
+
+If ``with_kwargs`` is ``True``, the forward hook will be passed the
+``kwargs`` given to the forward function and be expected to return the
+output possibly modified. The hook should have the following signature::
+
+    hook(module, args, kwargs, output) -> None or modified output
+
+Args:
+    hook (Callable): The user defined hook to be registered.
+    prepend (bool): If ``True``, the provided ``hook`` will be fired
+        before all existing ``forward`` hooks on this
+        :class:`torch.nn.Module`. Otherwise, the provided
+        ``hook`` will be fired after all existing ``forward`` hooks on
+        this :class:`torch.nn.Module`. Note that global
+        ``forward`` hooks registered with
+        :func:`register_module_forward_hook` will fire before all hooks
+        registered by this method.
+        Default: ``False``
+    with_kwargs (bool): If ``True``, the ``hook`` will be passed the
+        kwargs given to the forward function.
+        Default: ``False``
+    always_call (bool): If ``True`` the ``hook`` will be run regardless of
+        whether an exception is raised while calling the Module.
+        Default: ``False``
+
+Returns:
+    :class:`torch.utils.hooks.RemovableHandle`:
+        a handle that can be used to remove the added hook by calling
+        ``handle.remove()``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_forward_pre_hook</h5>
+                    <div class="signature">register_forward_pre_hook(self, hook: Union[Callable[[~T, tuple[Any, ...]], Optional[Any]], Callable[[~T, tuple[Any, ...], dict[str, Any]], Optional[tuple[Any, dict[str, Any]]]]], *, prepend: bool = False, with_kwargs: bool = False) -> torch.utils.hooks.RemovableHandle</div>
+                    <div class="docstring">Register a forward pre-hook on the module.
+
+The hook will be called every time before :func:`forward` is invoked.
+
+
+If ``with_kwargs`` is false or not specified, the input contains only
+the positional arguments given to the module. Keyword arguments won't be
+passed to the hooks and only to the ``forward``. The hook can modify the
+input. User can either return a tuple or a single modified value in the
+hook. We will wrap the value into a tuple if a single value is returned
+(unless that value is already a tuple). The hook should have the
+following signature::
+
+    hook(module, args) -> None or modified input
+
+If ``with_kwargs`` is true, the forward pre-hook will be passed the
+kwargs given to the forward function. And if the hook modifies the
+input, both the args and kwargs should be returned. The hook should have
+the following signature::
+
+    hook(module, args, kwargs) -> None or a tuple of modified input and kwargs
+
+Args:
+    hook (Callable): The user defined hook to be registered.
+    prepend (bool): If true, the provided ``hook`` will be fired before
+        all existing ``forward_pre`` hooks on this
+        :class:`torch.nn.Module`. Otherwise, the provided
+        ``hook`` will be fired after all existing ``forward_pre`` hooks
+        on this :class:`torch.nn.Module`. Note that global
+        ``forward_pre`` hooks registered with
+        :func:`register_module_forward_pre_hook` will fire before all
+        hooks registered by this method.
+        Default: ``False``
+    with_kwargs (bool): If true, the ``hook`` will be passed the kwargs
+        given to the forward function.
+        Default: ``False``
+
+Returns:
+    :class:`torch.utils.hooks.RemovableHandle`:
+        a handle that can be used to remove the added hook by calling
+        ``handle.remove()``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_full_backward_hook</h5>
+                    <div class="signature">register_full_backward_hook(self, hook: Callable[[ForwardRef('Module'), Union[tuple[torch.Tensor, ...], torch.Tensor], Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]], prepend: bool = False) -> torch.utils.hooks.RemovableHandle</div>
+                    <div class="docstring">Register a backward hook on the module.
+
+The hook will be called every time the gradients with respect to a module
+are computed, i.e. the hook will execute if and only if the gradients with
+respect to module outputs are computed. The hook should have the following
+signature::
+
+    hook(module, grad_input, grad_output) -> tuple(Tensor) or None
+
+The :attr:`grad_input` and :attr:`grad_output` are tuples that contain the gradients
+with respect to the inputs and outputs respectively. The hook should
+not modify its arguments, but it can optionally return a new gradient with
+respect to the input that will be used in place of :attr:`grad_input` in
+subsequent computations. :attr:`grad_input` will only correspond to the inputs given
+as positional arguments and all kwarg arguments are ignored. Entries
+in :attr:`grad_input` and :attr:`grad_output` will be ``None`` for all non-Tensor
+arguments.
+
+For technical reasons, when this hook is applied to a Module, its forward function will
+receive a view of each Tensor passed to the Module. Similarly the caller will receive a view
+of each Tensor returned by the Module's forward function.
+
+.. warning ::
+    Modifying inputs or outputs inplace is not allowed when using backward hooks and
+    will raise an error.
+
+Args:
+    hook (Callable): The user-defined hook to be registered.
+    prepend (bool): If true, the provided ``hook`` will be fired before
+        all existing ``backward`` hooks on this
+        :class:`torch.nn.Module`. Otherwise, the provided
+        ``hook`` will be fired after all existing ``backward`` hooks on
+        this :class:`torch.nn.Module`. Note that global
+        ``backward`` hooks registered with
+        :func:`register_module_full_backward_hook` will fire before
+        all hooks registered by this method.
+
+Returns:
+    :class:`torch.utils.hooks.RemovableHandle`:
+        a handle that can be used to remove the added hook by calling
+        ``handle.remove()``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_full_backward_pre_hook</h5>
+                    <div class="signature">register_full_backward_pre_hook(self, hook: Callable[[ForwardRef('Module'), Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]], prepend: bool = False) -> torch.utils.hooks.RemovableHandle</div>
+                    <div class="docstring">Register a backward pre-hook on the module.
+
+The hook will be called every time the gradients for the module are computed.
+The hook should have the following signature::
+
+    hook(module, grad_output) -> tuple[Tensor] or None
+
+The :attr:`grad_output` is a tuple. The hook should
+not modify its arguments, but it can optionally return a new gradient with
+respect to the output that will be used in place of :attr:`grad_output` in
+subsequent computations. Entries in :attr:`grad_output` will be ``None`` for
+all non-Tensor arguments.
+
+For technical reasons, when this hook is applied to a Module, its forward function will
+receive a view of each Tensor passed to the Module. Similarly the caller will receive a view
+of each Tensor returned by the Module's forward function.
+
+.. warning ::
+    Modifying inputs inplace is not allowed when using backward hooks and
+    will raise an error.
+
+Args:
+    hook (Callable): The user-defined hook to be registered.
+    prepend (bool): If true, the provided ``hook`` will be fired before
+        all existing ``backward_pre`` hooks on this
+        :class:`torch.nn.Module`. Otherwise, the provided
+        ``hook`` will be fired after all existing ``backward_pre`` hooks
+        on this :class:`torch.nn.Module`. Note that global
+        ``backward_pre`` hooks registered with
+        :func:`register_module_full_backward_pre_hook` will fire before
+        all hooks registered by this method.
+
+Returns:
+    :class:`torch.utils.hooks.RemovableHandle`:
+        a handle that can be used to remove the added hook by calling
+        ``handle.remove()``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_load_state_dict_post_hook</h5>
+                    <div class="signature">register_load_state_dict_post_hook(self, hook)</div>
+                    <div class="docstring">Register a post-hook to be run after module's :meth:`~nn.Module.load_state_dict` is called.
+
+It should have the following signature::
+    hook(module, incompatible_keys) -> None
+
+The ``module`` argument is the current module that this hook is registered
+on, and the ``incompatible_keys`` argument is a ``NamedTuple`` consisting
+of attributes ``missing_keys`` and ``unexpected_keys``. ``missing_keys``
+is a ``list`` of ``str`` containing the missing keys and
+``unexpected_keys`` is a ``list`` of ``str`` containing the unexpected keys.
+
+The given incompatible_keys can be modified inplace if needed.
+
+Note that the checks performed when calling :func:`load_state_dict` with
+``strict=True`` are affected by modifications the hook makes to
+``missing_keys`` or ``unexpected_keys``, as expected. Additions to either
+set of keys will result in an error being thrown when ``strict=True``, and
+clearing out both missing and unexpected keys will avoid an error.
+
+Returns:
+    :class:`torch.utils.hooks.RemovableHandle`:
+        a handle that can be used to remove the added hook by calling
+        ``handle.remove()``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_load_state_dict_pre_hook</h5>
+                    <div class="signature">register_load_state_dict_pre_hook(self, hook)</div>
+                    <div class="docstring">Register a pre-hook to be run before module's :meth:`~nn.Module.load_state_dict` is called.
+
+It should have the following signature::
+    hook(module, state_dict, prefix, local_metadata, strict, missing_keys, unexpected_keys, error_msgs) -> None  # noqa: B950
+
+Arguments:
+    hook (Callable): Callable hook that will be invoked before
+        loading the state dict.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_module</h5>
+                    <div class="signature">register_module(self, name: str, module: Optional[ForwardRef('Module')]) -> None</div>
+                    <div class="docstring">Alias for :func:`add_module`.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_parameter</h5>
+                    <div class="signature">register_parameter(self, name: str, param: Optional[torch.nn.parameter.Parameter]) -> None</div>
+                    <div class="docstring">Add a parameter to the module.
+
+The parameter can be accessed as an attribute using given name.
+
+Args:
+    name (str): name of the parameter. The parameter can be accessed
+        from this module using the given name
+    param (Parameter or None): parameter to be added to the module. If
+        ``None``, then operations that run on parameters, such as :attr:`cuda`,
+        are ignored. If ``None``, the parameter is **not** included in the
+        module's :attr:`state_dict`.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_state_dict_post_hook</h5>
+                    <div class="signature">register_state_dict_post_hook(self, hook)</div>
+                    <div class="docstring">Register a post-hook for the :meth:`~torch.nn.Module.state_dict` method.
+
+It should have the following signature::
+    hook(module, state_dict, prefix, local_metadata) -> None
+
+The registered hooks can modify the ``state_dict`` inplace.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_state_dict_pre_hook</h5>
+                    <div class="signature">register_state_dict_pre_hook(self, hook)</div>
+                    <div class="docstring">Register a pre-hook for the :meth:`~torch.nn.Module.state_dict` method.
+
+It should have the following signature::
+    hook(module, prefix, keep_vars) -> None
+
+The registered hooks can be used to perform pre-processing before the ``state_dict``
+call is made.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> requires_grad_</h5>
+                    <div class="signature">requires_grad_(self: ~T, requires_grad: bool = True) -> ~T</div>
+                    <div class="docstring">Change if autograd should record operations on parameters in this module.
+
+This method sets the parameters' :attr:`requires_grad` attributes
+in-place.
+
+This method is helpful for freezing part of the module for finetuning
+or training parts of a model individually (e.g., GAN training).
+
+See :ref:`locally-disable-grad-doc` for a comparison between
+`.requires_grad_()` and several similar mechanisms that may be confused with it.
+
+Args:
+    requires_grad (bool): whether autograd should record operations on
+                          parameters in this module. Default: ``True``.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> set_extra_state</h5>
+                    <div class="signature">set_extra_state(self, state: Any) -> None</div>
+                    <div class="docstring">Set extra state contained in the loaded `state_dict`.
+
+This function is called from :func:`load_state_dict` to handle any extra state
+found within the `state_dict`. Implement this function and a corresponding
+:func:`get_extra_state` for your module if you need to store extra state within its
+`state_dict`.
+
+Args:
+    state (dict): Extra state from the `state_dict`</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> set_submodule</h5>
+                    <div class="signature">set_submodule(self, target: str, module: 'Module', strict: bool = False) -> None</div>
+                    <div class="docstring">Set the submodule given by ``target`` if it exists, otherwise throw an error.
+
+.. note::
+    If ``strict`` is set to ``False`` (default), the method will replace an existing submodule
+    or create a new submodule if the parent module exists. If ``strict`` is set to ``True``,
+    the method will only attempt to replace an existing submodule and throw an error if
+    the submodule does not exist.
+
+For example, let's say you have an ``nn.Module`` ``A`` that
+looks like this:
+
+.. code-block:: text
+
+    A(
+        (net_b): Module(
+            (net_c): Module(
+                (conv): Conv2d(3, 3, 3)
+            )
+            (linear): Linear(3, 3)
+        )
+    )
+
+(The diagram shows an ``nn.Module`` ``A``. ``A`` has a nested
+submodule ``net_b``, which itself has two submodules ``net_c``
+and ``linear``. ``net_c`` then has a submodule ``conv``.)
+
+To override the ``Conv2d`` with a new submodule ``Linear``, you
+could call ``set_submodule("net_b.net_c.conv", nn.Linear(1, 1))``
+where ``strict`` could be ``True`` or ``False``
+
+To add a new submodule ``Conv2d`` to the existing ``net_b`` module,
+you would call ``set_submodule("net_b.conv", nn.Conv2d(1, 1, 1))``.
+
+In the above if you set ``strict=True`` and call
+``set_submodule("net_b.conv", nn.Conv2d(1, 1, 1), strict=True)``, an AttributeError
+will be raised because ``net_b`` does not have a submodule named ``conv``.
+
+Args:
+    target: The fully-qualified string name of the submodule
+        to look for. (See above example for how to specify a
+        fully-qualified string.)
+    module: The module to set the submodule to.
+    strict: If ``False``, the method will replace an existing submodule
+        or create a new submodule if the parent module exists. If ``True``,
+        the method will only attempt to replace an existing submodule and throw an error
+        if the submodule doesn't already exist.
+
+Raises:
+    ValueError: If the ``target`` string is empty or if ``module`` is not an instance of ``nn.Module``.
+    AttributeError: If at any point along the path resulting from
+        the ``target`` string the (sub)path resolves to a non-existent
+        attribute name or an object that is not an instance of ``nn.Module``.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> share_memory</h5>
+                    <div class="signature">share_memory(self: ~T) -> ~T</div>
+                    <div class="docstring">See :meth:`torch.Tensor.share_memory_`.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> state_dict</h5>
+                    <div class="signature">state_dict(self, *args, destination=None, prefix='', keep_vars=False)</div>
+                    <div class="docstring">Return a dictionary containing references to the whole state of the module.
+
+Both parameters and persistent buffers (e.g. running averages) are
+included. Keys are corresponding parameter and buffer names.
+Parameters and buffers set to ``None`` are not included.
+
+.. note::
+    The returned object is a shallow copy. It contains references
+    to the module's parameters and buffers.
+
+.. warning::
+    Currently ``state_dict()`` also accepts positional arguments for
+    ``destination``, ``prefix`` and ``keep_vars`` in order. However,
+    this is being deprecated and keyword arguments will be enforced in
+    future releases.
+
+.. warning::
+    Please avoid the use of argument ``destination`` as it is not
+    designed for end-users.
+
+Args:
+    destination (dict, optional): If provided, the state of module will
+        be updated into the dict and the same object is returned.
+        Otherwise, an ``OrderedDict`` will be created and returned.
+        Default: ``None``.
+    prefix (str, optional): a prefix added to parameter and buffer
+        names to compose the keys in state_dict. Default: ``''``.
+    keep_vars (bool, optional): by default the :class:`~torch.Tensor` s
+        returned in the state dict are detached from autograd. If it's
+        set to ``True``, detaching will not be performed.
+        Default: ``False``.
+
+Returns:
+    dict:
+        a dictionary containing a whole state of the module
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> module.state_dict().keys()
+    ['bias', 'weight']</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> to</h5>
+                    <div class="signature">to(self, *args, **kwargs)</div>
+                    <div class="docstring">Move and/or cast the parameters and buffers.
+
+This can be called as
+
+.. function:: to(device=None, dtype=None, non_blocking=False)
+   :noindex:
+
+.. function:: to(dtype, non_blocking=False)
+   :noindex:
+
+.. function:: to(tensor, non_blocking=False)
+   :noindex:
+
+.. function:: to(memory_format=torch.channels_last)
+   :noindex:
+
+Its signature is similar to :meth:`torch.Tensor.to`, but only accepts
+floating point or complex :attr:`dtype`\ s. In addition, this method will
+only cast the floating point or complex parameters and buffers to :attr:`dtype`
+(if given). The integral parameters and buffers will be moved
+:attr:`device`, if that is given, but with dtypes unchanged. When
+:attr:`non_blocking` is set, it tries to convert/move asynchronously
+with respect to the host if possible, e.g., moving CPU Tensors with
+pinned memory to CUDA devices.
+
+See below for examples.
+
+.. note::
+    This method modifies the module in-place.
+
+Args:
+    device (:class:`torch.device`): the desired device of the parameters
+        and buffers in this module
+    dtype (:class:`torch.dtype`): the desired floating point or complex dtype of
+        the parameters and buffers in this module
+    tensor (torch.Tensor): Tensor whose dtype and device are the desired
+        dtype and device for all parameters and buffers in this module
+    memory_format (:class:`torch.memory_format`): the desired memory
+        format for 4D parameters and buffers in this module (keyword
+        only argument)
+
+Returns:
+    Module: self
+
+Examples::
+
+    >>> # xdoctest: +IGNORE_WANT("non-deterministic")
+    >>> linear = nn.Linear(2, 2)
+    >>> linear.weight
+    Parameter containing:
+    tensor([[ 0.1913, -0.3420],
+            [-0.5113, -0.2325]])
+    >>> linear.to(torch.double)
+    Linear(in_features=2, out_features=2, bias=True)
+    >>> linear.weight
+    Parameter containing:
+    tensor([[ 0.1913, -0.3420],
+            [-0.5113, -0.2325]], dtype=torch.float64)
+    >>> # xdoctest: +REQUIRES(env:TORCH_DOCTEST_CUDA1)
+    >>> gpu1 = torch.device("cuda:1")
+    >>> linear.to(gpu1, dtype=torch.half, non_blocking=True)
+    Linear(in_features=2, out_features=2, bias=True)
+    >>> linear.weight
+    Parameter containing:
+    tensor([[ 0.1914, -0.3420],
+            [-0.5112, -0.2324]], dtype=torch.float16, device='cuda:1')
+    >>> cpu = torch.device("cpu")
+    >>> linear.to(cpu)
+    Linear(in_features=2, out_features=2, bias=True)
+    >>> linear.weight
+    Parameter containing:
+    tensor([[ 0.1914, -0.3420],
+            [-0.5112, -0.2324]], dtype=torch.float16)
+
+    >>> linear = nn.Linear(2, 2, bias=None).to(torch.cdouble)
+    >>> linear.weight
+    Parameter containing:
+    tensor([[ 0.3741+0.j,  0.2382+0.j],
+            [ 0.5593+0.j, -0.4443+0.j]], dtype=torch.complex128)
+    >>> linear(torch.ones(3, 2, dtype=torch.cdouble))
+    tensor([[0.6122+0.j, 0.1150+0.j],
+            [0.6122+0.j, 0.1150+0.j],
+            [0.6122+0.j, 0.1150+0.j]], dtype=torch.complex128)</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> to_empty</h5>
+                    <div class="signature">to_empty(self: ~T, *, device: Union[int, str, torch.device, NoneType], recurse: bool = True) -> ~T</div>
+                    <div class="docstring">Move the parameters and buffers to the specified device without copying storage.
+
+Args:
+    device (:class:`torch.device`): The desired device of the parameters
+        and buffers in this module.
+    recurse (bool): Whether parameters and buffers of submodules should
+        be recursively moved to the specified device.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> train</h5>
+                    <div class="signature">train(self: ~T, mode: bool = True) -> ~T</div>
+                    <div class="docstring">Set the module in training mode.
+
+This has an effect only on certain modules. See the documentation of
+particular modules for details of their behaviors in training/evaluation
+mode, i.e., whether they are affected, e.g. :class:`Dropout`, :class:`BatchNorm`,
+etc.
+
+Args:
+    mode (bool): whether to set training mode (``True``) or evaluation
+                 mode (``False``). Default: ``True``.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> type</h5>
+                    <div class="signature">type(self: ~T, dst_type: Union[torch.dtype, str]) -> ~T</div>
+                    <div class="docstring">Casts all parameters and buffers to :attr:`dst_type`.
+
+.. note::
+    This method modifies the module in-place.
+
+Args:
+    dst_type (type or string): the desired type
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> xpu</h5>
+                    <div class="signature">xpu(self: ~T, device: Union[int, torch.device, NoneType] = None) -> ~T</div>
+                    <div class="docstring">Move all model parameters and buffers to the XPU.
+
+This also makes associated parameters and buffers different objects. So
+it should be called before constructing optimizer if the module will
+live on XPU while being optimized.
+
+.. note::
+    This method modifies the module in-place.
+
+Arguments:
+    device (int, optional): if specified, all parameters will be
+        copied to that device
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> zero_grad</h5>
+                    <div class="signature">zero_grad(self, set_to_none: bool = True) -> None</div>
+                    <div class="docstring">Reset gradients of all model parameters.
+
+See similar function under :class:`torch.optim.Optimizer` for more context.
+
+Args:
+    set_to_none (bool): instead of setting to zero, set the grads to None.
+        See :meth:`torch.optim.Optimizer.zero_grad` for details.</div>
+                </div>
+</div><h2>⚙️ Functions</h2>
+        <div class="function-container" id="func-create_bridge_layer">
+            <h3><span class="badge function">Function</span> create_bridge_layer</h3>
+            <div class="signature">create_bridge_layer(neural_dim: int = 4096, symbolic_dim: int = 512, **kwargs) -> BridgeLayer.BridgeLayer</div>
+            <div class="docstring">Create a new bridge layer with standard configuration</div>
+        </div>
+
+        <div class="function-container" id="func-create_llama_bridge">
+            <h3><span class="badge function">Function</span> create_llama_bridge</h3>
+            <div class="signature">create_llama_bridge() -> BridgeLayer.BridgeLayer</div>
+            <div class="docstring">Create bridge layer optimized for Llama models</div>
+        </div>
+
+        <div class="function-container" id="func-dataclass">
+            <h3><span class="badge function">Function</span> dataclass</h3>
+            <div class="signature">dataclass(cls=None, /, *, init=True, repr=True, eq=True, order=False, unsafe_hash=False, frozen=False, match_args=True, kw_only=False, slots=False, weakref_slot=False)</div>
+            <div class="docstring">Add dunder methods based on the fields defined in the class.
+
+Examines PEP 526 __annotations__ to determine fields.
+
+If init is true, an __init__() method is added to the class. If repr
+is true, a __repr__() method is added. If order is true, rich
+comparison dunder methods are added. If unsafe_hash is true, a
+__hash__() method is added. If frozen is true, fields may not be
+assigned to after instance creation. If match_args is true, the
+__match_args__ tuple is added. If kw_only is true, then by default
+all fields are keyword-only. If slots is true, a new class with a
+__slots__ attribute is returned.</div>
+        </div>
+
+        <hr style="margin: 40px 0;">
+        <footer style="text-align: center; color: #666;">
+            <p>Generated by Neurosymbolic SQL Adapter Documentation Generator</p>
+            <p><em>Documentation extracted from source code docstrings and signatures</em></p>
+        </footer>
+    </div>
+</body>
+</html>

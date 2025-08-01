@@ -1,0 +1,1853 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeurosymbolicAdapter - API Documentation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; border-bottom: 1px solid #ecf0f1; padding-bottom: 5px; margin-top: 30px; }
+        h3 { color: #2980b9; margin-top: 25px; }
+        .module-doc { background: #e3f2fd; padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+        .class-container { background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px; padding: 20px; margin: 20px 0; }
+        .method-container { background: white; border: 1px solid #e9ecef; border-radius: 5px; padding: 15px; margin: 10px 0; }
+        .function-container { background: #fff3e0; border: 1px solid #ffcc02; border-radius: 5px; padding: 15px; margin: 10px 0; }
+        .signature { background: #2c3e50; color: white; padding: 10px; border-radius: 5px; font-family: 'Courier New', monospace; margin: 10px 0; overflow-x: auto; }
+        .docstring { color: #555; margin: 15px 0; white-space: pre-wrap; }
+        .toc { background: #f1f3f4; padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+        .toc ul { list-style-type: none; padding-left: 20px; }
+        .toc a { color: #1976d2; text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+        .badge { display: inline-block; padding: 4px 8px; border-radius: 12px; font-size: 0.8em; font-weight: bold; }
+        .badge.class { background: #e1f5fe; color: #01579b; }
+        .badge.function { background: #fff3e0; color: #e65100; }
+        .badge.method { background: #f3e5f5; color: #4a148c; }
+        code { background: #f5f5f5; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📖 NeurosymbolicAdapter - API Documentation</h1>
+        
+        <div class="module-doc">
+            <h2>Module Description</h2>
+            <div class="docstring">Neurosymbolic Adapter
+
+Parameter-efficient LoRA adapter that integrates neural language models
+with symbolic reasoning for SQL generation and validation.</div>
+        </div>
+
+        <div class="toc">
+            <h2>📋 Table of Contents</h2>
+            <ul>
+<li><strong>Classes:</strong><ul><li><a href="#class-AdapterConfig"><span class="badge class">Class</span> AdapterConfig</a></li><li><a href="#class-Any"><span class="badge class">Class</span> Any</a></li><li><a href="#class-BaseModelStub"><span class="badge class">Class</span> BaseModelStub</a></li><li><a href="#class-LoRAStub"><span class="badge class">Class</span> LoRAStub</a></li><li><a href="#class-NeurosymbolicAdapter"><span class="badge class">Class</span> NeurosymbolicAdapter</a></li><li><a href="#class-NeurosymbolicOutput"><span class="badge class">Class</span> NeurosymbolicOutput</a></li><li><a href="#class-Path"><span class="badge class">Class</span> Path</a></li></ul></li><li><strong>Functions:</strong><ul><li><a href="#func-create_neurosymbolic_adapter"><span class="badge function">Function</span> create_neurosymbolic_adapter</a></li><li><a href="#func-dataclass"><span class="badge function">Function</span> dataclass</a></li><li><a href="#func-load_pretrained_adapter"><span class="badge function">Function</span> load_pretrained_adapter</a></li></ul></li>
+            </ul>
+        </div>
+<h2>🏗️ Classes</h2>
+        <div class="class-container" id="class-AdapterConfig">
+            <h3><span class="badge class">Class</span> AdapterConfig</h3>
+            <div class="signature">class AdapterConfig(self, lora_r: int = 16, lora_alpha: int = 32, lora_dropout: float = 0.1, target_modules: List[str] = None, bridge_dim: int = 512, symbolic_dim: int = 256, num_bridge_layers: int = 2, bridge_dropout: float = 0.1, confidence_dim: int = 128, enable_uncertainty_estimation: bool = True, fact_extraction_dim: int = 256, max_facts_per_query: int = 50, fact_threshold: float = 0.5, learning_rate: float = 0.0002, weight_decay: float = 0.01, gradient_clip_norm: float = 1.0) -> None</div>
+            <div class="docstring">Configuration for neurosymbolic adapter</div>
+<h4>Methods:</h4>
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> __init__</h5>
+                    <div class="signature">__init__(self, lora_r: int = 16, lora_alpha: int = 32, lora_dropout: float = 0.1, target_modules: List[str] = None, bridge_dim: int = 512, symbolic_dim: int = 256, num_bridge_layers: int = 2, bridge_dropout: float = 0.1, confidence_dim: int = 128, enable_uncertainty_estimation: bool = True, fact_extraction_dim: int = 256, max_facts_per_query: int = 50, fact_threshold: float = 0.5, learning_rate: float = 0.0002, weight_decay: float = 0.01, gradient_clip_norm: float = 1.0) -> None</div>
+                    <div class="docstring">No method documentation available.</div>
+                </div>
+</div>
+        <div class="class-container" id="class-Any">
+            <h3><span class="badge class">Class</span> Any</h3>
+            <div class="signature">class Any(self, /, *args, **kwargs)</div>
+            <div class="docstring">Special type indicating an unconstrained type.
+
+- Any is compatible with every type.
+- Any assumed to have all methods.
+- All values assumed to be instances of Any.
+
+Note that all the above statements are true from the point of view of
+static type checkers. At runtime, Any should not be used with instance
+checks.</div>
+</div>
+        <div class="class-container" id="class-BaseModelStub">
+            <h3><span class="badge class">Class</span> BaseModelStub</h3>
+            <div class="signature">class BaseModelStub(self, model_name: str)</div>
+            <div class="docstring">Stub implementation for base model when transformers is not available</div>
+<h4>Methods:</h4>
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> __call__</h5>
+                    <div class="signature">__call__(self, input_ids, attention_mask=None, **kwargs)</div>
+                    <div class="docstring">No method documentation available.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> __init__</h5>
+                    <div class="signature">__init__(self, model_name: str)</div>
+                    <div class="docstring">No method documentation available.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> eval</h5>
+                    <div class="signature">eval(self)</div>
+                    <div class="docstring">No method documentation available.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> parameters</h5>
+                    <div class="signature">parameters(self)</div>
+                    <div class="docstring">No method documentation available.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> to</h5>
+                    <div class="signature">to(self, device)</div>
+                    <div class="docstring">No method documentation available.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> train</h5>
+                    <div class="signature">train(self, mode=True)</div>
+                    <div class="docstring">No method documentation available.</div>
+                </div>
+</div>
+        <div class="class-container" id="class-LoRAStub">
+            <h3><span class="badge class">Class</span> LoRAStub</h3>
+            <div class="signature">class LoRAStub(self, base_model, config: NeurosymbolicAdapter.AdapterConfig)</div>
+            <div class="docstring">Stub implementation for LoRA when PEFT is not available</div>
+<h4>Methods:</h4>
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> __init__</h5>
+                    <div class="signature">__init__(self, base_model, config: NeurosymbolicAdapter.AdapterConfig)</div>
+                    <div class="docstring">No method documentation available.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> forward</h5>
+                    <div class="signature">forward(self, *args, **kwargs)</div>
+                    <div class="docstring">No method documentation available.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> get_peft_state_dict</h5>
+                    <div class="signature">get_peft_state_dict(self)</div>
+                    <div class="docstring">No method documentation available.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> load_adapter</h5>
+                    <div class="signature">load_adapter(self, path: str)</div>
+                    <div class="docstring">No method documentation available.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> save_pretrained</h5>
+                    <div class="signature">save_pretrained(self, path: str)</div>
+                    <div class="docstring">No method documentation available.</div>
+                </div>
+</div>
+        <div class="class-container" id="class-NeurosymbolicAdapter">
+            <h3><span class="badge class">Class</span> NeurosymbolicAdapter</h3>
+            <div class="signature">class NeurosymbolicAdapter(self, base_model_name: str, config: Optional[NeurosymbolicAdapter.AdapterConfig] = None)</div>
+            <div class="docstring">Neurosymbolic Adapter for SQL Generation
+
+Combines parameter-efficient LoRA fine-tuning with symbolic reasoning
+capabilities for enhanced SQL generation and validation.</div>
+<h4>Methods:</h4>
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> __call__</h5>
+                    <div class="signature">__call__(self, *args, **kwargs)</div>
+                    <div class="docstring">No method documentation available.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> __init__</h5>
+                    <div class="signature">__init__(self, base_model_name: str, config: Optional[NeurosymbolicAdapter.AdapterConfig] = None)</div>
+                    <div class="docstring">Initialize neurosymbolic adapter
+
+Args:
+    base_model_name: HuggingFace model identifier
+    config: Adapter configuration</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> add_module</h5>
+                    <div class="signature">add_module(self, name: str, module: Optional[ForwardRef('Module')]) -> None</div>
+                    <div class="docstring">Add a child module to the current module.
+
+The module can be accessed as an attribute using the given name.
+
+Args:
+    name (str): name of the child module. The child module can be
+        accessed from this module using the given name
+    module (Module): child module to be added to the module.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> apply</h5>
+                    <div class="signature">apply(self: ~T, fn: Callable[[ForwardRef('Module')], NoneType]) -> ~T</div>
+                    <div class="docstring">Apply ``fn`` recursively to every submodule (as returned by ``.children()``) as well as self.
+
+Typical use includes initializing the parameters of a model
+(see also :ref:`nn-init-doc`).
+
+Args:
+    fn (:class:`Module` -> None): function to be applied to each submodule
+
+Returns:
+    Module: self
+
+Example::
+
+    >>> @torch.no_grad()
+    >>> def init_weights(m):
+    >>>     print(m)
+    >>>     if type(m) == nn.Linear:
+    >>>         m.weight.fill_(1.0)
+    >>>         print(m.weight)
+    >>> net = nn.Sequential(nn.Linear(2, 2), nn.Linear(2, 2))
+    >>> net.apply(init_weights)
+    Linear(in_features=2, out_features=2, bias=True)
+    Parameter containing:
+    tensor([[1., 1.],
+            [1., 1.]], requires_grad=True)
+    Linear(in_features=2, out_features=2, bias=True)
+    Parameter containing:
+    tensor([[1., 1.],
+            [1., 1.]], requires_grad=True)
+    Sequential(
+      (0): Linear(in_features=2, out_features=2, bias=True)
+      (1): Linear(in_features=2, out_features=2, bias=True)
+    )</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> bfloat16</h5>
+                    <div class="signature">bfloat16(self: ~T) -> ~T</div>
+                    <div class="docstring">Casts all floating point parameters and buffers to ``bfloat16`` datatype.
+
+.. note::
+    This method modifies the module in-place.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> buffers</h5>
+                    <div class="signature">buffers(self, recurse: bool = True) -> collections.abc.Iterator[torch.Tensor]</div>
+                    <div class="docstring">Return an iterator over module buffers.
+
+Args:
+    recurse (bool): if True, then yields buffers of this module
+        and all submodules. Otherwise, yields only buffers that
+        are direct members of this module.
+
+Yields:
+    torch.Tensor: module buffer
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> for buf in model.buffers():
+    >>>     print(type(buf), buf.size())
+    <class 'torch.Tensor'> (20L,)
+    <class 'torch.Tensor'> (20L, 1L, 5L, 5L)</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> children</h5>
+                    <div class="signature">children(self) -> collections.abc.Iterator['Module']</div>
+                    <div class="docstring">Return an iterator over immediate children modules.
+
+Yields:
+    Module: a child module</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> compile</h5>
+                    <div class="signature">compile(self, *args, **kwargs)</div>
+                    <div class="docstring">Compile this Module's forward using :func:`torch.compile`.
+
+This Module's `__call__` method is compiled and all arguments are passed as-is
+to :func:`torch.compile`.
+
+See :func:`torch.compile` for details on the arguments for this function.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> cpu</h5>
+                    <div class="signature">cpu(self: ~T) -> ~T</div>
+                    <div class="docstring">Move all model parameters and buffers to the CPU.
+
+.. note::
+    This method modifies the module in-place.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> cuda</h5>
+                    <div class="signature">cuda(self: ~T, device: Union[int, torch.device, NoneType] = None) -> ~T</div>
+                    <div class="docstring">Move all model parameters and buffers to the GPU.
+
+This also makes associated parameters and buffers different objects. So
+it should be called before constructing the optimizer if the module will
+live on GPU while being optimized.
+
+.. note::
+    This method modifies the module in-place.
+
+Args:
+    device (int, optional): if specified, all parameters will be
+        copied to that device
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> double</h5>
+                    <div class="signature">double(self: ~T) -> ~T</div>
+                    <div class="docstring">Casts all floating point parameters and buffers to ``double`` datatype.
+
+.. note::
+    This method modifies the module in-place.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> eval</h5>
+                    <div class="signature">eval(self: ~T) -> ~T</div>
+                    <div class="docstring">Set the module in evaluation mode.
+
+This has an effect only on certain modules. See the documentation of
+particular modules for details of their behaviors in training/evaluation
+mode, i.e. whether they are affected, e.g. :class:`Dropout`, :class:`BatchNorm`,
+etc.
+
+This is equivalent with :meth:`self.train(False) <torch.nn.Module.train>`.
+
+See :ref:`locally-disable-grad-doc` for a comparison between
+`.eval()` and several similar mechanisms that may be confused with it.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> extra_repr</h5>
+                    <div class="signature">extra_repr(self) -> str</div>
+                    <div class="docstring">Return the extra representation of the module.
+
+To print customized extra information, you should re-implement
+this method in your own modules. Both single-line and multi-line
+strings are acceptable.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> float</h5>
+                    <div class="signature">float(self: ~T) -> ~T</div>
+                    <div class="docstring">Casts all floating point parameters and buffers to ``float`` datatype.
+
+.. note::
+    This method modifies the module in-place.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> forward</h5>
+                    <div class="signature">forward(self, input_ids: torch.Tensor, attention_mask: Optional[torch.Tensor] = None, labels: Optional[torch.Tensor] = None, **kwargs) -> NeurosymbolicAdapter.NeurosymbolicOutput</div>
+                    <div class="docstring">Forward pass through neurosymbolic adapter
+
+Args:
+    input_ids: Input token IDs
+    attention_mask: Attention mask
+    labels: Target labels (for training)
+    **kwargs: Additional arguments
+    
+Returns:
+    NeurosymbolicOutput with logits and symbolic components</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> generate_sql</h5>
+                    <div class="signature">generate_sql(self, input_text: str, max_length: int = 512, **kwargs) -> Dict[str, Any]</div>
+                    <div class="docstring">Generate SQL query from natural language input
+
+Args:
+    input_text: Natural language query description
+    max_length: Maximum generation length
+    **kwargs: Additional generation parameters
+    
+Returns:
+    Dictionary with generated SQL and metadata</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> get_buffer</h5>
+                    <div class="signature">get_buffer(self, target: str) -> 'Tensor'</div>
+                    <div class="docstring">Return the buffer given by ``target`` if it exists, otherwise throw an error.
+
+See the docstring for ``get_submodule`` for a more detailed
+explanation of this method's functionality as well as how to
+correctly specify ``target``.
+
+Args:
+    target: The fully-qualified string name of the buffer
+        to look for. (See ``get_submodule`` for how to specify a
+        fully-qualified string.)
+
+Returns:
+    torch.Tensor: The buffer referenced by ``target``
+
+Raises:
+    AttributeError: If the target string references an invalid
+        path or resolves to something that is not a
+        buffer</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> get_extra_state</h5>
+                    <div class="signature">get_extra_state(self) -> Any</div>
+                    <div class="docstring">Return any extra state to include in the module's state_dict.
+
+Implement this and a corresponding :func:`set_extra_state` for your module
+if you need to store extra state. This function is called when building the
+module's `state_dict()`.
+
+Note that extra state should be picklable to ensure working serialization
+of the state_dict. We only provide backwards compatibility guarantees
+for serializing Tensors; other objects may break backwards compatibility if
+their serialized pickled form changes.
+
+Returns:
+    object: Any extra state to store in the module's state_dict</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> get_parameter</h5>
+                    <div class="signature">get_parameter(self, target: str) -> 'Parameter'</div>
+                    <div class="docstring">Return the parameter given by ``target`` if it exists, otherwise throw an error.
+
+See the docstring for ``get_submodule`` for a more detailed
+explanation of this method's functionality as well as how to
+correctly specify ``target``.
+
+Args:
+    target: The fully-qualified string name of the Parameter
+        to look for. (See ``get_submodule`` for how to specify a
+        fully-qualified string.)
+
+Returns:
+    torch.nn.Parameter: The Parameter referenced by ``target``
+
+Raises:
+    AttributeError: If the target string references an invalid
+        path or resolves to something that is not an
+        ``nn.Parameter``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> get_status</h5>
+                    <div class="signature">get_status(self) -> Dict[str, Any]</div>
+                    <div class="docstring">Get adapter status information</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> get_submodule</h5>
+                    <div class="signature">get_submodule(self, target: str) -> 'Module'</div>
+                    <div class="docstring">Return the submodule given by ``target`` if it exists, otherwise throw an error.
+
+For example, let's say you have an ``nn.Module`` ``A`` that
+looks like this:
+
+.. code-block:: text
+
+    A(
+        (net_b): Module(
+            (net_c): Module(
+                (conv): Conv2d(16, 33, kernel_size=(3, 3), stride=(2, 2))
+            )
+            (linear): Linear(in_features=100, out_features=200, bias=True)
+        )
+    )
+
+(The diagram shows an ``nn.Module`` ``A``. ``A`` which has a nested
+submodule ``net_b``, which itself has two submodules ``net_c``
+and ``linear``. ``net_c`` then has a submodule ``conv``.)
+
+To check whether or not we have the ``linear`` submodule, we
+would call ``get_submodule("net_b.linear")``. To check whether
+we have the ``conv`` submodule, we would call
+``get_submodule("net_b.net_c.conv")``.
+
+The runtime of ``get_submodule`` is bounded by the degree
+of module nesting in ``target``. A query against
+``named_modules`` achieves the same result, but it is O(N) in
+the number of transitive modules. So, for a simple check to see
+if some submodule exists, ``get_submodule`` should always be
+used.
+
+Args:
+    target: The fully-qualified string name of the submodule
+        to look for. (See above example for how to specify a
+        fully-qualified string.)
+
+Returns:
+    torch.nn.Module: The submodule referenced by ``target``
+
+Raises:
+    AttributeError: If at any point along the path resulting from
+        the target string the (sub)path resolves to a non-existent
+        attribute name or an object that is not an instance of ``nn.Module``.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> get_trainable_parameters</h5>
+                    <div class="signature">get_trainable_parameters(self) -> int</div>
+                    <div class="docstring">Get number of trainable parameters</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> half</h5>
+                    <div class="signature">half(self: ~T) -> ~T</div>
+                    <div class="docstring">Casts all floating point parameters and buffers to ``half`` datatype.
+
+.. note::
+    This method modifies the module in-place.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> ipu</h5>
+                    <div class="signature">ipu(self: ~T, device: Union[int, torch.device, NoneType] = None) -> ~T</div>
+                    <div class="docstring">Move all model parameters and buffers to the IPU.
+
+This also makes associated parameters and buffers different objects. So
+it should be called before constructing the optimizer if the module will
+live on IPU while being optimized.
+
+.. note::
+    This method modifies the module in-place.
+
+Arguments:
+    device (int, optional): if specified, all parameters will be
+        copied to that device
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> load_adapter</h5>
+                    <div class="signature">load_adapter(self, load_path: Union[str, pathlib._local.Path])</div>
+                    <div class="docstring">Load adapter weights and configuration</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> load_state_dict</h5>
+                    <div class="signature">load_state_dict(self, state_dict: collections.abc.Mapping[str, typing.Any], strict: bool = True, assign: bool = False)</div>
+                    <div class="docstring">Copy parameters and buffers from :attr:`state_dict` into this module and its descendants.
+
+If :attr:`strict` is ``True``, then
+the keys of :attr:`state_dict` must exactly match the keys returned
+by this module's :meth:`~torch.nn.Module.state_dict` function.
+
+.. warning::
+    If :attr:`assign` is ``True`` the optimizer must be created after
+    the call to :attr:`load_state_dict` unless
+    :func:`~torch.__future__.get_swap_module_params_on_conversion` is ``True``.
+
+Args:
+    state_dict (dict): a dict containing parameters and
+        persistent buffers.
+    strict (bool, optional): whether to strictly enforce that the keys
+        in :attr:`state_dict` match the keys returned by this module's
+        :meth:`~torch.nn.Module.state_dict` function. Default: ``True``
+    assign (bool, optional): When set to ``False``, the properties of the tensors
+        in the current module are preserved whereas setting it to ``True`` preserves
+        properties of the Tensors in the state dict. The only
+        exception is the ``requires_grad`` field of :class:`~torch.nn.Parameter`s
+        for which the value from the module is preserved.
+        Default: ``False``
+
+Returns:
+    ``NamedTuple`` with ``missing_keys`` and ``unexpected_keys`` fields:
+        * **missing_keys** is a list of str containing any keys that are expected
+            by this module but missing from the provided ``state_dict``.
+        * **unexpected_keys** is a list of str containing the keys that are not
+            expected by this module but present in the provided ``state_dict``.
+
+Note:
+    If a parameter or buffer is registered as ``None`` and its corresponding key
+    exists in :attr:`state_dict`, :meth:`load_state_dict` will raise a
+    ``RuntimeError``.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> modules</h5>
+                    <div class="signature">modules(self) -> collections.abc.Iterator['Module']</div>
+                    <div class="docstring">Return an iterator over all modules in the network.
+
+Yields:
+    Module: a module in the network
+
+Note:
+    Duplicate modules are returned only once. In the following
+    example, ``l`` will be returned only once.
+
+Example::
+
+    >>> l = nn.Linear(2, 2)
+    >>> net = nn.Sequential(l, l)
+    >>> for idx, m in enumerate(net.modules()):
+    ...     print(idx, '->', m)
+
+    0 -> Sequential(
+      (0): Linear(in_features=2, out_features=2, bias=True)
+      (1): Linear(in_features=2, out_features=2, bias=True)
+    )
+    1 -> Linear(in_features=2, out_features=2, bias=True)</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> mtia</h5>
+                    <div class="signature">mtia(self: ~T, device: Union[int, torch.device, NoneType] = None) -> ~T</div>
+                    <div class="docstring">Move all model parameters and buffers to the MTIA.
+
+This also makes associated parameters and buffers different objects. So
+it should be called before constructing the optimizer if the module will
+live on MTIA while being optimized.
+
+.. note::
+    This method modifies the module in-place.
+
+Arguments:
+    device (int, optional): if specified, all parameters will be
+        copied to that device
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> named_buffers</h5>
+                    <div class="signature">named_buffers(self, prefix: str = '', recurse: bool = True, remove_duplicate: bool = True) -> collections.abc.Iterator[tuple[str, torch.Tensor]]</div>
+                    <div class="docstring">Return an iterator over module buffers, yielding both the name of the buffer as well as the buffer itself.
+
+Args:
+    prefix (str): prefix to prepend to all buffer names.
+    recurse (bool, optional): if True, then yields buffers of this module
+        and all submodules. Otherwise, yields only buffers that
+        are direct members of this module. Defaults to True.
+    remove_duplicate (bool, optional): whether to remove the duplicated buffers in the result. Defaults to True.
+
+Yields:
+    (str, torch.Tensor): Tuple containing the name and buffer
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> for name, buf in self.named_buffers():
+    >>>     if name in ['running_var']:
+    >>>         print(buf.size())</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> named_children</h5>
+                    <div class="signature">named_children(self) -> collections.abc.Iterator[tuple[str, 'Module']]</div>
+                    <div class="docstring">Return an iterator over immediate children modules, yielding both the name of the module as well as the module itself.
+
+Yields:
+    (str, Module): Tuple containing a name and child module
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> for name, module in model.named_children():
+    >>>     if name in ['conv4', 'conv5']:
+    >>>         print(module)</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> named_modules</h5>
+                    <div class="signature">named_modules(self, memo: Optional[set['Module']] = None, prefix: str = '', remove_duplicate: bool = True)</div>
+                    <div class="docstring">Return an iterator over all modules in the network, yielding both the name of the module as well as the module itself.
+
+Args:
+    memo: a memo to store the set of modules already added to the result
+    prefix: a prefix that will be added to the name of the module
+    remove_duplicate: whether to remove the duplicated module instances in the result
+        or not
+
+Yields:
+    (str, Module): Tuple of name and module
+
+Note:
+    Duplicate modules are returned only once. In the following
+    example, ``l`` will be returned only once.
+
+Example::
+
+    >>> l = nn.Linear(2, 2)
+    >>> net = nn.Sequential(l, l)
+    >>> for idx, m in enumerate(net.named_modules()):
+    ...     print(idx, '->', m)
+
+    0 -> ('', Sequential(
+      (0): Linear(in_features=2, out_features=2, bias=True)
+      (1): Linear(in_features=2, out_features=2, bias=True)
+    ))
+    1 -> ('0', Linear(in_features=2, out_features=2, bias=True))</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> named_parameters</h5>
+                    <div class="signature">named_parameters(self, prefix: str = '', recurse: bool = True, remove_duplicate: bool = True) -> collections.abc.Iterator[tuple[str, torch.nn.parameter.Parameter]]</div>
+                    <div class="docstring">Return an iterator over module parameters, yielding both the name of the parameter as well as the parameter itself.
+
+Args:
+    prefix (str): prefix to prepend to all parameter names.
+    recurse (bool): if True, then yields parameters of this module
+        and all submodules. Otherwise, yields only parameters that
+        are direct members of this module.
+    remove_duplicate (bool, optional): whether to remove the duplicated
+        parameters in the result. Defaults to True.
+
+Yields:
+    (str, Parameter): Tuple containing the name and parameter
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> for name, param in self.named_parameters():
+    >>>     if name in ['bias']:
+    >>>         print(param.size())</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> parameters</h5>
+                    <div class="signature">parameters(self, recurse: bool = True) -> collections.abc.Iterator[torch.nn.parameter.Parameter]</div>
+                    <div class="docstring">Return an iterator over module parameters.
+
+This is typically passed to an optimizer.
+
+Args:
+    recurse (bool): if True, then yields parameters of this module
+        and all submodules. Otherwise, yields only parameters that
+        are direct members of this module.
+
+Yields:
+    Parameter: module parameter
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> for param in model.parameters():
+    >>>     print(type(param), param.size())
+    <class 'torch.Tensor'> (20L,)
+    <class 'torch.Tensor'> (20L, 1L, 5L, 5L)</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> print_trainable_parameters</h5>
+                    <div class="signature">print_trainable_parameters(self)</div>
+                    <div class="docstring">Print information about trainable parameters</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_backward_hook</h5>
+                    <div class="signature">register_backward_hook(self, hook: Callable[[ForwardRef('Module'), Union[tuple[torch.Tensor, ...], torch.Tensor], Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]]) -> torch.utils.hooks.RemovableHandle</div>
+                    <div class="docstring">Register a backward hook on the module.
+
+This function is deprecated in favor of :meth:`~torch.nn.Module.register_full_backward_hook` and
+the behavior of this function will change in future versions.
+
+Returns:
+    :class:`torch.utils.hooks.RemovableHandle`:
+        a handle that can be used to remove the added hook by calling
+        ``handle.remove()``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_buffer</h5>
+                    <div class="signature">register_buffer(self, name: str, tensor: Optional[torch.Tensor], persistent: bool = True) -> None</div>
+                    <div class="docstring">Add a buffer to the module.
+
+This is typically used to register a buffer that should not to be
+considered a model parameter. For example, BatchNorm's ``running_mean``
+is not a parameter, but is part of the module's state. Buffers, by
+default, are persistent and will be saved alongside parameters. This
+behavior can be changed by setting :attr:`persistent` to ``False``. The
+only difference between a persistent buffer and a non-persistent buffer
+is that the latter will not be a part of this module's
+:attr:`state_dict`.
+
+Buffers can be accessed as attributes using given names.
+
+Args:
+    name (str): name of the buffer. The buffer can be accessed
+        from this module using the given name
+    tensor (Tensor or None): buffer to be registered. If ``None``, then operations
+        that run on buffers, such as :attr:`cuda`, are ignored. If ``None``,
+        the buffer is **not** included in the module's :attr:`state_dict`.
+    persistent (bool): whether the buffer is part of this module's
+        :attr:`state_dict`.
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> self.register_buffer('running_mean', torch.zeros(num_features))</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_forward_hook</h5>
+                    <div class="signature">register_forward_hook(self, hook: Union[Callable[[~T, tuple[Any, ...], Any], Optional[Any]], Callable[[~T, tuple[Any, ...], dict[str, Any], Any], Optional[Any]]], *, prepend: bool = False, with_kwargs: bool = False, always_call: bool = False) -> torch.utils.hooks.RemovableHandle</div>
+                    <div class="docstring">Register a forward hook on the module.
+
+The hook will be called every time after :func:`forward` has computed an output.
+
+If ``with_kwargs`` is ``False`` or not specified, the input contains only
+the positional arguments given to the module. Keyword arguments won't be
+passed to the hooks and only to the ``forward``. The hook can modify the
+output. It can modify the input inplace but it will not have effect on
+forward since this is called after :func:`forward` is called. The hook
+should have the following signature::
+
+    hook(module, args, output) -> None or modified output
+
+If ``with_kwargs`` is ``True``, the forward hook will be passed the
+``kwargs`` given to the forward function and be expected to return the
+output possibly modified. The hook should have the following signature::
+
+    hook(module, args, kwargs, output) -> None or modified output
+
+Args:
+    hook (Callable): The user defined hook to be registered.
+    prepend (bool): If ``True``, the provided ``hook`` will be fired
+        before all existing ``forward`` hooks on this
+        :class:`torch.nn.Module`. Otherwise, the provided
+        ``hook`` will be fired after all existing ``forward`` hooks on
+        this :class:`torch.nn.Module`. Note that global
+        ``forward`` hooks registered with
+        :func:`register_module_forward_hook` will fire before all hooks
+        registered by this method.
+        Default: ``False``
+    with_kwargs (bool): If ``True``, the ``hook`` will be passed the
+        kwargs given to the forward function.
+        Default: ``False``
+    always_call (bool): If ``True`` the ``hook`` will be run regardless of
+        whether an exception is raised while calling the Module.
+        Default: ``False``
+
+Returns:
+    :class:`torch.utils.hooks.RemovableHandle`:
+        a handle that can be used to remove the added hook by calling
+        ``handle.remove()``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_forward_pre_hook</h5>
+                    <div class="signature">register_forward_pre_hook(self, hook: Union[Callable[[~T, tuple[Any, ...]], Optional[Any]], Callable[[~T, tuple[Any, ...], dict[str, Any]], Optional[tuple[Any, dict[str, Any]]]]], *, prepend: bool = False, with_kwargs: bool = False) -> torch.utils.hooks.RemovableHandle</div>
+                    <div class="docstring">Register a forward pre-hook on the module.
+
+The hook will be called every time before :func:`forward` is invoked.
+
+
+If ``with_kwargs`` is false or not specified, the input contains only
+the positional arguments given to the module. Keyword arguments won't be
+passed to the hooks and only to the ``forward``. The hook can modify the
+input. User can either return a tuple or a single modified value in the
+hook. We will wrap the value into a tuple if a single value is returned
+(unless that value is already a tuple). The hook should have the
+following signature::
+
+    hook(module, args) -> None or modified input
+
+If ``with_kwargs`` is true, the forward pre-hook will be passed the
+kwargs given to the forward function. And if the hook modifies the
+input, both the args and kwargs should be returned. The hook should have
+the following signature::
+
+    hook(module, args, kwargs) -> None or a tuple of modified input and kwargs
+
+Args:
+    hook (Callable): The user defined hook to be registered.
+    prepend (bool): If true, the provided ``hook`` will be fired before
+        all existing ``forward_pre`` hooks on this
+        :class:`torch.nn.Module`. Otherwise, the provided
+        ``hook`` will be fired after all existing ``forward_pre`` hooks
+        on this :class:`torch.nn.Module`. Note that global
+        ``forward_pre`` hooks registered with
+        :func:`register_module_forward_pre_hook` will fire before all
+        hooks registered by this method.
+        Default: ``False``
+    with_kwargs (bool): If true, the ``hook`` will be passed the kwargs
+        given to the forward function.
+        Default: ``False``
+
+Returns:
+    :class:`torch.utils.hooks.RemovableHandle`:
+        a handle that can be used to remove the added hook by calling
+        ``handle.remove()``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_full_backward_hook</h5>
+                    <div class="signature">register_full_backward_hook(self, hook: Callable[[ForwardRef('Module'), Union[tuple[torch.Tensor, ...], torch.Tensor], Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]], prepend: bool = False) -> torch.utils.hooks.RemovableHandle</div>
+                    <div class="docstring">Register a backward hook on the module.
+
+The hook will be called every time the gradients with respect to a module
+are computed, i.e. the hook will execute if and only if the gradients with
+respect to module outputs are computed. The hook should have the following
+signature::
+
+    hook(module, grad_input, grad_output) -> tuple(Tensor) or None
+
+The :attr:`grad_input` and :attr:`grad_output` are tuples that contain the gradients
+with respect to the inputs and outputs respectively. The hook should
+not modify its arguments, but it can optionally return a new gradient with
+respect to the input that will be used in place of :attr:`grad_input` in
+subsequent computations. :attr:`grad_input` will only correspond to the inputs given
+as positional arguments and all kwarg arguments are ignored. Entries
+in :attr:`grad_input` and :attr:`grad_output` will be ``None`` for all non-Tensor
+arguments.
+
+For technical reasons, when this hook is applied to a Module, its forward function will
+receive a view of each Tensor passed to the Module. Similarly the caller will receive a view
+of each Tensor returned by the Module's forward function.
+
+.. warning ::
+    Modifying inputs or outputs inplace is not allowed when using backward hooks and
+    will raise an error.
+
+Args:
+    hook (Callable): The user-defined hook to be registered.
+    prepend (bool): If true, the provided ``hook`` will be fired before
+        all existing ``backward`` hooks on this
+        :class:`torch.nn.Module`. Otherwise, the provided
+        ``hook`` will be fired after all existing ``backward`` hooks on
+        this :class:`torch.nn.Module`. Note that global
+        ``backward`` hooks registered with
+        :func:`register_module_full_backward_hook` will fire before
+        all hooks registered by this method.
+
+Returns:
+    :class:`torch.utils.hooks.RemovableHandle`:
+        a handle that can be used to remove the added hook by calling
+        ``handle.remove()``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_full_backward_pre_hook</h5>
+                    <div class="signature">register_full_backward_pre_hook(self, hook: Callable[[ForwardRef('Module'), Union[tuple[torch.Tensor, ...], torch.Tensor]], Union[NoneType, tuple[torch.Tensor, ...], torch.Tensor]], prepend: bool = False) -> torch.utils.hooks.RemovableHandle</div>
+                    <div class="docstring">Register a backward pre-hook on the module.
+
+The hook will be called every time the gradients for the module are computed.
+The hook should have the following signature::
+
+    hook(module, grad_output) -> tuple[Tensor] or None
+
+The :attr:`grad_output` is a tuple. The hook should
+not modify its arguments, but it can optionally return a new gradient with
+respect to the output that will be used in place of :attr:`grad_output` in
+subsequent computations. Entries in :attr:`grad_output` will be ``None`` for
+all non-Tensor arguments.
+
+For technical reasons, when this hook is applied to a Module, its forward function will
+receive a view of each Tensor passed to the Module. Similarly the caller will receive a view
+of each Tensor returned by the Module's forward function.
+
+.. warning ::
+    Modifying inputs inplace is not allowed when using backward hooks and
+    will raise an error.
+
+Args:
+    hook (Callable): The user-defined hook to be registered.
+    prepend (bool): If true, the provided ``hook`` will be fired before
+        all existing ``backward_pre`` hooks on this
+        :class:`torch.nn.Module`. Otherwise, the provided
+        ``hook`` will be fired after all existing ``backward_pre`` hooks
+        on this :class:`torch.nn.Module`. Note that global
+        ``backward_pre`` hooks registered with
+        :func:`register_module_full_backward_pre_hook` will fire before
+        all hooks registered by this method.
+
+Returns:
+    :class:`torch.utils.hooks.RemovableHandle`:
+        a handle that can be used to remove the added hook by calling
+        ``handle.remove()``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_load_state_dict_post_hook</h5>
+                    <div class="signature">register_load_state_dict_post_hook(self, hook)</div>
+                    <div class="docstring">Register a post-hook to be run after module's :meth:`~nn.Module.load_state_dict` is called.
+
+It should have the following signature::
+    hook(module, incompatible_keys) -> None
+
+The ``module`` argument is the current module that this hook is registered
+on, and the ``incompatible_keys`` argument is a ``NamedTuple`` consisting
+of attributes ``missing_keys`` and ``unexpected_keys``. ``missing_keys``
+is a ``list`` of ``str`` containing the missing keys and
+``unexpected_keys`` is a ``list`` of ``str`` containing the unexpected keys.
+
+The given incompatible_keys can be modified inplace if needed.
+
+Note that the checks performed when calling :func:`load_state_dict` with
+``strict=True`` are affected by modifications the hook makes to
+``missing_keys`` or ``unexpected_keys``, as expected. Additions to either
+set of keys will result in an error being thrown when ``strict=True``, and
+clearing out both missing and unexpected keys will avoid an error.
+
+Returns:
+    :class:`torch.utils.hooks.RemovableHandle`:
+        a handle that can be used to remove the added hook by calling
+        ``handle.remove()``</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_load_state_dict_pre_hook</h5>
+                    <div class="signature">register_load_state_dict_pre_hook(self, hook)</div>
+                    <div class="docstring">Register a pre-hook to be run before module's :meth:`~nn.Module.load_state_dict` is called.
+
+It should have the following signature::
+    hook(module, state_dict, prefix, local_metadata, strict, missing_keys, unexpected_keys, error_msgs) -> None  # noqa: B950
+
+Arguments:
+    hook (Callable): Callable hook that will be invoked before
+        loading the state dict.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_module</h5>
+                    <div class="signature">register_module(self, name: str, module: Optional[ForwardRef('Module')]) -> None</div>
+                    <div class="docstring">Alias for :func:`add_module`.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_parameter</h5>
+                    <div class="signature">register_parameter(self, name: str, param: Optional[torch.nn.parameter.Parameter]) -> None</div>
+                    <div class="docstring">Add a parameter to the module.
+
+The parameter can be accessed as an attribute using given name.
+
+Args:
+    name (str): name of the parameter. The parameter can be accessed
+        from this module using the given name
+    param (Parameter or None): parameter to be added to the module. If
+        ``None``, then operations that run on parameters, such as :attr:`cuda`,
+        are ignored. If ``None``, the parameter is **not** included in the
+        module's :attr:`state_dict`.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_state_dict_post_hook</h5>
+                    <div class="signature">register_state_dict_post_hook(self, hook)</div>
+                    <div class="docstring">Register a post-hook for the :meth:`~torch.nn.Module.state_dict` method.
+
+It should have the following signature::
+    hook(module, state_dict, prefix, local_metadata) -> None
+
+The registered hooks can modify the ``state_dict`` inplace.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> register_state_dict_pre_hook</h5>
+                    <div class="signature">register_state_dict_pre_hook(self, hook)</div>
+                    <div class="docstring">Register a pre-hook for the :meth:`~torch.nn.Module.state_dict` method.
+
+It should have the following signature::
+    hook(module, prefix, keep_vars) -> None
+
+The registered hooks can be used to perform pre-processing before the ``state_dict``
+call is made.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> requires_grad_</h5>
+                    <div class="signature">requires_grad_(self: ~T, requires_grad: bool = True) -> ~T</div>
+                    <div class="docstring">Change if autograd should record operations on parameters in this module.
+
+This method sets the parameters' :attr:`requires_grad` attributes
+in-place.
+
+This method is helpful for freezing part of the module for finetuning
+or training parts of a model individually (e.g., GAN training).
+
+See :ref:`locally-disable-grad-doc` for a comparison between
+`.requires_grad_()` and several similar mechanisms that may be confused with it.
+
+Args:
+    requires_grad (bool): whether autograd should record operations on
+                          parameters in this module. Default: ``True``.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> save_adapter</h5>
+                    <div class="signature">save_adapter(self, save_path: Union[str, pathlib._local.Path])</div>
+                    <div class="docstring">Save adapter weights and configuration</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> set_bridge_layer</h5>
+                    <div class="signature">set_bridge_layer(self, bridge_layer)</div>
+                    <div class="docstring">Set bridge layer (called from Task 3.2)</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> set_confidence_estimator</h5>
+                    <div class="signature">set_confidence_estimator(self, confidence_estimator)</div>
+                    <div class="docstring">Set confidence estimator (called from Task 3.3)</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> set_extra_state</h5>
+                    <div class="signature">set_extra_state(self, state: Any) -> None</div>
+                    <div class="docstring">Set extra state contained in the loaded `state_dict`.
+
+This function is called from :func:`load_state_dict` to handle any extra state
+found within the `state_dict`. Implement this function and a corresponding
+:func:`get_extra_state` for your module if you need to store extra state within its
+`state_dict`.
+
+Args:
+    state (dict): Extra state from the `state_dict`</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> set_fact_extractor</h5>
+                    <div class="signature">set_fact_extractor(self, fact_extractor)</div>
+                    <div class="docstring">Set fact extractor (called from Task 3.4)</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> set_submodule</h5>
+                    <div class="signature">set_submodule(self, target: str, module: 'Module', strict: bool = False) -> None</div>
+                    <div class="docstring">Set the submodule given by ``target`` if it exists, otherwise throw an error.
+
+.. note::
+    If ``strict`` is set to ``False`` (default), the method will replace an existing submodule
+    or create a new submodule if the parent module exists. If ``strict`` is set to ``True``,
+    the method will only attempt to replace an existing submodule and throw an error if
+    the submodule does not exist.
+
+For example, let's say you have an ``nn.Module`` ``A`` that
+looks like this:
+
+.. code-block:: text
+
+    A(
+        (net_b): Module(
+            (net_c): Module(
+                (conv): Conv2d(3, 3, 3)
+            )
+            (linear): Linear(3, 3)
+        )
+    )
+
+(The diagram shows an ``nn.Module`` ``A``. ``A`` has a nested
+submodule ``net_b``, which itself has two submodules ``net_c``
+and ``linear``. ``net_c`` then has a submodule ``conv``.)
+
+To override the ``Conv2d`` with a new submodule ``Linear``, you
+could call ``set_submodule("net_b.net_c.conv", nn.Linear(1, 1))``
+where ``strict`` could be ``True`` or ``False``
+
+To add a new submodule ``Conv2d`` to the existing ``net_b`` module,
+you would call ``set_submodule("net_b.conv", nn.Conv2d(1, 1, 1))``.
+
+In the above if you set ``strict=True`` and call
+``set_submodule("net_b.conv", nn.Conv2d(1, 1, 1), strict=True)``, an AttributeError
+will be raised because ``net_b`` does not have a submodule named ``conv``.
+
+Args:
+    target: The fully-qualified string name of the submodule
+        to look for. (See above example for how to specify a
+        fully-qualified string.)
+    module: The module to set the submodule to.
+    strict: If ``False``, the method will replace an existing submodule
+        or create a new submodule if the parent module exists. If ``True``,
+        the method will only attempt to replace an existing submodule and throw an error
+        if the submodule doesn't already exist.
+
+Raises:
+    ValueError: If the ``target`` string is empty or if ``module`` is not an instance of ``nn.Module``.
+    AttributeError: If at any point along the path resulting from
+        the ``target`` string the (sub)path resolves to a non-existent
+        attribute name or an object that is not an instance of ``nn.Module``.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> share_memory</h5>
+                    <div class="signature">share_memory(self: ~T) -> ~T</div>
+                    <div class="docstring">See :meth:`torch.Tensor.share_memory_`.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> state_dict</h5>
+                    <div class="signature">state_dict(self, *args, destination=None, prefix='', keep_vars=False)</div>
+                    <div class="docstring">Return a dictionary containing references to the whole state of the module.
+
+Both parameters and persistent buffers (e.g. running averages) are
+included. Keys are corresponding parameter and buffer names.
+Parameters and buffers set to ``None`` are not included.
+
+.. note::
+    The returned object is a shallow copy. It contains references
+    to the module's parameters and buffers.
+
+.. warning::
+    Currently ``state_dict()`` also accepts positional arguments for
+    ``destination``, ``prefix`` and ``keep_vars`` in order. However,
+    this is being deprecated and keyword arguments will be enforced in
+    future releases.
+
+.. warning::
+    Please avoid the use of argument ``destination`` as it is not
+    designed for end-users.
+
+Args:
+    destination (dict, optional): If provided, the state of module will
+        be updated into the dict and the same object is returned.
+        Otherwise, an ``OrderedDict`` will be created and returned.
+        Default: ``None``.
+    prefix (str, optional): a prefix added to parameter and buffer
+        names to compose the keys in state_dict. Default: ``''``.
+    keep_vars (bool, optional): by default the :class:`~torch.Tensor` s
+        returned in the state dict are detached from autograd. If it's
+        set to ``True``, detaching will not be performed.
+        Default: ``False``.
+
+Returns:
+    dict:
+        a dictionary containing a whole state of the module
+
+Example::
+
+    >>> # xdoctest: +SKIP("undefined vars")
+    >>> module.state_dict().keys()
+    ['bias', 'weight']</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> to</h5>
+                    <div class="signature">to(self, *args, **kwargs)</div>
+                    <div class="docstring">Move and/or cast the parameters and buffers.
+
+This can be called as
+
+.. function:: to(device=None, dtype=None, non_blocking=False)
+   :noindex:
+
+.. function:: to(dtype, non_blocking=False)
+   :noindex:
+
+.. function:: to(tensor, non_blocking=False)
+   :noindex:
+
+.. function:: to(memory_format=torch.channels_last)
+   :noindex:
+
+Its signature is similar to :meth:`torch.Tensor.to`, but only accepts
+floating point or complex :attr:`dtype`\ s. In addition, this method will
+only cast the floating point or complex parameters and buffers to :attr:`dtype`
+(if given). The integral parameters and buffers will be moved
+:attr:`device`, if that is given, but with dtypes unchanged. When
+:attr:`non_blocking` is set, it tries to convert/move asynchronously
+with respect to the host if possible, e.g., moving CPU Tensors with
+pinned memory to CUDA devices.
+
+See below for examples.
+
+.. note::
+    This method modifies the module in-place.
+
+Args:
+    device (:class:`torch.device`): the desired device of the parameters
+        and buffers in this module
+    dtype (:class:`torch.dtype`): the desired floating point or complex dtype of
+        the parameters and buffers in this module
+    tensor (torch.Tensor): Tensor whose dtype and device are the desired
+        dtype and device for all parameters and buffers in this module
+    memory_format (:class:`torch.memory_format`): the desired memory
+        format for 4D parameters and buffers in this module (keyword
+        only argument)
+
+Returns:
+    Module: self
+
+Examples::
+
+    >>> # xdoctest: +IGNORE_WANT("non-deterministic")
+    >>> linear = nn.Linear(2, 2)
+    >>> linear.weight
+    Parameter containing:
+    tensor([[ 0.1913, -0.3420],
+            [-0.5113, -0.2325]])
+    >>> linear.to(torch.double)
+    Linear(in_features=2, out_features=2, bias=True)
+    >>> linear.weight
+    Parameter containing:
+    tensor([[ 0.1913, -0.3420],
+            [-0.5113, -0.2325]], dtype=torch.float64)
+    >>> # xdoctest: +REQUIRES(env:TORCH_DOCTEST_CUDA1)
+    >>> gpu1 = torch.device("cuda:1")
+    >>> linear.to(gpu1, dtype=torch.half, non_blocking=True)
+    Linear(in_features=2, out_features=2, bias=True)
+    >>> linear.weight
+    Parameter containing:
+    tensor([[ 0.1914, -0.3420],
+            [-0.5112, -0.2324]], dtype=torch.float16, device='cuda:1')
+    >>> cpu = torch.device("cpu")
+    >>> linear.to(cpu)
+    Linear(in_features=2, out_features=2, bias=True)
+    >>> linear.weight
+    Parameter containing:
+    tensor([[ 0.1914, -0.3420],
+            [-0.5112, -0.2324]], dtype=torch.float16)
+
+    >>> linear = nn.Linear(2, 2, bias=None).to(torch.cdouble)
+    >>> linear.weight
+    Parameter containing:
+    tensor([[ 0.3741+0.j,  0.2382+0.j],
+            [ 0.5593+0.j, -0.4443+0.j]], dtype=torch.complex128)
+    >>> linear(torch.ones(3, 2, dtype=torch.cdouble))
+    tensor([[0.6122+0.j, 0.1150+0.j],
+            [0.6122+0.j, 0.1150+0.j],
+            [0.6122+0.j, 0.1150+0.j]], dtype=torch.complex128)</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> to_empty</h5>
+                    <div class="signature">to_empty(self: ~T, *, device: Union[int, str, torch.device, NoneType], recurse: bool = True) -> ~T</div>
+                    <div class="docstring">Move the parameters and buffers to the specified device without copying storage.
+
+Args:
+    device (:class:`torch.device`): The desired device of the parameters
+        and buffers in this module.
+    recurse (bool): Whether parameters and buffers of submodules should
+        be recursively moved to the specified device.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> train</h5>
+                    <div class="signature">train(self: ~T, mode: bool = True) -> ~T</div>
+                    <div class="docstring">Set the module in training mode.
+
+This has an effect only on certain modules. See the documentation of
+particular modules for details of their behaviors in training/evaluation
+mode, i.e., whether they are affected, e.g. :class:`Dropout`, :class:`BatchNorm`,
+etc.
+
+Args:
+    mode (bool): whether to set training mode (``True``) or evaluation
+                 mode (``False``). Default: ``True``.
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> type</h5>
+                    <div class="signature">type(self: ~T, dst_type: Union[torch.dtype, str]) -> ~T</div>
+                    <div class="docstring">Casts all parameters and buffers to :attr:`dst_type`.
+
+.. note::
+    This method modifies the module in-place.
+
+Args:
+    dst_type (type or string): the desired type
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> xpu</h5>
+                    <div class="signature">xpu(self: ~T, device: Union[int, torch.device, NoneType] = None) -> ~T</div>
+                    <div class="docstring">Move all model parameters and buffers to the XPU.
+
+This also makes associated parameters and buffers different objects. So
+it should be called before constructing optimizer if the module will
+live on XPU while being optimized.
+
+.. note::
+    This method modifies the module in-place.
+
+Arguments:
+    device (int, optional): if specified, all parameters will be
+        copied to that device
+
+Returns:
+    Module: self</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> zero_grad</h5>
+                    <div class="signature">zero_grad(self, set_to_none: bool = True) -> None</div>
+                    <div class="docstring">Reset gradients of all model parameters.
+
+See similar function under :class:`torch.optim.Optimizer` for more context.
+
+Args:
+    set_to_none (bool): instead of setting to zero, set the grads to None.
+        See :meth:`torch.optim.Optimizer.zero_grad` for details.</div>
+                </div>
+</div>
+        <div class="class-container" id="class-NeurosymbolicOutput">
+            <h3><span class="badge class">Class</span> NeurosymbolicOutput</h3>
+            <div class="signature">class NeurosymbolicOutput(self, logits: torch.Tensor, symbolic_context: Optional[torch.Tensor] = None, confidence_scores: Optional[torch.Tensor] = None, extracted_facts: Optional[List[str]] = None, reasoning_embeddings: Optional[torch.Tensor] = None, attention_weights: Optional[torch.Tensor] = None) -> None</div>
+            <div class="docstring">Output from neurosymbolic adapter forward pass</div>
+<h4>Methods:</h4>
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> __init__</h5>
+                    <div class="signature">__init__(self, logits: torch.Tensor, symbolic_context: Optional[torch.Tensor] = None, confidence_scores: Optional[torch.Tensor] = None, extracted_facts: Optional[List[str]] = None, reasoning_embeddings: Optional[torch.Tensor] = None, attention_weights: Optional[torch.Tensor] = None) -> None</div>
+                    <div class="docstring">No method documentation available.</div>
+                </div>
+</div>
+        <div class="class-container" id="class-Path">
+            <h3><span class="badge class">Class</span> Path</h3>
+            <div class="signature">class Path(self, *args, **kwargs)</div>
+            <div class="docstring">PurePath subclass that can make system calls.
+
+Path represents a filesystem path but unlike PurePath, also offers
+methods to do system calls on path objects. Depending on your system,
+instantiating a Path will return either a PosixPath or a WindowsPath
+object. You can also instantiate a PosixPath or WindowsPath directly,
+but cannot instantiate a WindowsPath on a POSIX system or vice versa.</div>
+<h4>Methods:</h4>
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> __init__</h5>
+                    <div class="signature">__init__(self, *args, **kwargs)</div>
+                    <div class="docstring">Initialize self.  See help(type(self)) for accurate signature.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> absolute</h5>
+                    <div class="signature">absolute(self)</div>
+                    <div class="docstring">Return an absolute version of this path
+No normalization or symlink resolution is performed.
+
+Use resolve() to resolve symlinks and remove '..' segments.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> as_posix</h5>
+                    <div class="signature">as_posix(self)</div>
+                    <div class="docstring">Return the string representation of the path with forward (/)
+slashes.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> as_uri</h5>
+                    <div class="signature">as_uri(self)</div>
+                    <div class="docstring">Return the path as a URI.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> chmod</h5>
+                    <div class="signature">chmod(self, mode, *, follow_symlinks=True)</div>
+                    <div class="docstring">Change the permissions of the path, like os.chmod().</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> exists</h5>
+                    <div class="signature">exists(self, *, follow_symlinks=True)</div>
+                    <div class="docstring">Whether this path exists.
+
+This method normally follows symlinks; to check whether a symlink exists,
+add the argument follow_symlinks=False.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> expanduser</h5>
+                    <div class="signature">expanduser(self)</div>
+                    <div class="docstring">Return a new path with expanded ~ and ~user constructs
+(as returned by os.path.expanduser)</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> full_match</h5>
+                    <div class="signature">full_match(self, pattern, *, case_sensitive=None)</div>
+                    <div class="docstring">Return True if this path matches the given glob-style pattern. The
+pattern is matched against the entire path.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> glob</h5>
+                    <div class="signature">glob(self, pattern, *, case_sensitive=None, recurse_symlinks=False)</div>
+                    <div class="docstring">Iterate over this subtree and yield all existing files (of any
+kind, including directories) matching the given relative pattern.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> group</h5>
+                    <div class="signature">group(self, *, follow_symlinks=True)</div>
+                    <div class="docstring">Return the group name of the file gid.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> hardlink_to</h5>
+                    <div class="signature">hardlink_to(self, target)</div>
+                    <div class="docstring">Make this path a hard link pointing to the same file as *target*.
+
+Note the order of arguments (self, target) is the reverse of os.link's.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> is_absolute</h5>
+                    <div class="signature">is_absolute(self)</div>
+                    <div class="docstring">True if the path is absolute (has both a root and, if applicable,
+a drive).</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> is_block_device</h5>
+                    <div class="signature">is_block_device(self)</div>
+                    <div class="docstring">Whether this path is a block device.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> is_char_device</h5>
+                    <div class="signature">is_char_device(self)</div>
+                    <div class="docstring">Whether this path is a character device.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> is_dir</h5>
+                    <div class="signature">is_dir(self, *, follow_symlinks=True)</div>
+                    <div class="docstring">Whether this path is a directory.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> is_fifo</h5>
+                    <div class="signature">is_fifo(self)</div>
+                    <div class="docstring">Whether this path is a FIFO.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> is_file</h5>
+                    <div class="signature">is_file(self, *, follow_symlinks=True)</div>
+                    <div class="docstring">Whether this path is a regular file (also True for symlinks pointing
+to regular files).</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> is_junction</h5>
+                    <div class="signature">is_junction(self)</div>
+                    <div class="docstring">Whether this path is a junction.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> is_mount</h5>
+                    <div class="signature">is_mount(self)</div>
+                    <div class="docstring">Check if this path is a mount point</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> is_relative_to</h5>
+                    <div class="signature">is_relative_to(self, other, /, *_deprecated)</div>
+                    <div class="docstring">Return True if the path is relative to another path or False.
+        </div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> is_reserved</h5>
+                    <div class="signature">is_reserved(self)</div>
+                    <div class="docstring">Return True if the path contains one of the special names reserved
+by the system, if any.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> is_socket</h5>
+                    <div class="signature">is_socket(self)</div>
+                    <div class="docstring">Whether this path is a socket.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> is_symlink</h5>
+                    <div class="signature">is_symlink(self)</div>
+                    <div class="docstring">Whether this path is a symbolic link.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> iterdir</h5>
+                    <div class="signature">iterdir(self)</div>
+                    <div class="docstring">Yield path objects of the directory contents.
+
+The children are yielded in arbitrary order, and the
+special entries '.' and '..' are not included.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> joinpath</h5>
+                    <div class="signature">joinpath(self, *pathsegments)</div>
+                    <div class="docstring">Combine this path with one or several arguments, and return a
+new path representing either a subpath (if all arguments are relative
+paths) or a totally different path (if one of the arguments is
+anchored).</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> lchmod</h5>
+                    <div class="signature">lchmod(self, mode)</div>
+                    <div class="docstring">Like chmod(), except if the path points to a symlink, the symlink's
+permissions are changed, rather than its target's.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> lstat</h5>
+                    <div class="signature">lstat(self)</div>
+                    <div class="docstring">Like stat(), except if the path points to a symlink, the symlink's
+status information is returned, rather than its target's.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> match</h5>
+                    <div class="signature">match(self, path_pattern, *, case_sensitive=None)</div>
+                    <div class="docstring">Return True if this path matches the given pattern. If the pattern is
+relative, matching is done from the right; otherwise, the entire path
+is matched. The recursive wildcard '**' is *not* supported by this
+method.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> mkdir</h5>
+                    <div class="signature">mkdir(self, mode=511, parents=False, exist_ok=False)</div>
+                    <div class="docstring">Create a new directory at this given path.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> open</h5>
+                    <div class="signature">open(self, mode='r', buffering=-1, encoding=None, errors=None, newline=None)</div>
+                    <div class="docstring">Open the file pointed to by this path and return a file object, as
+the built-in open() function does.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> owner</h5>
+                    <div class="signature">owner(self, *, follow_symlinks=True)</div>
+                    <div class="docstring">Return the login name of the file owner.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> read_bytes</h5>
+                    <div class="signature">read_bytes(self)</div>
+                    <div class="docstring">Open the file in bytes mode, read it, and close the file.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> read_text</h5>
+                    <div class="signature">read_text(self, encoding=None, errors=None, newline=None)</div>
+                    <div class="docstring">Open the file in text mode, read it, and close the file.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> readlink</h5>
+                    <div class="signature">readlink(self)</div>
+                    <div class="docstring">Return the path to which the symbolic link points.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> relative_to</h5>
+                    <div class="signature">relative_to(self, other, /, *_deprecated, walk_up=False)</div>
+                    <div class="docstring">Return the relative path to another path identified by the passed
+arguments.  If the operation is not possible (because this is not
+related to the other path), raise ValueError.
+
+The *walk_up* parameter controls whether `..` may be used to resolve
+the path.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> rename</h5>
+                    <div class="signature">rename(self, target)</div>
+                    <div class="docstring">Rename this path to the target path.
+
+The target path may be absolute or relative. Relative paths are
+interpreted relative to the current working directory, *not* the
+directory of the Path object.
+
+Returns the new Path instance pointing to the target path.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> replace</h5>
+                    <div class="signature">replace(self, target)</div>
+                    <div class="docstring">Rename this path to the target path, overwriting if that path exists.
+
+The target path may be absolute or relative. Relative paths are
+interpreted relative to the current working directory, *not* the
+directory of the Path object.
+
+Returns the new Path instance pointing to the target path.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> resolve</h5>
+                    <div class="signature">resolve(self, strict=False)</div>
+                    <div class="docstring">Make the path absolute, resolving all symlinks on the way and also
+normalizing it.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> rglob</h5>
+                    <div class="signature">rglob(self, pattern, *, case_sensitive=None, recurse_symlinks=False)</div>
+                    <div class="docstring">Recursively yield all existing files (of any kind, including
+directories) matching the given relative pattern, anywhere in
+this subtree.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> rmdir</h5>
+                    <div class="signature">rmdir(self)</div>
+                    <div class="docstring">Remove this directory.  The directory must be empty.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> samefile</h5>
+                    <div class="signature">samefile(self, other_path)</div>
+                    <div class="docstring">Return whether other_path is the same or not as this file
+(as returned by os.path.samefile()).</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> stat</h5>
+                    <div class="signature">stat(self, *, follow_symlinks=True)</div>
+                    <div class="docstring">Return the result of the stat() system call on this path, like
+os.stat() does.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> symlink_to</h5>
+                    <div class="signature">symlink_to(self, target, target_is_directory=False)</div>
+                    <div class="docstring">Make this path a symlink pointing to the target path.
+Note the order of arguments (link, target) is the reverse of os.symlink.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> touch</h5>
+                    <div class="signature">touch(self, mode=438, exist_ok=True)</div>
+                    <div class="docstring">Create this file with the given access mode, if it doesn't exist.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> unlink</h5>
+                    <div class="signature">unlink(self, missing_ok=False)</div>
+                    <div class="docstring">Remove this file or link.
+If the path is a directory, use rmdir() instead.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> walk</h5>
+                    <div class="signature">walk(self, top_down=True, on_error=None, follow_symlinks=False)</div>
+                    <div class="docstring">Walk the directory tree from this directory, similar to os.walk().</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> with_name</h5>
+                    <div class="signature">with_name(self, name)</div>
+                    <div class="docstring">Return a new path with the file name changed.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> with_segments</h5>
+                    <div class="signature">with_segments(self, *pathsegments)</div>
+                    <div class="docstring">Construct a new path object from any number of path-like objects.
+Subclasses may override this method to customize how new path objects
+are created from methods like `iterdir()`.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> with_stem</h5>
+                    <div class="signature">with_stem(self, stem)</div>
+                    <div class="docstring">Return a new path with the stem changed.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> with_suffix</h5>
+                    <div class="signature">with_suffix(self, suffix)</div>
+                    <div class="docstring">Return a new path with the file suffix changed.  If the path
+has no suffix, add given suffix.  If the given suffix is an empty
+string, remove the suffix from the path.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> write_bytes</h5>
+                    <div class="signature">write_bytes(self, data)</div>
+                    <div class="docstring">Open the file in bytes mode, write to it, and close the file.</div>
+                </div>
+
+                <div class="method-container">
+                    <h5><span class="badge method">Method</span> write_text</h5>
+                    <div class="signature">write_text(self, data, encoding=None, errors=None, newline=None)</div>
+                    <div class="docstring">Open the file in text mode, write to it, and close the file.</div>
+                </div>
+</div><h2>⚙️ Functions</h2>
+        <div class="function-container" id="func-create_neurosymbolic_adapter">
+            <h3><span class="badge function">Function</span> create_neurosymbolic_adapter</h3>
+            <div class="signature">create_neurosymbolic_adapter(base_model_name: str, config: Optional[NeurosymbolicAdapter.AdapterConfig] = None) -> NeurosymbolicAdapter.NeurosymbolicAdapter</div>
+            <div class="docstring">Create a new neurosymbolic adapter</div>
+        </div>
+
+        <div class="function-container" id="func-dataclass">
+            <h3><span class="badge function">Function</span> dataclass</h3>
+            <div class="signature">dataclass(cls=None, /, *, init=True, repr=True, eq=True, order=False, unsafe_hash=False, frozen=False, match_args=True, kw_only=False, slots=False, weakref_slot=False)</div>
+            <div class="docstring">Add dunder methods based on the fields defined in the class.
+
+Examines PEP 526 __annotations__ to determine fields.
+
+If init is true, an __init__() method is added to the class. If repr
+is true, a __repr__() method is added. If order is true, rich
+comparison dunder methods are added. If unsafe_hash is true, a
+__hash__() method is added. If frozen is true, fields may not be
+assigned to after instance creation. If match_args is true, the
+__match_args__ tuple is added. If kw_only is true, then by default
+all fields are keyword-only. If slots is true, a new class with a
+__slots__ attribute is returned.</div>
+        </div>
+
+        <div class="function-container" id="func-load_pretrained_adapter">
+            <h3><span class="badge function">Function</span> load_pretrained_adapter</h3>
+            <div class="signature">load_pretrained_adapter(load_path: Union[str, pathlib._local.Path]) -> NeurosymbolicAdapter.NeurosymbolicAdapter</div>
+            <div class="docstring">Load a pretrained neurosymbolic adapter</div>
+        </div>
+
+        <hr style="margin: 40px 0;">
+        <footer style="text-align: center; color: #666;">
+            <p>Generated by Neurosymbolic SQL Adapter Documentation Generator</p>
+            <p><em>Documentation extracted from source code docstrings and signatures</em></p>
+        </footer>
+    </div>
+</body>
+</html>

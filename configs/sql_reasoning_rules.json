@@ -1,0 +1,357 @@
+{
+  "reasoning_rules": [
+    {
+      "rule_id": "R1",
+      "name": "primary_key_uniqueness",
+      "description": "Primary key values must be unique within a table",
+      "logic": "∀x,y,t: (primary_key(x,t) ∧ primary_key(y,t) ∧ x≠y) → value(x)≠value(y)",
+      "pyreason_format": {
+        "head": "violation(T)",
+        "body": [
+          "primary_key(X, T)",
+          "primary_key(Y, T)", 
+          "value(X, V)",
+          "value(Y, V)",
+          "X != Y"
+        ]
+      }
+    },
+    {
+      "rule_id": "R2", 
+      "name": "foreign_key_referential_integrity",
+      "description": "Foreign key values must reference existing primary key values",
+      "logic": "∀x,t1,t2: foreign_key(x,t1,t2) → ∃y: (primary_key(y,t2) ∧ value(x)=value(y))",
+      "pyreason_format": {
+        "head": "violation(T1)",
+        "body": [
+          "foreign_key(X, T1, T2)",
+          "value(X, V)",
+          "not exists_primary_key(V, T2)"
+        ]
+      }
+    },
+    {
+      "rule_id": "R3",
+      "name": "not_null_constraint", 
+      "description": "NOT NULL columns cannot contain null values",
+      "logic": "∀x,t: (not_null(x,t) ∧ column(x,t)) → value(x)≠null",
+      "pyreason_format": {
+        "head": "violation(T)",
+        "body": [
+          "not_null(C, T)",
+          "value(C, null)"
+        ]
+      }
+    },
+    {
+      "rule_id": "R4",
+      "name": "unique_constraint",
+      "description": "UNIQUE columns cannot have duplicate values",
+      "logic": "∀x,y,t: (unique(c,t) ∧ column(x,c) ∧ column(y,c) ∧ x≠y) → value(x)≠value(y)",
+      "pyreason_format": {
+        "head": "violation(T)",
+        "body": [
+          "unique_constraint(C, T)",
+          "value(R1, C, V)",
+          "value(R2, C, V)",
+          "R1 != R2"
+        ]
+      }
+    },
+    {
+      "rule_id": "R5",
+      "name": "check_constraint",
+      "description": "CHECK constraints must be satisfied",
+      "logic": "∀x,t: (check_constraint(expr,t) ∧ row(x,t)) → satisfies(x,expr)",
+      "pyreason_format": {
+        "head": "violation(T)",
+        "body": [
+          "check_constraint(E, T)",
+          "row(R, T)",
+          "not satisfies(R, E)"
+        ]
+      }
+    },
+    {
+      "rule_id": "R6",
+      "name": "join_semantic_validity",
+      "description": "JOINs must be semantically meaningful",
+      "logic": "∀t1,t2,c1,c2: join(t1,t2,c1,c2) → (compatible_types(c1,c2) ∧ semantic_relationship(t1,t2))",
+      "pyreason_format": {
+        "head": "valid_join(T1, T2)",
+        "body": [
+          "join_condition(T1, C1, T2, C2)",
+          "compatible_types(C1, C2)",
+          "semantic_relationship(T1, T2)"
+        ]
+      }
+    },
+    {
+      "rule_id": "R7",
+      "name": "aggregate_function_validity",
+      "description": "Aggregate functions must be used with appropriate data types",
+      "logic": "∀f,c: aggregate_function(f,c) → compatible_aggregate_type(f,type(c))",
+      "pyreason_format": {
+        "head": "valid_aggregate(F, C)",
+        "body": [
+          "aggregate_function(F, C)",
+          "column_type(C, T)",
+          "compatible_aggregate_type(F, T)"
+        ]
+      }
+    },
+    {
+      "rule_id": "R8",
+      "name": "temporal_constraint",
+      "description": "Temporal operations must respect time ordering",
+      "logic": "∀t1,t2: temporal_comparison(t1,t2) → valid_temporal_order(t1,t2)",
+      "pyreason_format": {
+        "head": "valid_temporal(T1, T2)",
+        "body": [
+          "temporal_comparison(T1, T2)",
+          "timestamp(T1, TS1)",
+          "timestamp(T2, TS2)",
+          "valid_time_order(TS1, TS2)"
+        ]
+      }
+    },
+    {
+      "rule_id": "R9",
+      "name": "table_existence_validation",
+      "description": "All referenced tables must exist in the schema",
+      "logic": "∀t: query_references_table(t) → table_exists(t)",
+      "pyreason_format": {
+        "head": "violation(table_not_exists, T)",
+        "body": [
+          "query_references_table(T)",
+          "not table_exists(T)"
+        ]
+      }
+    },
+    {
+      "rule_id": "R10",
+      "name": "column_existence_validation",
+      "description": "All referenced columns must exist in their respective tables",
+      "logic": "∀t,c: query_references_column(t,c) → column_exists(t,c)",
+      "pyreason_format": {
+        "head": "violation(column_not_exists, T, C)",
+        "body": [
+          "query_references_column(T, C)",
+          "not column_exists(T, C)"
+        ]
+      }
+    },
+    {
+      "rule_id": "R11",
+      "name": "data_type_compatibility",
+      "description": "Operations must be performed on compatible data types",
+      "logic": "∀op,c1,c2: operation(op,c1,c2) → compatible_types(type(c1),type(c2))",
+      "pyreason_format": {
+        "head": "violation(type_mismatch, OP, C1, C2)",
+        "body": [
+          "operation(OP, C1, C2)",
+          "column_type(C1, T1)",
+          "column_type(C2, T2)",
+          "not compatible_types(T1, T2)"
+        ]
+      }
+    },
+    {
+      "rule_id": "R12",
+      "name": "group_by_aggregate_consistency",
+      "description": "Non-aggregate columns in SELECT must appear in GROUP BY",
+      "logic": "∀c: (select_column(c) ∧ has_group_by ∧ ¬aggregate_column(c)) → group_by_column(c)",
+      "pyreason_format": {
+        "head": "violation(group_by_required, C)",
+        "body": [
+          "select_column(C)",
+          "has_group_by",
+          "not aggregate_column(C)",
+          "not group_by_column(C)"
+        ]
+      }
+    },
+    {
+      "rule_id": "R13",
+      "name": "index_usage_optimization",
+      "description": "Queries should utilize available indexes effectively",
+      "logic": "∀t,c: (where_condition(t,c) ∧ index_exists(t,c)) → index_usable(t,c)",
+      "pyreason_format": {
+        "head": "optimization_opportunity(index_usage, T, C)",
+        "body": [
+          "where_condition(T, C)",
+          "index_exists(T, C)",
+          "not index_used(T, C)"
+        ]
+      }
+    },
+    {
+      "rule_id": "R14",
+      "name": "null_safety_check",
+      "description": "Operations involving potentially null columns should handle null values",
+      "logic": "∀c: (nullable_column(c) ∧ comparison_operation(c)) → null_safe_operation(c)",
+      "pyreason_format": {
+        "head": "warning(null_safety, C)",
+        "body": [
+          "nullable_column(C)",
+          "comparison_operation(C)",
+          "not null_safe_operation(C)"
+        ]
+      }
+    },
+    {
+      "rule_id": "R15",
+      "name": "recursive_query_validation",
+      "description": "Recursive queries must have proper termination conditions",
+      "logic": "∀q: recursive_query(q) → has_termination_condition(q)",
+      "pyreason_format": {
+        "head": "violation(infinite_recursion, Q)",
+        "body": [
+          "recursive_query(Q)",
+          "not has_termination_condition(Q)"
+        ]
+      }
+    }
+  ],
+  
+  "constraint_definitions": {
+    "data_types": [
+      "INTEGER", "VARCHAR", "TEXT", "DATE", "TIMESTAMP", 
+      "DECIMAL", "BOOLEAN", "BLOB", "JSON", "FLOAT"
+    ],
+    
+    "type_compatibility": {
+      "numeric": ["INTEGER", "DECIMAL", "FLOAT"],
+      "string": ["VARCHAR", "TEXT"],
+      "temporal": ["DATE", "TIMESTAMP"],
+      "boolean": ["BOOLEAN"],
+      "binary": ["BLOB"],
+      "structured": ["JSON"]
+    },
+    
+    "aggregate_functions": {
+      "COUNT": ["all_types"],
+      "SUM": ["INTEGER", "DECIMAL", "FLOAT"],
+      "AVG": ["INTEGER", "DECIMAL", "FLOAT"], 
+      "MIN": ["INTEGER", "DECIMAL", "FLOAT", "DATE", "TIMESTAMP", "VARCHAR"],
+      "MAX": ["INTEGER", "DECIMAL", "FLOAT", "DATE", "TIMESTAMP", "VARCHAR"],
+      "STRING_AGG": ["VARCHAR", "TEXT"],
+      "STDDEV": ["INTEGER", "DECIMAL", "FLOAT"],
+      "VARIANCE": ["INTEGER", "DECIMAL", "FLOAT"]
+    },
+    
+    "comparison_operators": {
+      "=": ["all_types"],
+      "!=": ["all_types"],
+      "<": ["INTEGER", "DECIMAL", "FLOAT", "DATE", "TIMESTAMP", "VARCHAR"],
+      ">": ["INTEGER", "DECIMAL", "FLOAT", "DATE", "TIMESTAMP", "VARCHAR"],
+      "<=": ["INTEGER", "DECIMAL", "FLOAT", "DATE", "TIMESTAMP", "VARCHAR"],
+      ">=": ["INTEGER", "DECIMAL", "FLOAT", "DATE", "TIMESTAMP", "VARCHAR"],
+      "LIKE": ["VARCHAR", "TEXT"],
+      "ILIKE": ["VARCHAR", "TEXT"],
+      "IN": ["all_types"],
+      "IS": ["all_types"],
+      "IS NOT": ["all_types"]
+    },
+    
+    "arithmetic_operators": {
+      "+": ["INTEGER", "DECIMAL", "FLOAT"],
+      "-": ["INTEGER", "DECIMAL", "FLOAT"],
+      "*": ["INTEGER", "DECIMAL", "FLOAT"],
+      "/": ["INTEGER", "DECIMAL", "FLOAT"],
+      "%": ["INTEGER"],
+      "||": ["VARCHAR", "TEXT"]
+    },
+    
+    "semantic_relationships": [
+      "one_to_many", "many_to_one", "many_to_many", "one_to_one",
+      "inheritance", "composition", "aggregation"
+    ],
+    
+    "constraint_types": [
+      "PRIMARY_KEY", "FOREIGN_KEY", "UNIQUE", "NOT_NULL", 
+      "CHECK", "DEFAULT", "INDEX", "TRIGGER"
+    ]
+  },
+  
+  "reasoning_configuration": {
+    "max_reasoning_steps": 15,
+    "inconsistency_tolerance": 0.1,
+    "explanation_depth": 3,
+    "confidence_threshold": 0.8,
+    "enable_optimizations": true,
+    "enable_warnings": true,
+    "parallel_reasoning": false,
+    "cache_intermediate_results": true,
+    "violation_severity_levels": {
+      "critical": ["table_not_exists", "column_not_exists", "syntax_error"],
+      "error": ["primary_key_violation", "foreign_key_violation", "not_null_violation"],
+      "warning": ["type_mismatch", "null_safety", "performance_issue"],
+      "info": ["optimization_opportunity", "best_practice_suggestion"]
+    }
+  },
+  
+  "fact_templates": {
+    "schema_facts": [
+      "table_exists(T)",
+      "column_exists(T, C)",
+      "column_type(T, C, TYPE)",
+      "primary_key(T, C)",
+      "foreign_key(T1, C1, T2, C2)",
+      "not_null_constraint(T, C)",
+      "unique_constraint(T, C)",
+      "index_exists(T, C)"
+    ],
+    
+    "query_facts": [
+      "query_type(TYPE)",
+      "query_references_table(T)",
+      "query_references_column(T, C)",
+      "query_has_join(T1, T2, TYPE)",
+      "query_has_condition(ID, CONDITION)",
+      "query_uses_operation(OP)",
+      "query_has_literal(VALUE, TYPE)"
+    ],
+    
+    "validation_facts": [
+      "violation(TYPE, PARAMS...)",
+      "warning(TYPE, PARAMS...)",
+      "optimization_opportunity(TYPE, PARAMS...)",
+      "valid_query(QUERY_ID)",
+      "confidence_score(QUERY_ID, SCORE)"
+    ]
+  },
+  
+  "explanation_templates": {
+    "violation_explanations": {
+      "table_not_exists": "The table '{table}' referenced in your query does not exist in the database schema. Please check the table name spelling or verify that the table has been created.",
+      "column_not_exists": "The column '{column}' does not exist in table '{table}'. Please verify the column name or check the table structure.",
+      "primary_key_violation": "Primary key constraint violation detected in table '{table}' for column '{column}'. Primary key values must be unique and not null.",
+      "foreign_key_violation": "Foreign key constraint violation: the value in '{table}.{column}' does not reference a valid primary key in the related table.",
+      "not_null_violation": "NOT NULL constraint violation: column '{table}.{column}' cannot contain null values.",
+      "type_mismatch": "Data type mismatch detected: operation '{operation}' cannot be performed between incompatible types '{type1}' and '{type2}'."
+    },
+    
+    "optimization_suggestions": {
+      "index_usage": "Consider creating an index on '{table}.{column}' to improve query performance for WHERE clause conditions.",
+      "join_optimization": "The join between '{table1}' and '{table2}' could be optimized by ensuring proper indexing on join columns.",
+      "query_complexity": "This query has high complexity. Consider breaking it down into simpler queries or using views.",
+      "null_safety": "Column '{column}' is nullable. Consider using IS NULL/IS NOT NULL checks to handle null values safely."
+    }
+  },
+  
+  "rule_priorities": {
+    "critical_rules": ["R9", "R10"],
+    "high_priority_rules": ["R1", "R2", "R3", "R4", "R5"],
+    "medium_priority_rules": ["R6", "R7", "R11", "R12"],
+    "low_priority_rules": ["R8", "R13", "R14", "R15"]
+  },
+  
+  "performance_settings": {
+    "enable_rule_caching": true,
+    "max_fact_cache_size": 10000,
+    "reasoning_timeout_ms": 5000,
+    "parallel_rule_evaluation": false,
+    "optimize_fact_ordering": true
+  }
+}

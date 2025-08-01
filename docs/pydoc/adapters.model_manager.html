@@ -1,0 +1,69 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module modelmanager</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>ModelManager</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial">&nbsp;</font></td></tr></table>
+    <p><tt>Centralized model management system for neurosymbolic SQL adapters</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="#ModelManager">ModelManager</a>
+</font></dt><dd>
+<tt>ModelManager(self, config: Optional[adapters.model_manager.ModelConfig] = None)</tt><br>
+<br>
+Centralized Model Manager
+
+Handles loading, configuration, and management of neurosymbolic SQL adapters.
+Provides high-level interface for model operations.<br>&nbsp;</dd></dl>
+
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="#ModelConfig">ModelConfig</a>
+</font></dt><dd>
+<tt>ModelConfig(self, model_type: adapters.model_manager.ModelType = <ModelType.LLAMA_8B: 'llama-8b'>, model_name: str = 'unsloth/llama-3.1-8b-instruct-bnb-4bit', device: adapters.model_manager.DeviceType = <DeviceType.AUTO: 'auto'>, torch_dtype: str = 'float16', lora_r: int = 16, lora_alpha: int = 32, lora_dropout: float = 0.1, target_modules: List[str] = <factory>, bridge_dim: int = 512, symbolic_dim: int = 256, enable_bridge: bool = True, enable_confidence: bool = True, enable_fact_extraction: bool = True, confidence_methods: List[adapters.confidence_estimator.ConfidenceMethod] = <factory>, fact_extraction_threshold: float = 0.5, max_facts_per_query: int = 50, enable_pattern_matching: bool = True, gradient_checkpointing: bool = False, use_cache: bool = True, max_memory: Optional[Dict[str, str]] = None, offload_folder: Optional[str] = None, load_in_8bit: bool = False, load_in_4bit: bool = True, bnb_4bit_compute_dtype: str = 'float16', bnb_4bit_use_double_quant: bool = True) -> None</tt><br>
+<br>
+Comprehensive model configuration<br>&nbsp;</dd></dl>
+
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="#ModelType">ModelType</a>
+</font></dt><dd>
+<tt>ModelType(self, *args, **kwds)</tt><br>
+<br>
+Supported model types<br>&nbsp;</dd></dl>
+
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="#DeviceType">DeviceType</a>
+</font></dt><dd>
+<tt>DeviceType(self, *args, **kwds)</tt><br>
+<br>
+Device types for model deployment<br>&nbsp;</dd></dl>
+
+</td></tr></table>
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-create_model_manager"><strong>create_model_manager</strong></a>(config: Optional[adapters.model_manager.ModelConfig] = None) -> adapters.model_manager.ModelManager</dt><dd>Create ModelManager with configuration</dd></dl>
+
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-create_llama_8b_config"><strong>create_llama_8b_config</strong></a>() -> adapters.model_manager.ModelConfig</dt><dd>Create configuration for Llama 8B model</dd></dl>
+
+</td></tr></table>
+</body></html>

@@ -1,0 +1,79 @@
+# Neurosymbolic SQL Adapter Configuration
+
+# Base Model Configuration
+model:
+  name: "unsloth/llama-3.1-8b-instruct-bnb-4bit"
+  max_seq_length: 2048
+  load_in_4bit: true
+  device_map: "auto"
+
+# LoRA Adapter Configuration  
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.1
+  target_modules:
+    - "q_proj"
+    - "k_proj"
+    - "v_proj"
+    - "o_proj"
+    - "gate_proj"
+    - "up_proj"
+    - "down_proj"
+
+# Neurosymbolic Bridge Configuration
+neurosymbolic:
+  bridge_dim: 256
+  reasoning_steps: 5
+  confidence_threshold: 0.8
+  enable_explanation: true
+
+# PyReason Configuration
+pyreason:
+  graph_path: "configs/sql_knowledge_graph.json"
+  rules_path: "configs/sql_reasoning_rules.json"
+  reasoning_steps: 10
+  inconsistency_check: true
+  open_world: true
+
+# SQL Knowledge Base
+knowledge_base:
+  schema_constraints: true
+  semantic_relationships: true
+  temporal_logic: true
+  constraint_types:
+    - "primary_key"
+    - "foreign_key" 
+    - "not_null"
+    - "unique"
+    - "check"
+
+# Training Configuration
+training:
+  batch_size: 2
+  gradient_accumulation_steps: 4
+  learning_rate: 2e-4
+  epochs: 3
+  warmup_steps: 10
+  save_steps: 100
+  eval_steps: 50
+  logging_steps: 10
+
+# Evaluation Configuration
+evaluation:
+  metrics:
+    - "sql_validity"
+    - "constraint_satisfaction"
+    - "semantic_correctness"
+    - "reasoning_quality"
+  test_datasets:
+    - "spider"
+    - "wikisql"
+    - "custom_constraints"
+
+# Output Configuration
+output:
+  save_explanations: true
+  save_reasoning_trace: true
+  output_format: "structured"
+  confidence_scores: true

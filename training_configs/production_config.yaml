@@ -1,0 +1,110 @@
+# Production Training Configuration for Neurosymbolic SQL Adapter
+# Optimized for production deployment with robustness and reliability
+
+# Model Configuration
+model:
+  base_model: "unsloth/llama-3.1-8b-instruct-bnb-4bit"
+  model_type: "llama-8b"
+  device: "auto"
+  torch_dtype: "bfloat16"
+  
+  quantization:
+    load_in_4bit: true
+    bnb_4bit_compute_dtype: "bfloat16"
+    bnb_4bit_use_double_quant: true
+
+# LoRA Configuration - Conservative for stability
+lora:
+  r: 32
+  alpha: 64
+  dropout: 0.1
+  target_modules:
+    - "q_proj"
+    - "k_proj"
+    - "v_proj"
+    - "o_proj"
+    - "gate_proj"
+    - "up_proj"
+    - "down_proj"
+
+# Neurosymbolic Configuration - Production optimized
+neurosymbolic:
+  bridge:
+    neural_dim: 4096
+    symbolic_dim: 256
+    bridge_dim: 128
+    num_transformer_layers: 2
+    dropout: 0.1
+    
+  confidence:
+    methods: ["entropy", "temperature_scaling"]
+    calibration_temperature: 1.2
+    enable_calibration: true
+    
+  fact_extraction:
+    extraction_threshold: 0.7  # High threshold for reliability
+    max_facts_per_query: 50
+    enable_pattern_matching: true
+    fact_validation: true
+
+# Training Configuration - Robust and stable
+training:
+  num_epochs: 3
+  batch_size: 2
+  gradient_accumulation_steps: 8  # Effective batch size = 16
+  learning_rate: 1e-4  # Conservative learning rate
+  weight_decay: 0.01
+  warmup_ratio: 0.05
+  
+  optimizer:
+    type: "adamw"
+    beta1: 0.9
+    beta2: 0.999
+    
+  scheduler:
+    type: "linear"
+    
+  gradient_clipping:
+    max_norm: 0.5  # Conservative clipping
+    
+  mixed_precision:
+    enabled: true
+
+# Loss Configuration - Balanced for stability
+loss:
+  base_loss_weight: 1.0
+  confidence_loss:
+    weight: 0.1
+    target_confidence: 0.75
+  fact_consistency_loss:
+    weight: 0.05
+  symbolic_reasoning_loss:
+    weight: 0.1
+
+# Evaluation and Monitoring
+evaluation:
+  eval_strategy: "steps"
+  eval_steps: 200
+  metrics:
+    - "sql_syntax_accuracy"
+    - "semantic_correctness"
+    - "constraint_satisfaction"
+    - "confidence_calibration"
+
+checkpointing:
+  save_strategy: "steps"
+  save_steps: 500
+  save_total_limit: 3
+  save_best_model: true
+
+logging:
+  logging_steps: 50
+  wandb:
+    enabled: true
+    project: "neurosymbolic-sql-production"
+
+# Performance settings for production
+performance:
+  gradient_checkpointing: true
+  dataloader_num_workers: 2
+  pin_memory: true

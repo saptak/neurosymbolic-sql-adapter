@@ -1,0 +1,269 @@
+# Research Training Configuration for Neurosymbolic SQL Adapter
+# Designed for experimentation and pushing the boundaries of performance
+
+# Model Configuration
+model:
+  base_model: "unsloth/llama-3.1-8b-instruct-bnb-4bit"
+  model_type: "llama-8b"
+  device: "auto"
+  torch_dtype: "bfloat16"
+  
+  quantization:
+    load_in_4bit: true
+    bnb_4bit_compute_dtype: "bfloat16"
+    bnb_4bit_use_double_quant: true
+
+# LoRA Configuration - Aggressive for maximum expressiveness
+lora:
+  r: 128  # Very high rank for research
+  alpha: 256
+  dropout: 0.0  # No dropout for maximum capacity
+  target_modules:
+    - "q_proj"
+    - "k_proj"
+    - "v_proj"
+    - "o_proj"
+    - "gate_proj"
+    - "up_proj"
+    - "down_proj"
+    - "lm_head"
+    - "embed_tokens"  # Include embeddings for research
+
+# Neurosymbolic Configuration - Maximum complexity
+neurosymbolic:
+  bridge:
+    neural_dim: 4096
+    symbolic_dim: 1024  # Large symbolic space
+    bridge_dim: 512     # Large intermediate space
+    num_transformer_layers: 6  # Deep reasoning
+    num_attention_heads: 16
+    dropout: 0.05
+    enable_residual: true
+    enable_layer_norm: true
+    
+  confidence:
+    methods:
+      - "entropy"
+      - "temperature_scaling"
+      - "attention_based"
+      - "ensemble"
+      - "dropout_based"
+      - "epistemic_uncertainty"
+    enable_calibration: true
+    calibration_bins: 20
+    
+  fact_extraction:
+    extraction_threshold: 0.5  # Lower for more facts
+    max_facts_per_query: 200   # Many facts for research
+    enable_pattern_matching: true
+    enable_neural_extraction: true
+    enable_hierarchical_facts: true
+    fact_validation: true
+
+# Training Configuration - Experimental
+training:
+  num_epochs: 10  # Longer training for research
+  batch_size: 1   # Small batch for gradient diversity
+  gradient_accumulation_steps: 16  # Large effective batch
+  learning_rate: 5e-4  # Higher learning rate
+  weight_decay: 0.001  # Lower weight decay
+  warmup_ratio: 0.2    # Longer warmup
+  
+  optimizer:
+    type: "adamw"
+    beta1: 0.9
+    beta2: 0.95  # Different beta2 for research
+    eps: 1e-6
+    
+  scheduler:
+    type: "cosine_with_restarts"
+    num_cycles: 5  # Multiple cycles
+    eta_min: 1e-7
+    
+  gradient_clipping:
+    max_norm: 2.0  # Higher clipping threshold
+    
+  mixed_precision:
+    enabled: true
+    autocast: true
+
+# Loss Configuration - Complex multi-objective
+loss:
+  base_loss_weight: 0.7  # Reduce base loss weight
+  
+  confidence_loss:
+    weight: 0.2
+    target_confidence: 0.85
+    calibration_weight: 0.15
+    uncertainty_regularization: 0.05
+    
+  fact_consistency_loss:
+    weight: 0.15
+    consistency_threshold: 0.6
+    diversity_penalty: 0.1
+    hierarchical_consistency: 0.05
+    
+  symbolic_reasoning_loss:
+    weight: 0.25
+    constraint_satisfaction_weight: 0.2
+    explanation_quality_weight: 0.1
+    reasoning_depth_bonus: 0.05
+    
+  # Additional research losses
+  contrastive_loss:
+    weight: 0.1
+    temperature: 0.07
+    
+  knowledge_distillation_loss:
+    weight: 0.05
+    temperature: 4.0
+
+# Advanced Research Features
+advanced:
+  # Curriculum learning with fine-grained stages
+  curriculum_learning:
+    enabled: true
+    stages:
+      - name: "simple_select"
+        epochs: 1
+        complexity_level: 1
+        schema_complexity: "single_table"
+      - name: "basic_joins"
+        epochs: 2
+        complexity_level: 2
+        schema_complexity: "two_tables"
+      - name: "aggregations"
+        epochs: 2
+        complexity_level: 3
+        schema_complexity: "multi_table"
+      - name: "subqueries"
+        epochs: 2
+        complexity_level: 4
+        schema_complexity: "complex_schema"
+      - name: "advanced_sql"
+        epochs: 3
+        complexity_level: 5
+        schema_complexity: "enterprise_schema"
+        
+  # Active learning for data efficiency
+  active_learning:
+    enabled: true
+    strategy: "hybrid"
+    uncertainty_sampling: true
+    diversity_sampling: true
+    query_by_committee: true
+    pool_size: 10000
+    acquisition_size: 100
+    
+  # Knowledge distillation from larger models
+  knowledge_distillation:
+    enabled: true
+    teacher_model: "gpt-4"  # If available
+    temperature: 5.0
+    alpha: 0.8
+    feature_matching: true
+
+# Experimental Features
+experimental:
+  # Multi-modal learning
+  multi_modal:
+    enabled: true
+    schema_diagrams: true
+    query_visualizations: true
+    
+  # Retrieval-augmented generation
+  rag:
+    enabled: true
+    knowledge_base: "./knowledge/comprehensive_sql_kb.json"
+    retrieval_k: 10
+    reranking: true
+    
+  # Meta-learning for few-shot adaptation
+  meta_learning:
+    enabled: true
+    algorithm: "maml"
+    inner_lr: 0.01
+    meta_lr: 0.001
+    
+  # Reinforcement learning from human feedback
+  rlhf:
+    enabled: true
+    reward_model: "sql_quality_reward"
+    ppo_steps: 2000
+    kl_penalty: 0.1
+
+# Data Configuration - Research datasets
+data:
+  train_dataset_path: "./data/research/train_complex_sql.json"
+  eval_dataset_path: "./data/research/eval_complex_sql.json"
+  test_dataset_path: "./data/research/test_complex_sql.json"
+  
+  # Additional research datasets
+  auxiliary_datasets:
+    - "./data/research/schema_to_sql.json"
+    - "./data/research/nl_to_sql_explanations.json"
+    - "./data/research/constraint_violations.json"
+    
+  max_sequence_length: 4096  # Longer sequences for research
+  
+  augmentation:
+    enabled: true
+    schema_variation: true
+    query_paraphrasing: true
+    difficulty_progression: true
+    noise_injection: true  # Research feature
+    adversarial_examples: true
+
+# Evaluation - Comprehensive research metrics
+evaluation:
+  eval_strategy: "steps"
+  eval_steps: 100  # Frequent evaluation
+  
+  metrics:
+    - "sql_syntax_accuracy"
+    - "semantic_correctness"
+    - "constraint_satisfaction"
+    - "confidence_calibration"
+    - "fact_extraction_quality"
+    - "explanation_coherence"
+    - "reasoning_depth"
+    - "generalization_score"
+    - "robustness_score"
+    - "efficiency_score"
+    
+  # Research-specific evaluation
+  research_evaluation:
+    cross_domain_transfer: true
+    few_shot_adaptation: true
+    adversarial_robustness: true
+    explanation_faithfulness: true
+    uncertainty_quality: true
+
+# Monitoring and Analysis
+monitoring:
+  # Advanced monitoring for research
+  gradient_monitoring: true
+  activation_monitoring: true
+  attention_analysis: true
+  representation_analysis: true
+  
+  # Experiment tracking
+  mlflow:
+    enabled: true
+    experiment_name: "neurosymbolic-sql-research"
+  
+  wandb:
+    enabled: true
+    project: "neurosymbolic-sql-research"
+    tags: ["research", "experimental", "max-performance"]
+
+# Performance - Research optimizations
+performance:
+  gradient_checkpointing: true
+  dataloader_num_workers: 8
+  pin_memory: true
+  
+  # Research optimizations
+  torch_compile: true  # Latest PyTorch optimizations
+  flash_attention: true
+  memory_efficient_attention: true

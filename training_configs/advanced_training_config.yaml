@@ -1,0 +1,269 @@
+# Advanced Training Configuration for Neurosymbolic SQL Adapter
+# This configuration defines advanced training settings for production-ready fine-tuning
+
+# Model Configuration
+model:
+  base_model: "unsloth/llama-3.1-8b-instruct-bnb-4bit"
+  model_type: "llama-8b"
+  device: "auto"  # auto-detect best device (cuda > mps > cpu)
+  torch_dtype: "bfloat16"  # Use bfloat16 for better performance
+  
+  # Quantization settings for memory efficiency
+  quantization:
+    load_in_4bit: true
+    bnb_4bit_compute_dtype: "bfloat16"
+    bnb_4bit_use_double_quant: true
+    bnb_4bit_quant_type: "nf4"
+
+# LoRA Configuration for Parameter-Efficient Fine-tuning
+lora:
+  r: 64  # Higher rank for more expressiveness
+  alpha: 128  # 2x the rank for optimal performance
+  dropout: 0.05  # Lower dropout for production
+  target_modules:
+    - "q_proj"
+    - "k_proj" 
+    - "v_proj"
+    - "o_proj"
+    - "gate_proj"
+    - "up_proj"
+    - "down_proj"
+    - "lm_head"  # Include language modeling head
+  bias: "none"
+  task_type: "CAUSAL_LM"
+
+# Neurosymbolic Component Configuration
+neurosymbolic:
+  # Bridge layer settings
+  bridge:
+    neural_dim: 4096  # Llama hidden size
+    symbolic_dim: 512  # Rich symbolic representation
+    bridge_dim: 256    # Intermediate dimension
+    num_transformer_layers: 4  # Deeper reasoning
+    num_attention_heads: 8
+    dropout: 0.1
+    enable_residual: true
+    
+  # Confidence estimation settings
+  confidence:
+    methods:
+      - "entropy"
+      - "temperature_scaling"
+      - "attention_based"
+      - "ensemble"
+    hidden_dim: 4096
+    symbolic_dim: 512
+    calibration_temperature: 1.5
+    enable_calibration: true
+    
+  # Fact extraction settings
+  fact_extraction:
+    hidden_dim: 4096
+    extraction_threshold: 0.6  # Higher threshold for quality
+    max_facts_per_query: 100   # More facts for complex queries
+    enable_pattern_matching: true
+    enable_neural_extraction: true
+    fact_validation: true
+
+# Training Configuration
+training:
+  # Basic training parameters
+  num_epochs: 5
+  batch_size: 4  # Adjust based on GPU memory
+  gradient_accumulation_steps: 4  # Effective batch size = 16
+  learning_rate: 2e-4
+  weight_decay: 0.01
+  warmup_ratio: 0.1  # 10% warmup
+  
+  # Advanced optimization
+  optimizer:
+    type: "adamw"
+    beta1: 0.9
+    beta2: 0.95
+    eps: 1e-8
+    
+  scheduler:
+    type: "cosine_with_restarts"
+    num_cycles: 2
+    eta_min: 1e-6
+    
+  # Gradient management
+  gradient_clipping:
+    max_norm: 1.0
+    norm_type: 2
+    
+  # Mixed precision training
+  mixed_precision:
+    enabled: true
+    autocast: true
+    scaler: true
+
+# Neurosymbolic Loss Configuration
+loss:
+  # Base language modeling loss
+  base_loss_weight: 1.0
+  
+  # Neurosymbolic loss components
+  confidence_loss:
+    weight: 0.15
+    target_confidence: 0.8
+    calibration_weight: 0.1
+    
+  fact_consistency_loss:
+    weight: 0.1
+    consistency_threshold: 0.7
+    diversity_penalty: 0.05
+    
+  symbolic_reasoning_loss:
+    weight: 0.2
+    constraint_satisfaction_weight: 0.15
+    explanation_quality_weight: 0.05
+
+# Data Configuration
+data:
+  # Dataset settings
+  train_dataset_path: "./data/train_sql_dataset.json"
+  eval_dataset_path: "./data/eval_sql_dataset.json"
+  test_dataset_path: "./data/test_sql_dataset.json"
+  
+  # Data preprocessing
+  max_sequence_length: 2048
+  padding_side: "right"
+  truncation: true
+  
+  # Data augmentation
+  augmentation:
+    enabled: true
+    schema_variation: true
+    query_paraphrasing: true
+    difficulty_progression: true
+    
+  # SQL-specific preprocessing
+  sql_preprocessing:
+    normalize_keywords: true
+    extract_schema_context: true
+    add_constraint_annotations: true
+    include_explanation_targets: true
+
+# Evaluation Configuration
+evaluation:
+  # Evaluation frequency
+  eval_strategy: "steps"
+  eval_steps: 500
+  evaluation_during_training: true
+  
+  # Metrics to compute
+  metrics:
+    - "sql_syntax_accuracy"
+    - "semantic_correctness"  
+    - "constraint_satisfaction"
+    - "confidence_calibration"
+    - "fact_extraction_quality"
+    - "explanation_coherence"
+    
+  # SQL-specific evaluation
+  sql_evaluation:
+    schema_validation: true
+    execution_validation: false  # Set to true if database available
+    constraint_checking: true
+    performance_analysis: true
+
+# Checkpoint and Logging
+checkpointing:
+  save_strategy: "steps"
+  save_steps: 1000
+  save_total_limit: 5
+  save_best_model: true
+  
+  # Model export formats
+  export_formats:
+    - "huggingface"
+    - "onnx"
+    - "torchscript"
+
+logging:
+  # Logging frequency
+  logging_steps: 100
+  log_level: "INFO"
+  
+  # Monitoring
+  wandb:
+    enabled: true
+    project: "neurosymbolic-sql-adapter"
+    entity: "sql-ai-research"
+    name: "advanced-training-run"
+    
+  # Metrics to log
+  log_metrics:
+    - "train_loss"
+    - "eval_loss"
+    - "learning_rate"
+    - "confidence_calibration"
+    - "fact_extraction_accuracy"
+    - "sql_generation_quality"
+
+# Hardware and Performance
+performance:
+  # Memory optimization
+  gradient_checkpointing: true
+  dataloader_num_workers: 4
+  pin_memory: true
+  
+  # Model parallelism (for multi-GPU)
+  data_parallel: false
+  model_parallel: false
+  
+  # Optimization flags
+  torch_compile: false  # Enable if using PyTorch 2.0+
+  flash_attention: false  # Enable if available
+
+# Advanced Features
+advanced:
+  # Curriculum learning
+  curriculum_learning:
+    enabled: true
+    stages:
+      - name: "basic_sql"
+        epochs: 2
+        complexity_level: 1
+      - name: "joins_and_aggregates" 
+        epochs: 2
+        complexity_level: 2
+      - name: "complex_queries"
+        epochs: 1
+        complexity_level: 3
+        
+  # Active learning
+  active_learning:
+    enabled: false
+    uncertainty_sampling: true
+    diversity_sampling: true
+    
+  # Model distillation
+  knowledge_distillation:
+    enabled: false
+    teacher_model: null
+    temperature: 3.0
+    alpha: 0.7
+
+# Experimental Features
+experimental:
+  # Retrieval-augmented generation
+  rag:
+    enabled: false
+    knowledge_base: "./knowledge/sql_kb.json"
+    retrieval_k: 5
+    
+  # Multi-task learning
+  multi_task:
+    enabled: false
+    tasks:
+      - "sql_generation"
+      - "query_explanation"
+      - "schema_inference"
+      
+  # Reinforcement learning from human feedback
+  rlhf:
+    enabled: false
+    reward_model: null
+    ppo_steps: 1000

@@ -1,0 +1,53 @@
+[tool.poetry]
+name = "neurosymbolic-sql-adapter"
+version = "0.1.0"
+description = "Neurosymbolic reasoning adapter for SQL generation with constraint validation"
+authors = ["Assistant <assistant@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+torch = ">=2.0.0"
+transformers = ">=4.30.0"
+datasets = ">=2.12.0"
+accelerate = ">=0.20.0"
+peft = ">=0.4.0"
+pandas = ">=2.0.0"
+numpy = ">=1.24.0,<2.3"
+networkx = ">=3.1"
+sqlparse = ">=0.4.4"
+scikit-learn = ">=1.3.0"
+matplotlib = ">=3.7.0"
+seaborn = ">=0.12.0"
+tqdm = ">=4.65.0"
+pyyaml = ">=6.0"
+python-dotenv = ">=1.0.0"
+click = ">=8.1.0"
+# Use older compatible versions for numba ecosystem
+numba = "0.59.1"
+pyreason = "1.8.12"  # Try older stable version
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=7.4.0"
+black = ">=23.3.0"
+isort = ">=5.12.0"
+flake8 = ">=6.0.0"
+mypy = ">=1.4.0"
+jupyter = ">=1.0.0"
+notebook = ">=6.5.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
