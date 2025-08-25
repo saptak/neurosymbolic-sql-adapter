@@ -210,7 +210,7 @@ print(f"Symbolic Context: {outputs.symbolic_context}")
 
 ### Test Results
 - **Individual Testing**: Both projects pass with full functionality
-- **Integration Testing**: End-to-end pipeline with 100% valid queries  
+- **Integration Testing**: End-to-end pipeline with 100% valid queries
 - **Cross-Platform**: Verified on Python 3.8, 3.9, 3.10, 3.11, 3.13
 - **Performance**: All benchmarks exceeded expectations
 
@@ -224,9 +224,6 @@ See the comprehensive deployment guide in `blog-post-neurosymbolic-sql-adapter.m
 - Monitoring and logging
 
 ## Documentation
-
-- **`CLAUDE.md`**: Complete technical specification and implementation details
-- **`blog-post-*.md`**: Production deployment guide and architectural overview
 - **`docs/`**: Generated API documentation
 - **`examples/`**: Basic and advanced usage examples
 
